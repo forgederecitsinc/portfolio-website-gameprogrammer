@@ -366,14 +366,35 @@ export const PROJECTS: ProjectItem[] = [
     title: '2D Asteroid Survival Arcade Game',
     category: 'GBC School',
     roles: ['Game Programmer', 'Game Designer'],
-    context: 'George Brown College · Sep 2026 – Present · Unity 6 (URP 2D / WebGL)',
+    context: 'George Brown College · GAME3121 · Unity 6 (URP 2D / WebGL)',
     platforms: ['WebGL', 'PC'],
     overview:
-      '2D top-down space survival arcade game built in Unity 6 (6000.6.0f1) using C#, URP 2D, and the Unity Input System, deployed as a playable WebGL build.',
+      '2D top-down survival/avoidance game built in Unity 6 (6000.6.0f1) where you pilot a ship inside a walled arena, dodging bouncing obstacles until reaching the 300-point survival target.',
     contributions: [
-      'Built smooth mouse-aim rotation, click-to-thrust Rigidbody2D movement, and velocity clamping.',
-      'Created proximity radar audio that scales pitch/frequency with asteroid distance and WebGL autoplay-unlock handling.',
-      'Implemented speed-reactive thruster smoke, collision sparks, PlayerPrefs high scores, and 300-point win celebration.',
+      'Mouse-Aim & Click-Thrust Physics (PlayerMovement.cs): Smooth cursor tracking at 220°/s via Mathf.MoveTowardsAngle, Left-Click thrust (12f), maxSpeed clamping (6f), and W debug win trigger.',
+      'Bouncing Obstacles & Non-Lethal Walls (ObstacleMovement.cs, WallSound.cs): Random 0°–360° launch (3f ± 1f speed), single-owner spark FX on obstacle-to-obstacle collisions, and non-lethal wall bump SFX.',
+      'Proximity Radar & Dynamic Smoke: Distance-scaled warning beep (8f → 1.2f, pitch 0.8–2.0, interval 0.75s–0.08s) plus velocity-aligned trailing smoke (18–48 particles/s above 0.15f speed).',
+      'Scoring, Persistence & WebGL Audio (GameManager.cs): Live time-based scoring (10 pts/s), PlayerPrefs high-score persistence (LabTest3HighScore), confetti win / explosion game-over states, and WebGL autoplay unlock.',
+    ],
+    mechanics: [
+      {
+        heading: '1. Core Gameplay Loop',
+        points: [
+          'Start / Spawn: GameManager.cs loads LabTest3HighScore from PlayerPrefs, resets score to 0, hides end panels, starts looping music, and launches obstacles at random 0°–360° angles.',
+          'Survive & Steer: Weave around bouncing obstacles inside the arena while survival time awards 10 pts/sec (elapsedTime * pointsPerSecond) and updates live Score & HighScore labels.',
+          'Win (300 Pts): Reaching scoreToWin (300 pts / 30 s, or pressing W) triggers WinActivation(), halting the ship, spawning multi-color confetti, saving the high score, and displaying "YOU WIN!".',
+          'Lose & Restart: Hitting any non-wall obstacle sets dead = true, stops smoke, spawns explosion FX + SFX, disables the ship, saves the high score, and shows "GAME OVER" with RestartGame() scene reload.',
+        ],
+      },
+      {
+        heading: '2. Player Controls, Obstacles & Feedback',
+        points: [
+          'Controls (PlayerMovement.cs): Rotates smoothly toward world mouse position (turnSpeed = 220°/s); holding Left Mouse applies thrust = 12f clamped to maxSpeed = 6f.',
+          'Obstacles & Walls (ObstacleMovement.cs / WallSound.cs): Launch at 3f ± 1f speed (min 0.1f); lower-numbered obstacle spawns contact sparks on collision; arena walls play SFX without destroying the ship.',
+          'Proximity Warning Beep: Scans nearest active obstacle inside maxBeepDistance (8f), scaling pitch (0.8 → 2.0) and interval (0.75s → 0.08s) down to minBeepDistance (1.2f).',
+          'Dynamic Trailing Smoke & WebGL Audio: Emits 18–48 particles/s opposite the velocity vector above motionThreshold (0.15f); GameManager unlocks AudioListener on first mouse, keyboard, or touch input for WebGL.',
+        ],
+      },
     ],
     badgeImage: './images/gbc-badge.png',
     images: [
