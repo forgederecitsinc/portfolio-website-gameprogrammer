@@ -88,7 +88,7 @@ export function Resn3DShowcase() {
       const parent = canvas.parentElement;
       if (!parent) return;
       const rect = parent.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 3);
       width = rect.width;
       height = rect.height;
       canvas.width = Math.floor(width * dpr);
@@ -162,8 +162,8 @@ export function Resn3DShowcase() {
         ctx.stroke();
       };
 
-      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(164, 120, 100, 0.36)');
-      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(74, 53, 44, 0.22)');
+      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(26, 23, 21, 0.25)');
+      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(140, 122, 107, 0.30)');
 
       // Transform vertices
       const transformed = RAW_VERTS.map((v) => rotatePoint(v, ax, ay, az));
@@ -214,15 +214,13 @@ export function Resn3DShowcase() {
         ctx.lineTo(p2.x, p2.y);
         ctx.closePath();
 
-        // Pantone 2025 Mocha Mousse -> Warm Latte facet shading
-        const hue = 18 + ((face.idx * 2) % 14);
-        const saturation = Math.round(24 + face.light * 16);
-        const lightness = Math.round(38 + face.light * 38);
-        ctx.fillStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.92)`;
+        // Crisp vintage archival sepia-monochrome facet shading
+        const lightness = Math.round(32 + face.light * 52);
+        ctx.fillStyle = `hsla(32, 14%, ${lightness}%, 0.92)`;
         ctx.fill();
 
-        ctx.strokeStyle = 'rgba(247, 243, 239, 0.65)';
-        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'rgba(26, 23, 21, 0.42)';
+        ctx.lineWidth = 0.85;
         ctx.stroke();
       }
 
@@ -257,9 +255,9 @@ export function Resn3DShowcase() {
   }, []);
 
   return (
-    <div className="relative h-56 w-full overflow-hidden rounded-2xl border border-[#DCD0C7] bg-gradient-to-br from-[#F7F3EF] via-[#EDE4DC] to-[#E2D4C8] sm:h-64">
+    <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#C8BEB2] bg-[#EBE5DB] sm:h-64">
       <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
-      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-full border border-[#D7C4B6] bg-[#F7F3EF]/90 px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-[#5E4D45] uppercase backdrop-blur-xs">
+      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-sm border border-[#C8BEB2] bg-[#F5F1EA]/95 px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-widest text-[#1A1715] uppercase">
         3D Specimen · Scroll &amp; Move
       </div>
     </div>

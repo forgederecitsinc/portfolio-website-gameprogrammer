@@ -238,9 +238,9 @@ export function HeroNavMeshCanvas() {
       // Draw
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle spatial grid
-      ctx.strokeStyle = 'rgba(164, 120, 100, 0.09)';
-      ctx.lineWidth = 1;
+      // Subtle archival ink grid
+      ctx.strokeStyle = 'rgba(26, 23, 21, 0.055)';
+      ctx.lineWidth = 0.75;
       for (let c = 0; c <= cols; c++) {
         const x = c * CELL_SIZE;
         ctx.beginPath();

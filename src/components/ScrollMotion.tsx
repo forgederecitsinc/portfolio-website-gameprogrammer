@@ -33,10 +33,10 @@ export function ScrollProgressBar() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[3px] bg-transparent"
+      className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[2px] bg-transparent"
     >
       <div
-        className="h-full origin-left bg-gradient-to-r from-[#D7C4B6] via-[#A47864] to-[#4A352C] transition-transform duration-75 ease-out"
+        className="h-full origin-left bg-[#1A1715] transition-transform duration-75 ease-out"
         style={{ transform: `scaleX(${progress})` }}
       />
     </div>

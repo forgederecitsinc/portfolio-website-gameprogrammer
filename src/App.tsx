@@ -188,7 +188,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-[#D6C7BC] bg-[#EDE4DC]/85 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#C8BEB2] bg-[#E9E3D9]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -198,14 +198,14 @@ export default function App() {
             }}
             className="flex items-center gap-3"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#D7C4B6] bg-[#F7F3EF] text-[#A47864] shadow-2xs">
+            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#C8BEB2] bg-[#F5F1EA] text-[#1A1715]">
               <Gamepad2 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <span className="block font-serif text-base font-semibold tracking-tight text-[#231B18]">
+              <span className="block font-serif text-lg font-semibold tracking-tight text-[#1A1715]">
                 {PROFILE.name}
               </span>
-              <span className="block text-[11px] font-medium text-[#7A645B]">
+              <span className="block font-mono text-[10px] font-medium tracking-wider text-[#5C544D] uppercase">
                 Narrative &amp; Game Designer
               </span>
             </div>
@@ -325,37 +325,37 @@ export default function App() {
           <HeroNavMeshCanvas />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="animate-fade-up lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-violet-50/80 px-3.5 py-1.5 text-xs font-medium text-violet-900 dark:border-violet-700/70 dark:bg-violet-950/70 dark:text-violet-200">
-                <MapPin className="h-3.5 w-3.5 text-violet-600 dark:text-violet-300" />
+              <div className="inline-flex items-center gap-2 rounded-sm border border-[#C8BEB2] bg-[#F5F1EA] px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-[#5C544D] uppercase">
+                <MapPin className="h-3.5 w-3.5 text-[#1A1715]" />
                 {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-[#231B18] sm:text-5xl lg:text-[3.25rem]">
+              <h1 className="mt-5 font-serif text-5xl leading-[1.05] font-semibold tracking-tight text-[#1A1715] sm:text-6xl lg:text-[4rem]">
                 {PROFILE.name}
               </h1>
-              <p className="mt-3 text-base font-semibold text-[#5E4D45] sm:text-lg">
+              <p className="mt-3 text-base font-semibold text-[#3F3934] sm:text-lg">
                 {PROFILE.title}
               </p>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#5E4D45]">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#5C544D]">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-2xl border border-[#DCD0C7] bg-[#F7F3EF]/90 px-5 py-4 text-sm italic text-[#5E4D45]">
+              <blockquote className="mt-6 rounded-lg border border-[#C8BEB2] bg-[#F5F1EA] px-5 py-4 font-serif text-base italic text-[#3F3934]">
                 “{PROFILE.tagline}”
               </blockquote>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#231B18] px-6 py-3 text-sm font-semibold text-[#F7F3EF] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#3A2D28] hover:shadow-lg active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#1A1715] px-6 py-3 text-sm font-semibold text-[#F5F1EA] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#322C28] active:scale-[0.97]"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-[#D7C4B6] bg-[#F7F3EF] px-6 py-3 text-sm font-semibold text-[#231B18] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-white active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md border border-[#C8BEB2] bg-[#F5F1EA] px-6 py-3 text-sm font-semibold text-[#1A1715] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#1A1715] hover:bg-[#FAF7F2] active:scale-[0.97]"
                 >
                   Contact &amp; Socials
                 </a>
@@ -379,24 +379,24 @@ export default function App() {
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
               <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
-                <div className="space-y-3 overflow-hidden rounded-3xl border border-[#DCD0C7] bg-[#F7F3EF] p-4 shadow-sm transition duration-300 hover:shadow-lg">
+                <div className="space-y-3 overflow-hidden rounded-xl border border-[#C8BEB2] bg-[#F5F1EA] p-4 transition duration-300">
                 <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="rounded-2xl border border-[#DCD0C7] bg-white/80 p-3 text-center transition hover:-translate-y-0.5">
-                    <Gamepad2 className="mx-auto h-7 w-7 text-[#A47864]" />
-                    <p className="mt-1.5 text-[11px] font-medium text-[#473832]">
+                  <div className="rounded-lg border border-[#C8BEB2] bg-[#FAF7F2] p-3 text-center transition hover:-translate-y-0.5">
+                    <Gamepad2 className="mx-auto h-6 w-6 text-[#1A1715]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#3F3934]">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-[#DCD0C7] bg-white/80 p-3 text-center transition hover:-translate-y-0.5">
-                    <GraduationCap className="mx-auto h-7 w-7 text-[#7A645B]" />
-                    <p className="mt-1.5 text-[11px] font-medium text-[#473832]">
+                  <div className="rounded-lg border border-[#C8BEB2] bg-[#FAF7F2] p-3 text-center transition hover:-translate-y-0.5">
+                    <GraduationCap className="mx-auto h-6 w-6 text-[#1A1715]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#3F3934]">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-[#DCD0C7] bg-white/80 p-3 text-center transition hover:-translate-y-0.5">
-                    <Sparkles className="mx-auto h-7 w-7 text-[#A47864]" />
-                    <p className="mt-1.5 text-[11px] font-medium text-[#473832]">
+                  <div className="rounded-lg border border-[#C8BEB2] bg-[#FAF7F2] p-3 text-center transition hover:-translate-y-0.5">
+                    <Sparkles className="mx-auto h-6 w-6 text-[#1A1715]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#3F3934]">
                       Ludonode Studios
                     </p>
                   </div>
@@ -472,7 +472,7 @@ export default function App() {
                     }}
                     tabIndex={0}
                     role="button"
-                    className={`group flex h-full cursor-pointer flex-col justify-between rounded-3xl border ${theme.border} ${theme.surface} p-6 transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400`}
+                    className={`group flex h-full cursor-pointer flex-col justify-between rounded-xl border ${theme.border} ${theme.surface} p-6 transition focus:outline-none focus:ring-2 focus:ring-[#1A1715]`}
                   >
                   <div>
                     <div className="flex items-center justify-between gap-2">
