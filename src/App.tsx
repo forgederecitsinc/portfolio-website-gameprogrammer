@@ -294,7 +294,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-[#FAF9F5]/90 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/90">
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-[#FAF9F5]/95 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/95">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -525,7 +525,7 @@ export default function App() {
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-amber-500 hover:text-amber-700 active:scale-[0.97] dark:border-white/20 dark:bg-[#121216] dark:text-white dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]"
+                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-amber-500 hover:text-amber-700 active:scale-[0.97] dark:border-white/30 dark:bg-white/10 dark:text-white dark:hover:border-[#F6CF3B] dark:hover:bg-white/15 dark:hover:text-[#F6CF3B]"
                 >
                   Contact &amp; Socials
                 </a>
