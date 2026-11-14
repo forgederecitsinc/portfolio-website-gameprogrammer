@@ -38,6 +38,7 @@ import { PASTEL_THEME } from './utils/theme';
 import { GameDevBackdrop } from './components/GameDevBackdrop';
 import { ProjectModal } from './components/ProjectModal';
 import { Reveal } from './components/Reveal';
+import { ScrollParallax, ScrollProgressBar } from './components/ScrollMotion';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
@@ -130,6 +131,7 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen overflow-x-clip text-slate-800 dark:text-slate-100">
+      <ScrollProgressBar />
       <GameDevBackdrop />
 
       {/* Top Navigation */}
@@ -326,7 +328,8 @@ export default function App() {
             </div>
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
-              <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm transition duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/90">
+              <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
+                <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm transition duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/90">
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-amber-700/60 dark:bg-amber-950/45">
                     <img
@@ -360,6 +363,7 @@ export default function App() {
                   </div>
                 </div>
               </div>
+              </ScrollParallax>
             </div>
           </div>
         </section>
@@ -406,8 +410,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleProjects.map((project) => {
+          <ScrollParallax offsetY={20} scaleFrom={0.97} tiltDeg={2.5}>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {visibleProjects.map((project) => {
               const theme = PASTEL_THEME[project.theme];
               return (
                 <article
@@ -470,7 +475,8 @@ export default function App() {
                 </article>
               );
             })}
-          </div>
+            </div>
+          </ScrollParallax>
 
           {activeFilter === 'All' && filteredProjects.length > 6 && (
             <div className="mt-7 flex justify-center">

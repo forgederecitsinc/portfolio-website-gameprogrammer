@@ -145,6 +145,7 @@ export function GameDevBackdrop() {
     const tick = () => {
       currentX += (targetX - currentX) * 0.08;
       currentY += (targetY - currentY) * 0.08;
+      const scrollRatio = window.scrollY / Math.max(1, window.innerHeight);
 
       if (layerRef.current) {
         const items = layerRef.current.querySelectorAll<HTMLElement>('[data-depth]');
@@ -152,8 +153,9 @@ export function GameDevBackdrop() {
           const depth = Number(el.dataset.depth || 20);
           const rot = Number(el.dataset.rotate || 0);
           const tx = currentX * depth;
-          const ty = currentY * depth;
-          el.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) rotate(${rot}deg)`;
+          const ty = currentY * depth - scrollRatio * depth * 1.4;
+          const scrollRot = rot + scrollRatio * (depth > 25 ? 8 : -6);
+          el.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) rotate(${scrollRot.toFixed(2)}deg)`;
         });
       }
 
