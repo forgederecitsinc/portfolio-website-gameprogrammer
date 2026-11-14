@@ -39,6 +39,7 @@ import { GameDevBackdrop } from './components/GameDevBackdrop';
 import { ProjectModal } from './components/ProjectModal';
 import { Reveal } from './components/Reveal';
 import { ScrollParallax, ScrollProgressBar } from './components/ScrollMotion';
+import { DualSenseScrollPointer } from './components/DualSenseScrollPointer';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
@@ -132,6 +133,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen overflow-x-clip text-slate-800 dark:text-slate-100">
       <ScrollProgressBar />
+      <DualSenseScrollPointer />
       <GameDevBackdrop />
 
       {/* Top Navigation */}
