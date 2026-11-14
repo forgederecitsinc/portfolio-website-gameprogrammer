@@ -74,12 +74,12 @@ export const GAMEPLAY_LOOPS: Record<string, GameplayLoopSpec> = {
   },
   'sphere-runner': {
     title: '3D NavMesh Survival Loop',
-    entry: 'Spawn in Electric Arena',
-    action: 'Camera-Relative Roll',
-    system: 'NavMesh Chaser & Pulse',
-    decision: 'Timer / Goal Clear?',
-    retryLabel: 'Avoid 3s Wall Linger',
-    reward: 'Victory VFX & Best Time',
+    entry: 'Title Screen → Count 9 Pickups',
+    action: 'Camera-Relative Roll (Speed 10)',
+    system: 'NavMesh Chaser & 8u Pulse',
+    decision: 'All 9 Pickups Collected?',
+    retryLabel: 'Evade Enemy & <3s Wall Touch',
+    reward: 'Unscaled Confetti Win & Freeze',
   },
   'atmospheric-horror': {
     title: '3D Spatial Audio & Tension Loop',

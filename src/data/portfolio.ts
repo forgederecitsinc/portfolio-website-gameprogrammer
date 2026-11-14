@@ -410,14 +410,32 @@ export const PROJECTS: ProjectItem[] = [
     title: 'Sphere Runner — 3D Arcade Survival',
     category: 'GBC School',
     roles: ['Game Programmer', 'Game Designer'],
-    context: 'George Brown College · Sep 2026 – Present · Unity 6 (URP / WebGL)',
+    context: 'George Brown College · GAME3121 Lab Test 2 · Unity 6 (URP / WebGL)',
     platforms: ['WebGL', 'PC'],
     overview:
-      'Fast-paced 3D arcade survival game in Unity 6 using C#, URP, NavMeshAgent pursuit AI, and programmatic TextMeshPro/uGUI menus exported for WebGL.',
+      'Fast-paced 3D arcade survival game in Unity 6 (C#, URP, NavMeshAgent, WebGL) where you pilot a sphere to collect all 9 golden Pickup spheres while evading a relentless NavMesh chaser and avoiding >3s contact with electric outer boundary walls.',
     contributions: [
-      'Engineered camera-relative Rigidbody sphere controls with a smooth-lerping follow camera.',
-      'Implemented NavMeshAgent enemy chaser with URP MaterialPropertyBlock emission pulsing based on proximity.',
-      'Added electric boundary hazards with 3-second linger-to-lose audio, procedural particle trails, and live settings sliders.',
+      'Engineered snappy camera-relative controls in PlayerController.cs (WASD/Arrows projected onto flattened camera XZ vectors, direct rb.linearVelocity at speed 10 preserving gravity) with a smooth Vector3.Lerp follow camera (C_camerafollow.cs, offset (0, 10, -10), smoothSpeed 5).',
+      'Implemented relentless NavMeshAgent pursuit AI (E_EnemyChase.cs, stoppingDistance = 0, autoBraking = false) with an 8.0-unit proximity warning that sets IsNearPlayer and sine-pulses URP emission (pulseSpeed = 8.0).',
+      'Built the 3-second OuterWall electric hazard timer with looping electricSound (BoundaryWallSound.cs), unscaled-time victory confetti (winCelebrationEffect), and GameUIManager.cs runtime UI fallback with live Enemy Speed (2.0–10.0) and Music Volume (0–100%) sliders.',
+    ],
+    mechanics: [
+      {
+        heading: 'Core Gameplay Loop',
+        points: [
+          'Title & Setup (GameUIManager.cs): PlayerController and EnemyChase start disabled behind the Title Screen (PLAY GAME, SETTINGS, QUIT GAME) while counting scene "Pickup" objects (9 golden spheres) to set scoreToWin.',
+          'Active Play & Pause: Clicking PLAY GAME enables movement and AI at Time.timeScale = 1; pressing Escape or clicking PAUSE / MENU freezes time (Time.timeScale = 0) to adjust Enemy Speed or Music Volume mid-run.',
+          'Victory & Defeat (PlayerController.cs): Collecting all Pickups stops BGM, disables the dust trail, spawns unscaled-time winCelebrationEffect confetti, plays winMusic, and freezes time. Touching the Enemy or lingering in an OuterWall trigger >3s triggers Game Over.',
+        ],
+      },
+      {
+        heading: 'Controls, AI & Hazards',
+        points: [
+          'Snappy Sphere & Dust Trail: Input.GetAxisRaw projects onto camera XZ vectors and overrides rb.linearVelocity directly (speed 10), emitting a directional cone of dust particles while sqrMagnitude > 0.05.',
+          'NavMesh Chaser & Proximity Pulse (E_EnemyChase.cs): Updates agent.SetDestination(player.position) every frame; within 8.0 units, triggers IsNearPlayer and oscillates light-to-bright red URP emission.',
+          'Electric Boundary & Runtime UI: Entering an "OuterWall" trigger starts touchStartTime and looping electricSound (cancelled on exit before 3s); GameUIManager auto-generates a black/white/orange Canvas fallback if panels are unassigned.',
+        ],
+      },
     ],
     badgeImage: './images/gbc-badge.png',
     images: [
