@@ -162,8 +162,8 @@ export function Resn3DShowcase() {
         ctx.stroke();
       };
 
-      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(26, 23, 21, 0.25)');
-      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(140, 122, 107, 0.30)');
+      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(15, 15, 15, 0.25)');
+      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(82, 82, 82, 0.28)');
 
       // Transform vertices
       const transformed = RAW_VERTS.map((v) => rotatePoint(v, ax, ay, az));
@@ -214,12 +214,12 @@ export function Resn3DShowcase() {
         ctx.lineTo(p2.x, p2.y);
         ctx.closePath();
 
-        // Crisp vintage archival sepia-monochrome facet shading
-        const lightness = Math.round(32 + face.light * 52);
-        ctx.fillStyle = `hsla(32, 14%, ${lightness}%, 0.92)`;
+        // Pure silver-gelatin black & white facet shading
+        const lightness = Math.round(18 + face.light * 74);
+        ctx.fillStyle = `hsla(0, 0%, ${lightness}%, 0.94)`;
         ctx.fill();
 
-        ctx.strokeStyle = 'rgba(26, 23, 21, 0.42)';
+        ctx.strokeStyle = 'rgba(15, 15, 15, 0.5)';
         ctx.lineWidth = 0.85;
         ctx.stroke();
       }
@@ -255,9 +255,9 @@ export function Resn3DShowcase() {
   }, []);
 
   return (
-    <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#C8BEB2] bg-[#EBE5DB] sm:h-64">
+    <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#D4D4D2] bg-gradient-to-br from-[#F7F7F5] via-[#ECEBE9] to-[#E2E1DF] sm:h-64">
       <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
-      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-sm border border-[#C8BEB2] bg-[#F5F1EA]/95 px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-widest text-[#1A1715] uppercase">
+      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5]/95 px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-widest text-[#0F0F0F] uppercase">
         3D Specimen · Scroll &amp; Move
       </div>
     </div>

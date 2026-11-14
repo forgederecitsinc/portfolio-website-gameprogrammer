@@ -8,22 +8,22 @@ export interface ThemeClasses {
   dot: string;
 }
 
-const ARCHIVAL_CARD: ThemeClasses = {
-  surface: 'bg-[#F5F1EA] hover:bg-[#FAF7F2]',
-  badge: 'bg-[#EBE5DB] text-[#2A2521] border-[#C8BEB2]',
-  border: 'border-[#C8BEB2] hover:border-[#1A1715]/60',
-  accentText: 'text-[#1A1715]',
-  dot: 'bg-[#7A6A5C]',
+const MONOCHROME_CARD: ThemeClasses = {
+  surface: 'bg-[#F7F7F5] hover:bg-white',
+  badge: 'bg-[#ECEBE9] text-[#0F0F0F] border-[#D4D4D2]',
+  border: 'border-[#D4D4D2] hover:border-[#0F0F0F]',
+  accentText: 'text-[#0F0F0F]',
+  dot: 'bg-[#0F0F0F]',
 };
 
 /**
- * Vintage archival monochrome & sepia palette — crisp, minimal, low-chroma.
+ * Vintage black & white silver-gelatin editorial palette.
  */
 export const PASTEL_THEME: Record<PastelTheme, ThemeClasses> = {
-  rose: ARCHIVAL_CARD,
-  violet: ARCHIVAL_CARD,
-  amber: ARCHIVAL_CARD,
-  emerald: ARCHIVAL_CARD,
-  sky: ARCHIVAL_CARD,
-  teal: ARCHIVAL_CARD,
+  rose: MONOCHROME_CARD,
+  violet: MONOCHROME_CARD,
+  amber: MONOCHROME_CARD,
+  emerald: MONOCHROME_CARD,
+  sky: MONOCHROME_CARD,
+  teal: MONOCHROME_CARD,
 };

@@ -214,16 +214,16 @@ export function DualSensePlayground() {
   };
 
   const currentSpec = activeZone ? ZONES[activeZone] : null;
-  const lightbarColor = currentSpec ? '#1A1715' : '#8C7A6B';
+  const lightbarColor = currentSpec ? '#0F0F0F' : '#737373';
 
   return (
-    <section id="haptics-lab" className="scroll-mt-20 border-t border-[#C8BEB2] py-14 sm:py-16">
-      <div className="rounded-xl border border-[#C8BEB2] bg-[#F5F1EA] p-6 sm:p-8 lg:p-10">
+    <section id="haptics-lab" className="scroll-mt-20 border-t border-[#D4D4D2] py-14 sm:py-16">
+      <div className="rounded-xl border border-[#D4D4D2] bg-[#F7F7F5] p-6 sm:p-8 lg:p-10">
         <div className="grid items-center gap-8 lg:grid-cols-12">
           {/* Copy + Live Haptic Telemetry */}
           <div className="lg:col-span-5">
-            <span className="inline-flex items-center gap-1.5 rounded-sm border border-[#C8BEB2] bg-[#EBE5DB] px-2.5 py-1 font-mono text-[11px] font-medium tracking-wider text-[#2A2521] uppercase">
-              <Zap className="h-3.5 w-3.5 text-[#5C544D]" />
+            <span className="inline-flex items-center gap-1.5 rounded-sm border border-[#D4D4D2] bg-[#ECEBE9] px-2.5 py-1 font-mono text-[11px] font-medium tracking-wider text-[#0F0F0F] uppercase">
+              <Zap className="h-3.5 w-3.5 text-[#0F0F0F]" />
               Interactive Game-Feel Demo
             </span>
             <h2 className="mt-3 font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">

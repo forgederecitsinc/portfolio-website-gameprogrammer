@@ -238,8 +238,8 @@ export function HeroNavMeshCanvas() {
       // Draw
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle archival ink grid
-      ctx.strokeStyle = 'rgba(26, 23, 21, 0.055)';
+      // Subtle monochrome grid
+      ctx.strokeStyle = 'rgba(15, 15, 15, 0.05)';
       ctx.lineWidth = 0.75;
       for (let c = 0; c <= cols; c++) {
         const x = c * CELL_SIZE;
@@ -257,14 +257,14 @@ export function HeroNavMeshCanvas() {
       }
 
       // Soft obstacle blocks
-      ctx.fillStyle = 'rgba(140, 118, 108, 0.11)';
+      ctx.fillStyle = 'rgba(15, 15, 15, 0.06)';
       obstacles.forEach((k) => {
         const [c, r] = k.split(',').map(Number);
         ctx.fillRect(c * CELL_SIZE + 4, r * CELL_SIZE + 4, CELL_SIZE - 8, CELL_SIZE - 8);
       });
 
       // Explored frontier cells
-      ctx.fillStyle = 'rgba(164, 120, 100, 0.065)';
+      ctx.fillStyle = 'rgba(15, 15, 15, 0.03)';
       for (const cell of explored) {
         ctx.fillRect(cell.col * CELL_SIZE + 6, cell.row * CELL_SIZE + 6, CELL_SIZE - 12, CELL_SIZE - 12);
       }
@@ -276,8 +276,8 @@ export function HeroNavMeshCanvas() {
         for (let i = 1; i < path.length; i++) {
           ctx.lineTo((path[i].col + 0.5) * CELL_SIZE, (path[i].row + 0.5) * CELL_SIZE);
         }
-        ctx.strokeStyle = 'rgba(164, 120, 100, 0.42)';
-        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(15, 15, 15, 0.35)';
+        ctx.lineWidth = 1.6;
         ctx.setLineDash([5, 5]);
         ctx.lineDashOffset = -(now * 0.025);
         ctx.stroke();
@@ -289,7 +289,7 @@ export function HeroNavMeshCanvas() {
       const gy = (targetCell.row + 0.5) * CELL_SIZE;
       ctx.beginPath();
       ctx.arc(gx, gy, 7 + Math.sin(now * 0.005) * 1.5, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(164, 120, 100, 0.55)';
+      ctx.strokeStyle = 'rgba(15, 15, 15, 0.45)';
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
@@ -298,7 +298,7 @@ export function HeroNavMeshCanvas() {
       const ay = agentPos.y * CELL_SIZE;
       ctx.beginPath();
       ctx.arc(ax, ay, 5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(35, 27, 24, 0.55)';
+      ctx.fillStyle = 'rgba(15, 15, 15, 0.6)';
       ctx.fill();
 
       raf = requestAnimationFrame(tick);

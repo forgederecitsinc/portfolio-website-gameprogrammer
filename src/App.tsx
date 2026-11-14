@@ -182,13 +182,14 @@ export default function App() {
     : -1;
 
   return (
-    <div className="relative min-h-screen overflow-x-clip text-slate-800 dark:text-slate-100">
+    <div className="relative min-h-screen overflow-x-clip text-[#0F0F0F]">
+      <div className="film-grain pointer-events-none fixed inset-0 z-50 opacity-[0.025]" aria-hidden="true" />
       <ScrollProgressBar />
       <DualSenseScrollPointer />
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-[#C8BEB2] bg-[#E9E3D9]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#D4D4D2] bg-[#ECEBE9]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -198,14 +199,14 @@ export default function App() {
             }}
             className="flex items-center gap-3"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#C8BEB2] bg-[#F5F1EA] text-[#1A1715]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#D4D4D2] bg-[#F7F7F5] text-[#0F0F0F]">
               <Gamepad2 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <span className="block font-serif text-lg font-semibold tracking-tight text-[#1A1715]">
+              <span className="block font-serif text-lg font-semibold tracking-tight text-[#0F0F0F]">
                 {PROFILE.name}
               </span>
-              <span className="block font-mono text-[10px] font-medium tracking-wider text-[#5C544D] uppercase">
+              <span className="block font-mono text-[10px] font-medium tracking-wider text-[#525252] uppercase">
                 Narrative &amp; Game Designer
               </span>
             </div>
@@ -215,10 +216,10 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateTo('professional')}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
                 route === 'professional'
-                  ? 'bg-[#A47864]/15 text-[#5B3A2E]'
-                  : 'text-[#5E4D45] hover:bg-[#F7F3EF] hover:text-[#231B18]'
+                  ? 'bg-[#0F0F0F] text-[#F7F7F5]'
+                  : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
               }`}
             >
               Professional
@@ -226,10 +227,10 @@ export default function App() {
             <button
               type="button"
               onClick={() => navigateTo('school')}
-              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
                 route === 'school'
-                  ? 'bg-[#A47864]/15 text-[#5B3A2E]'
-                  : 'text-[#5E4D45] hover:bg-[#F7F3EF] hover:text-[#231B18]'
+                  ? 'bg-[#0F0F0F] text-[#F7F7F5]'
+                  : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
               }`}
             >
               School Projects
@@ -325,37 +326,37 @@ export default function App() {
           <HeroNavMeshCanvas />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="animate-fade-up lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-sm border border-[#C8BEB2] bg-[#F5F1EA] px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-[#5C544D] uppercase">
-                <MapPin className="h-3.5 w-3.5 text-[#1A1715]" />
+              <div className="inline-flex items-center gap-2 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5] px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-[#525252] uppercase">
+                <MapPin className="h-3.5 w-3.5 text-[#0F0F0F]" />
                 {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-5xl leading-[1.05] font-semibold tracking-tight text-[#1A1715] sm:text-6xl lg:text-[4rem]">
+              <h1 className="mt-5 font-serif text-5xl leading-[1.03] font-semibold tracking-tight text-[#0F0F0F] sm:text-6xl lg:text-[4.25rem]">
                 {PROFILE.name}
               </h1>
-              <p className="mt-3 text-base font-semibold text-[#3F3934] sm:text-lg">
+              <p className="mt-3 text-base font-semibold text-[#262626] sm:text-lg">
                 {PROFILE.title}
               </p>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#5C544D]">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#525252]">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-lg border border-[#C8BEB2] bg-[#F5F1EA] px-5 py-4 font-serif text-base italic text-[#3F3934]">
+              <blockquote className="mt-6 rounded-lg border border-[#D4D4D2] bg-[#F7F7F5] px-5 py-4 font-serif text-base italic text-[#262626]">
                 “{PROFILE.tagline}”
               </blockquote>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-md bg-[#1A1715] px-6 py-3 text-sm font-semibold text-[#F5F1EA] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#322C28] active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#0F0F0F] px-6 py-3 text-sm font-semibold text-[#F7F7F5] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#262626] active:scale-[0.97]"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-md border border-[#C8BEB2] bg-[#F5F1EA] px-6 py-3 text-sm font-semibold text-[#1A1715] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#1A1715] hover:bg-[#FAF7F2] active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md border border-[#D4D4D2] bg-[#F7F7F5] px-6 py-3 text-sm font-semibold text-[#0F0F0F] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#0F0F0F] hover:bg-white active:scale-[0.97]"
                 >
                   Contact &amp; Socials
                 </a>
@@ -368,7 +369,7 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#DCD0C7] bg-[#F7F3EF]/90 px-3.5 py-1.5 text-xs font-medium text-[#5E4D45] transition hover:-translate-y-0.5 hover:border-[#A47864] hover:text-[#231B18]"
+                    className="inline-flex items-center gap-1.5 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5] px-3 py-1.5 font-mono text-[11px] font-medium text-[#404040] transition hover:-translate-y-0.5 hover:border-[#0F0F0F] hover:text-[#0F0F0F]"
                   >
                     {social.name}
                     <ArrowUpRight className="h-3 w-3" />
@@ -379,24 +380,24 @@ export default function App() {
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
               <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
-                <div className="space-y-3 overflow-hidden rounded-xl border border-[#C8BEB2] bg-[#F5F1EA] p-4 transition duration-300">
+                <div className="space-y-3 overflow-hidden rounded-xl border border-[#D4D4D2] bg-[#F7F7F5] p-4 transition duration-300">
                 <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="rounded-lg border border-[#C8BEB2] bg-[#FAF7F2] p-3 text-center transition hover:-translate-y-0.5">
-                    <Gamepad2 className="mx-auto h-6 w-6 text-[#1A1715]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#3F3934]">
+                  <div className="rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
+                    <Gamepad2 className="mx-auto h-6 w-6 text-[#0F0F0F]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="rounded-lg border border-[#C8BEB2] bg-[#FAF7F2] p-3 text-center transition hover:-translate-y-0.5">
-                    <GraduationCap className="mx-auto h-6 w-6 text-[#1A1715]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#3F3934]">
+                  <div className="rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
+                    <GraduationCap className="mx-auto h-6 w-6 text-[#0F0F0F]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="rounded-lg border border-[#C8BEB2] bg-[#FAF7F2] p-3 text-center transition hover:-translate-y-0.5">
-                    <Sparkles className="mx-auto h-6 w-6 text-[#1A1715]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#3F3934]">
+                  <div className="rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
+                    <Sparkles className="mx-auto h-6 w-6 text-[#0F0F0F]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
                       Ludonode Studios
                     </p>
                   </div>
@@ -439,10 +440,10 @@ export default function App() {
                       captureCardPositions();
                       setActiveFilter(filter);
                     }}
-                    className={`rounded-full px-4 py-2 text-xs font-semibold transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] ${
+                    className={`rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] ${
                       isActive
-                        ? 'bg-[#231B18] text-[#F7F3EF] shadow-2xs'
-                        : 'border border-[#DCD0C7] bg-[#F7F3EF] text-[#5E4D45] hover:border-[#A47864] hover:text-[#231B18]'
+                        ? 'bg-[#0F0F0F] text-[#F7F7F5]'
+                        : 'border border-[#D4D4D2] bg-[#F7F7F5] text-[#525252] hover:border-[#0F0F0F] hover:text-[#0F0F0F]'
                     }`}
                   >
                     {filter} <span className="ml-1 opacity-70">({count})</span>
