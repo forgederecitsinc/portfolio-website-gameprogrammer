@@ -36,6 +36,7 @@ import {
 } from './data/portfolio';
 import { PASTEL_THEME } from './utils/theme';
 import { ProjectModal } from './components/ProjectModal';
+import { Reveal } from './components/Reveal';
 import { ThemeToggle } from './components/ThemeToggle';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
@@ -127,9 +128,13 @@ export default function App() {
     : -1;
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-slate-800 dark:bg-slate-950 dark:text-slate-100">
-      {/* Subtle decorative pastel wash */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-violet-50/70 via-rose-50/40 to-transparent dark:from-violet-950/30 dark:via-rose-950/15" />
+    <div className="relative min-h-screen overflow-x-clip bg-[#FAF8F5] text-slate-800 dark:bg-[#090d16] dark:text-slate-100">
+      {/* Ambient floating pastel aurora orbs */}
+      <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[600px] overflow-hidden">
+        <div className="animate-float-slow absolute -top-24 -left-24 h-80 w-80 rounded-full bg-violet-200/50 blur-3xl dark:bg-violet-600/20" />
+        <div className="animate-float-reverse absolute top-10 right-[-4rem] h-80 w-80 rounded-full bg-rose-200/45 blur-3xl dark:bg-rose-600/15" />
+        <div className="animate-float-slow absolute top-48 left-1/3 h-64 w-64 rounded-full bg-sky-200/40 blur-3xl dark:bg-sky-500/15" />
+      </div>
 
       {/* Top Navigation */}
       <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-[#FAF8F5]/85 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/85">
@@ -223,26 +228,26 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-slate-200/70 bg-[#FAF8F5] px-4 py-4 md:hidden">
+          <div className="border-t border-slate-200/70 bg-[#FAF8F5] px-4 py-4 md:hidden dark:border-slate-800 dark:bg-[#090d16]">
             <div className="flex flex-col gap-2">
               <button
                 type="button"
                 onClick={() => navigateTo('home')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Main Page
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('professional')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Professional
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('school')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 School Projects
               </button>
@@ -252,7 +257,7 @@ export default function App() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
+                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
                   >
                     {item.label}
                   </a>
@@ -271,38 +276,38 @@ export default function App() {
         {/* Hero Section */}
         <section className="py-14 sm:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-violet-50/80 px-3.5 py-1.5 text-xs font-medium text-violet-900">
-                <MapPin className="h-3.5 w-3.5 text-violet-600" />
+            <div className="animate-fade-up lg:col-span-7">
+              <div className="inline-flex items-center gap-2 rounded-full border border-violet-200/80 bg-violet-50/80 px-3.5 py-1.5 text-xs font-medium text-violet-900 dark:border-violet-700/70 dark:bg-violet-950/70 dark:text-violet-200">
+                <MapPin className="h-3.5 w-3.5 text-violet-600 dark:text-violet-300" />
                 {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl lg:text-[3.25rem]">
+              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] dark:text-white">
                 {PROFILE.name}
               </h1>
-              <p className="mt-3 text-base font-semibold text-slate-700 dark:text-slate-300 sm:text-lg">
+              <p className="mt-3 text-base font-semibold text-slate-700 sm:text-lg dark:text-slate-200">
                 {PROFILE.title}
               </p>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 dark:text-slate-400">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-2xl border border-amber-200/70 bg-amber-50/60 px-5 py-4 text-sm italic text-slate-700 dark:text-slate-300 dark:text-slate-300">
+              <blockquote className="mt-6 rounded-2xl border border-amber-200/70 bg-amber-50/60 px-5 py-4 text-sm italic text-slate-700 dark:border-amber-700/60 dark:bg-amber-950/40 dark:text-amber-100">
                 “{PROFILE.tagline}”
               </blockquote>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
                 >
                   Contact &amp; Socials
                 </a>
@@ -315,7 +320,7 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/80 dark:bg-slate-900/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 transition hover:border-slate-300 hover:text-slate-900"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 transition hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white"
                   >
                     {social.name}
                     <ArrowUpRight className="h-3 w-3" />
@@ -324,36 +329,36 @@ export default function App() {
               </div>
             </div>
 
-            <div className="lg:col-span-5">
-              <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900 p-4 shadow-sm">
+            <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
+              <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm transition duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/90">
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center">
+                  <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-amber-700/60 dark:bg-amber-950/45">
                     <img
                       src="./images/hfg-badge.png"
                       alt="HFG Entertainments"
                       className="mx-auto h-8 w-auto object-contain"
                     />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300">
+                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-amber-100">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-sky-200/70 bg-sky-50/70 p-3 text-center">
+                  <div className="rounded-2xl border border-sky-200/70 bg-sky-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-sky-700/60 dark:bg-sky-950/45">
                     <img
                       src="./images/gbc-badge.png"
                       alt="George Brown College"
                       className="mx-auto h-8 w-auto object-contain"
                     />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300">
+                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-sky-100">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-violet-200/70 bg-violet-50/70 p-3 text-center">
+                  <div className="rounded-2xl border border-violet-200/70 bg-violet-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-violet-700/60 dark:bg-violet-950/45">
                     <img
                       src="./images/ludonode-logo.jpg"
                       alt="Ludonode Studios — Roshan's Forge de Récits Inc."
                       className="mx-auto h-8 w-8 rounded-lg object-cover"
                     />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300">
+                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-violet-100">
                       Ludonode Studios
                     </p>
                   </div>
@@ -486,184 +491,202 @@ export default function App() {
           )}
 
           {/* Additional GBC Works Strip */}
-          <div className="mt-8 rounded-3xl border border-sky-200/70 bg-sky-50/50 p-6">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2.5">
-                <GraduationCap className="h-5 w-5 text-sky-700" />
-                <h3 className="font-serif text-lg font-semibold text-slate-900">
-                  Additional George Brown College Projects
-                </h3>
-              </div>
-              <span className="text-xs font-medium text-slate-500">
-                Screenwriting, Cartography &amp; Programming
-              </span>
-            </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-              {GBC_ADDITIONAL_WORKS.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-2xl border border-sky-200/60 bg-white/80 dark:bg-slate-900/80 p-3.5"
-                >
-                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
-                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 dark:text-slate-400">{item.detail}</p>
+          <Reveal className="mt-8">
+            <div className="rounded-3xl border border-sky-200/70 bg-sky-50/50 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <GraduationCap className="h-5 w-5 text-sky-700 dark:text-sky-300" />
+                  <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    Additional George Brown College Projects
+                  </h3>
                 </div>
-              ))}
+                <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                  Screenwriting, Cartography &amp; Programming
+                </span>
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                {GBC_ADDITIONAL_WORKS.map((item) => (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-sky-200/60 bg-white/80 p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
+                  >
+                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {item.title}
+                    </p>
+                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </Reveal>
         </section>
 
         {/* Character Design Section */}
-        <section id="characters" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
-          <div className="flex flex-col gap-2">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase">
-              <Users className="h-3.5 w-3.5" />
-              Character Design
-            </span>
-            <h2 className="font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">
-              Original Character Profiles
-            </h2>
-            <p className="max-w-2xl text-sm text-slate-600 dark:text-slate-400 sm:text-base">
-              Five complete character concepts built with personality profiles, narrative
-              archetypes, and dramatic motivations.
-            </p>
-          </div>
+        <section id="characters" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
+          <Reveal>
+            <div className="flex flex-col gap-2">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
+                <Users className="h-3.5 w-3.5" />
+                Character Design
+              </span>
+              <h2 className="font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-100">
+                Original Character Profiles
+              </h2>
+              <p className="max-w-2xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
+                Five complete character concepts built with personality profiles, narrative
+                archetypes, and dramatic motivations.
+              </p>
+            </div>
+          </Reveal>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {CHARACTERS.map((char) => {
+            {CHARACTERS.map((char, idx) => {
               const theme = PASTEL_THEME[char.theme];
               return (
-                <div
-                  key={char.id}
-                  className={`rounded-3xl border ${theme.border} ${theme.surface} p-6 transition`}
-                >
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
+                <Reveal key={char.id} delayMs={idx * 60}>
+                  <div
+                    className={`h-full rounded-3xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
                   >
-                    <Sparkles className="h-3 w-3" />
-                    {char.archetype}
-                  </span>
-                  <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900">
-                    {char.name}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">{char.summary}</p>
-                </div>
+                    <span
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
+                    >
+                      <Sparkles className="h-3 w-3" />
+                      {char.archetype}
+                    </span>
+                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100">
+                      {char.name}
+                    </h3>
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      {char.summary}
+                    </p>
+                  </div>
+                </Reveal>
               );
             })}
           </div>
         </section>
 
         {/* Writing & Blog Section */}
-        <section id="writing" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-700 uppercase">
-                <Feather className="h-3.5 w-3.5" />
-                Short Stories &amp; Essays
-              </span>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">
-                Fiction &amp; Game Design Writing
-              </h2>
-            </div>
-            <div className="flex gap-2">
-              <a
-                href="https://medium.com/@ludonodestudios"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 transition hover:bg-slate-50"
-              >
-                Medium
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-              <a
-                href="http://www.wattpad.com/user/roshan_christy"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 transition hover:bg-slate-50"
-              >
-                Wattpad
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {WRITINGS.map((item) => {
-              const theme = PASTEL_THEME[item.theme];
-              return (
+        <section id="writing" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
+          <Reveal>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-700 uppercase dark:text-teal-300">
+                  <Feather className="h-3.5 w-3.5" />
+                  Short Stories &amp; Essays
+                </span>
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-100">
+                  Fiction &amp; Game Design Writing
+                </h2>
+              </div>
+              <div className="flex gap-2">
                 <a
-                  key={item.id}
-                  href={item.url}
+                  href="https://medium.com/@ludonodestudios"
                   target="_blank"
                   rel="noreferrer"
-                  className={`group flex flex-col justify-between rounded-3xl border ${theme.border} ${theme.surface} p-6 transition hover:-translate-y-0.5 hover:shadow-md`}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
-                  <div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
-                      >
-                        <BookOpen className="h-3 w-3" />
-                        {item.kind}
-                      </span>
-                      <span className="text-[11px] font-medium text-slate-500">
-                        {item.platform}
-                      </span>
-                    </div>
-                    <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-900">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">{item.summary}</p>
-                  </div>
-                  <span
-                    className={`mt-4 inline-flex items-center gap-1 text-xs font-semibold ${theme.accentText}`}
-                  >
-                    Read on {item.platform}
-                    <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </span>
+                  Medium
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </a>
+                <a
+                  href="http://www.wattpad.com/user/roshan_christy"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                >
+                  Wattpad
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {WRITINGS.map((item, idx) => {
+              const theme = PASTEL_THEME[item.theme];
+              return (
+                <Reveal key={item.id} delayMs={idx * 50}>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`group flex h-full flex-col justify-between rounded-3xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span
+                          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
+                        >
+                          <BookOpen className="h-3 w-3" />
+                          {item.kind}
+                        </span>
+                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                          {item.platform}
+                        </span>
+                      </div>
+                      <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-900 dark:text-slate-100">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        {item.summary}
+                      </p>
+                    </div>
+                    <span
+                      className={`mt-4 inline-flex items-center gap-1 text-xs font-semibold ${theme.accentText}`}
+                    >
+                      Read on {item.platform}
+                      <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </a>
+                </Reveal>
               );
             })}
           </div>
         </section>
 
         {/* Business & Resume Section */}
-        <section id="resume" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
+        <section id="resume" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Studio Card */}
             <div className="lg:col-span-5">
-              <div className="rounded-3xl border border-violet-200/80 bg-violet-50/60 p-7">
+              <div className="rounded-3xl border border-violet-200/80 bg-violet-50/60 p-7 dark:border-violet-800/60 dark:bg-violet-950/35">
                 <div className="flex items-center gap-4">
                   <img
                     src={STUDIO.emblem}
                     alt={`${STUDIO.brand} — ${STUDIO.name}`}
-                    className="h-14 w-14 rounded-2xl border border-violet-200 object-cover"
+                    className="h-14 w-14 rounded-2xl border border-violet-200 object-cover dark:border-violet-700"
                   />
                   <div>
-                    <span className="text-[11px] font-semibold tracking-wider text-violet-700 uppercase">
+                    <span className="text-[11px] font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
                       {STUDIO.brand}
                     </span>
-                    <h2 className="font-serif text-2xl font-semibold text-slate-900">
+                    <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-slate-100">
                       {STUDIO.name}
                     </h2>
                   </div>
                 </div>
 
-                <p className="mt-3 text-xs font-medium text-slate-500">{STUDIO.established}</p>
-                <p className="mt-3 text-sm font-medium italic text-violet-900">
+                <p className="mt-3 text-xs font-medium text-slate-500 dark:text-slate-400">
+                  {STUDIO.established}
+                </p>
+                <p className="mt-3 text-sm font-medium italic text-violet-900 dark:text-violet-200">
                   “{STUDIO.motto}”
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">{STUDIO.mission}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                  {STUDIO.mission}
+                </p>
 
                 <div className="mt-5 space-y-2">
-                  <h3 className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                  <h3 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                     Studio Services
                   </h3>
                   {STUDIO.services.map((service) => (
                     <div
                       key={service}
-                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-white/85 dark:bg-slate-900/85 px-3.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300"
+                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-white/85 px-3.5 py-2 text-xs font-medium text-slate-700 dark:border-violet-800/50 dark:bg-slate-900/85 dark:text-slate-200"
                     >
-                      <Compass className="h-3.5 w-3.5 shrink-0 text-violet-600" />
+                      <Compass className="h-3.5 w-3.5 shrink-0 text-violet-600 dark:text-violet-300" />
                       {service}
                     </div>
                   ))}
@@ -671,7 +694,7 @@ export default function App() {
               </div>
 
               {/* Education */}
-              <div className="mt-6 rounded-3xl border border-sky-200/80 bg-sky-50/60 p-6">
+              <div className="mt-6 rounded-3xl border border-sky-200/80 bg-sky-50/60 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
                 <div className="flex items-center gap-3">
                   <img
                     src="./images/gbc-badge.png"
@@ -679,10 +702,10 @@ export default function App() {
                     className="h-10 w-auto object-contain"
                   />
                   <div>
-                    <h3 className="font-serif text-lg font-semibold text-slate-900">
+                    <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
                       Education
                     </h3>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 dark:text-slate-400">
+                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300">
                       Academic Credentials &amp; Training
                     </p>
                   </div>
@@ -691,49 +714,59 @@ export default function App() {
                   {EDUCATION.map((edu) => (
                     <div
                       key={`${edu.school}-${edu.degree}`}
-                      className="rounded-2xl border border-sky-200/60 bg-white/85 dark:bg-slate-900/85 p-3.5"
+                      className="rounded-2xl border border-sky-200/60 bg-white/85 p-3.5 dark:border-sky-800/50 dark:bg-slate-900/85"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-1">
-                        <p className="text-xs font-semibold text-slate-900">{edu.degree}</p>
-                        <span className="text-[11px] font-medium text-slate-500">
+                        <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                          {edu.degree}
+                        </p>
+                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
                           {edu.period}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-[11px] font-medium text-sky-900">{edu.school}</p>
-                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-400 dark:text-slate-400">{edu.detail}</p>
+                      <p className="mt-0.5 text-[11px] font-medium text-sky-900 dark:text-sky-300">
+                        {edu.school}
+                      </p>
+                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-300">
+                        {edu.detail}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Languages & Certifications */}
-              <div className="mt-6 rounded-3xl border border-emerald-200/80 bg-emerald-50/50 p-6">
-                <h3 className="text-xs font-semibold tracking-wider text-emerald-800 uppercase">
+              <div className="mt-6 rounded-3xl border border-emerald-200/80 bg-emerald-50/50 p-6 dark:border-emerald-800/60 dark:bg-emerald-950/30">
+                <h3 className="text-xs font-semibold tracking-wider text-emerald-800 uppercase dark:text-emerald-300">
                   Languages
                 </h3>
                 <div className="mt-2.5 flex flex-wrap gap-2">
                   {LANGUAGES.map((lang) => (
                     <span
                       key={lang.name}
-                      className="rounded-full border border-emerald-200/80 bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300"
+                      className="rounded-full border border-emerald-200/80 bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 dark:border-emerald-800/60 dark:bg-slate-900/90 dark:text-slate-200"
                     >
-                      <span className="font-semibold text-slate-900">{lang.name}</span> ·{' '}
-                      {lang.proficiency}
+                      <span className="font-semibold text-slate-900 dark:text-white">
+                        {lang.name}
+                      </span>{' '}
+                      · {lang.proficiency}
                     </span>
                   ))}
                 </div>
 
-                <h3 className="mt-5 text-xs font-semibold tracking-wider text-emerald-800 uppercase">
+                <h3 className="mt-5 text-xs font-semibold tracking-wider text-emerald-800 uppercase dark:text-emerald-300">
                   Licenses &amp; Certifications
                 </h3>
                 <ul className="mt-2.5 space-y-1.5">
                   {CERTIFICATIONS.map((cert) => (
                     <li
                       key={cert.title}
-                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700 dark:text-slate-300 dark:text-slate-300"
+                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700 dark:text-slate-300"
                     >
-                      <span className="font-medium text-slate-800">{cert.title}</span>
-                      <span className="shrink-0 text-[11px] text-slate-500">
+                      <span className="font-medium text-slate-800 dark:text-slate-100">
+                        {cert.title}
+                      </span>
+                      <span className="shrink-0 text-[11px] text-slate-500 dark:text-slate-400">
                         {cert.issuer}
                         {cert.date ? ` · ${cert.date}` : ''}
                       </span>
