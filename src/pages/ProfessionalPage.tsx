@@ -36,7 +36,7 @@ export function ProfessionalPage({ onNavigate, onSelectProject }: ProfessionalPa
         <button
           type="button"
           onClick={() => onNavigate('school')}
-          className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-xs font-semibold text-sky-900 transition hover:bg-sky-100"
+          className="inline-flex items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-xs font-semibold text-sky-900 transition hover:bg-sky-100 dark:border-sky-700 dark:bg-sky-950/70 dark:text-sky-100 dark:hover:bg-sky-900/80"
         >
           View School Projects
           <ArrowUpRight className="h-3.5 w-3.5" />
@@ -44,10 +44,10 @@ export function ProfessionalPage({ onNavigate, onSelectProject }: ProfessionalPa
       </div>
 
       {/* Page Header */}
-      <section className="mt-8 rounded-3xl border border-amber-200/70 bg-amber-50/55 p-7 sm:p-10">
+      <section className="mt-8 rounded-3xl border border-amber-200/70 bg-amber-50/55 p-7 sm:p-10 dark:border-amber-800/60 dark:bg-amber-950/35">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-amber-800 uppercase">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-amber-800 uppercase dark:text-amber-300">
               <Briefcase className="h-3.5 w-3.5" />
               Professional Portfolio
             </span>

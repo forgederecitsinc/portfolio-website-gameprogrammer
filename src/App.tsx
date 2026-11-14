@@ -372,7 +372,7 @@ export default function App() {
         <section id="projects" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-rose-300">
                 <Layers className="h-3.5 w-3.5" />
                 Selected Works
               </span>
@@ -447,7 +447,7 @@ export default function App() {
                     <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-950">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-xs font-medium text-slate-500">{project.context}</p>
+                    <p className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{project.context}</p>
                     <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">
                       {project.overview}
                     </p>
@@ -779,12 +779,12 @@ export default function App() {
             {/* Experience & Skills */}
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2">
-                <Briefcase className="h-4 w-4 text-emerald-700" />
-                <span className="text-xs font-semibold tracking-wider text-emerald-700 uppercase">
+                <Briefcase className="h-4 w-4 text-emerald-700 dark:text-emerald-300" />
+                <span className="text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-300">
                   Experience &amp; Skills
                 </span>
               </div>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100">
                 Career Timeline
               </h2>
 
@@ -797,10 +797,12 @@ export default function App() {
                       className={`rounded-2xl border ${theme.border} ${theme.surface} p-5`}
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <h3 className="font-serif text-lg font-semibold text-slate-900">
+                        <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
                           {exp.role}
                         </h3>
-                        <span className="text-xs font-semibold text-slate-500">{exp.period}</span>
+                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                          {exp.period}
+                        </span>
                       </div>
                       <p className="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-400 dark:text-slate-400">
                         {exp.organization} · {exp.location}
@@ -884,7 +886,7 @@ export default function App() {
                     >
                       {copiedEmail === email.address ? (
                         <>
-                          <Check className="h-3 w-3 text-emerald-600" />
+                          <Check className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                           Copied
                         </>
                       ) : (

@@ -34,7 +34,7 @@ export function SchoolPage({ onNavigate, onSelectProject }: SchoolPageProps) {
         <button
           type="button"
           onClick={() => onNavigate('professional')}
-          className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-900 transition hover:bg-amber-100"
+          className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-900 transition hover:bg-amber-100 dark:border-amber-700 dark:bg-amber-950/70 dark:text-amber-100 dark:hover:bg-amber-900/80"
         >
           View Professional Projects
           <ArrowUpRight className="h-3.5 w-3.5" />
@@ -42,10 +42,10 @@ export function SchoolPage({ onNavigate, onSelectProject }: SchoolPageProps) {
       </div>
 
       {/* Page Header */}
-      <section className="mt-8 rounded-3xl border border-sky-200/70 bg-sky-50/55 p-7 sm:p-10">
+      <section className="mt-8 rounded-3xl border border-sky-200/70 bg-sky-50/55 p-7 sm:p-10 dark:border-sky-800/60 dark:bg-sky-950/35">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-sky-800 uppercase">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-sky-800 uppercase dark:text-sky-300">
               <GraduationCap className="h-3.5 w-3.5" />
               George Brown College · Toronto
             </span>
