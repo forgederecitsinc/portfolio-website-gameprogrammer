@@ -15,6 +15,10 @@ export interface ProjectItem {
   platforms?: string[];
   overview: string;
   contributions: string[];
+  mechanics?: Array<{
+    heading: string;
+    points: string[];
+  }>;
   link?: {
     label: string;
     url: string;
@@ -178,12 +182,56 @@ export const PROJECTS: ProjectItem[] = [
     context: 'George Brown College · GAME3023 (Fall 2026) · Unreal Engine 5.8 (C++ & Blueprints)',
     platforms: ['PC', 'PS5 DualSense', 'macOS Apple Silicon'],
     overview:
-      'Top-down 2.5D isometric action-puzzle game set inside a decommissioned multi-tier power substation. Built with a C++ core (Engine, AIModule, NavigationSystem, StateTree, UMG/Slate) and World Partition level architecture where electricity is both the objective and the hazard.',
+      'Top-down 2.5D action-puzzle game set inside a decommissioned, multi-tier power substation (upper control booth, catwalks, moving walkways, and ground-level junction grid). Restore power by routing energy from portable batteries into laser turrets and targets to ignite transformer bushings while surviving laser hazards and enemy interference.',
     contributions: [
       'Player, Isometric Camera & Health (C++): Fixed -60° isometric SpringArm camera (1600 cm arm, 85° FOV), 260 cm interaction scanner, 100 HP damage/knockback/respawn system, and looped 2D substation audio.',
       'ID-Matched Power & Puzzle Loop: Engineered ABatteryCapsule (1001+ color-mapped IDs), ARedPowerCylinder (2500 cm trace laser turrets), ALaserTarget receivers, and neon-igniting ATransformerBushing (25× emissive + 8000-lumen flicker).',
       'Security Grid & Enemy AI Waves: Built instanced AGridLaser + AGridLaserButton toggles, AEnemyBatteryThief wave spawner (Patrol → Approach → 10 s Battery Removal → DropSpot), and hovering AEnemyDrone spotlight patrols dropping 1400 cm/s laser bolts.',
       'Slate HUD, Occlusion Shader & DualSense: Authored Slate radial hold-badge (5 s hold), lagging health bar, overhead thief countdown, MPC_PlayerOcclusion cutout (260 radius / 5% center opacity), and Enhanced Input + DualSense rumble.',
+    ],
+    mechanics: [
+      {
+        heading: 'Core Gameplay Loop',
+        points: [
+          '1. Explore & Locate Batteries: Navigate the ground plane to find spinning, bobbing Battery Capsules color-coded by a 4-digit BatteryID.',
+          '2. Collect & Carry: Walk within 260 cm and tap E (keyboard) or Square (DualSense) to pick up one battery at a time (R / Q / Circle drops it).',
+          '3. Match & Charge Laser Guns: Hold E / Square for 5 seconds (radial ring + pulsed rumble) to socket into an ARedPowerCylinder. Matching CellID fires a continuous beam; mismatch keeps the turret OFFLINE with a warning.',
+          '4. Hit Targets & Light Bushings: Route the 2500 cm beam into a matching Laser Target (TargetID == CellID) or bushing to ignite Transformer Bushings (neon flicker + 8000-lumen glow, permanent if bStayLitOnceActivated).',
+          '5. Defend & Survive: Protect active turrets from Battery Thieves and avoid Enemy Drones, active laser beams, and Security Grid Lasers.',
+        ],
+      },
+      {
+        heading: 'Movement, Camera & Occlusion',
+        points: [
+          'Ground-plane WASD / Left Stick movement + Mouse / Right Stick aim (0.2 dead zone); jumping intentionally disabled for puzzle clarity.',
+          'Fixed -60° isometric camera (1600 cm arm, 85° FOV, 4.0 lag) with collision disabled so catwalks never snap the camera inward.',
+          'Dynamic 260-radius circular occlusion cutout (140 softness, 5% center opacity, cyan rim glow) when upper-tier roofs/catwalks block sightlines.',
+        ],
+      },
+      {
+        heading: 'Interaction, Hazards & Security Grids',
+        points: [
+          'Per-tick 260 cm proximity scanner drives the bottom-center Interact Prompt (Collect, Hands Full, Attach, Remove, Requires Battery).',
+          '5-second hold-to-attach cancels on early release; loose pickup and socket removal are instant.',
+          'Active laser beams deal 10 damage every 0.35 s; AGridLaser barriers act as solid forcefields or 10.0 tick-damage hazards toggled by BP_GridLaserButton.',
+        ],
+      },
+      {
+        heading: 'Enemy AI & Wave Spawning',
+        points: [
+          'Enemy Drones (AEnemyDrone): Hover at 350 cm, patrol NavMesh at 450 cm/s (600 cm grid), scan with a 12°/18° spotlight (1500 cm range), and drop 1400 cm/s laser bombs every 0.45 s (10 damage).',
+          'Battery Thieves (AEnemyBatteryThief): Spawn from (-878, -3679, 10) every 10.0 s (max 5, 300 cm/s; 60.0 s replacement on death).',
+          'Thief State Machine (EBatteryThiefState): Patrolling → Approaching → Removing (10 s overhead countdown turning red < 2.5 s) → Carrying to nearest BP_BatteryDropSpot → FollowingPlayer (+70 cm/s if bumped).',
+        ],
+      },
+      {
+        heading: 'Health, Respawn & DualSense Feedback',
+        points: [
+          '100 HP top-right Slate health bar (340 × 24) with cyan/green → yellow → crimson gradient, lagging damage trail, and critical pulse (debug: K -15 HP, H +15 HP).',
+          'At 0 HP, any carried battery drops automatically and the player respawns at RespawnLocation after 1 s.',
+          'DualSense rumble (0.75 intensity) on pickup, plug-in, and damage plus pulsed rumble during 5 s holds; looped LiveWire_Substation_Theme 2D audio.',
+        ],
+      },
     ],
     link: {
       label: 'GitHub Repository',

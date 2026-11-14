@@ -119,9 +119,9 @@ export function SchoolPage({ onNavigate, onSelectProject }: SchoolPageProps) {
                     <button
                       type="button"
                       onClick={() => onSelectProject(project)}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 dark:text-slate-300 transition hover:bg-slate-50"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                     >
-                      Quick View Modal
+                      {project.mechanics ? 'View Full Mechanics & Modal' : 'Quick View Modal'}
                     </button>
                   </div>
                 </div>

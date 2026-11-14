@@ -132,6 +132,37 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
           </ul>
         </div>
 
+        {project.mechanics && project.mechanics.length > 0 && (
+          <div className="mt-6 space-y-4">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+              Detailed Mechanics &amp; Systems Breakdown
+            </h4>
+            <div className="grid gap-3">
+              {project.mechanics.map((section) => (
+                <div
+                  key={section.heading}
+                  className="rounded-xl border border-slate-200/80 bg-white/80 p-4"
+                >
+                  <h5 className="text-xs font-semibold tracking-wide text-slate-900 uppercase">
+                    {section.heading}
+                  </h5>
+                  <ul className="mt-2 space-y-1.5">
+                    {section.points.map((pt) => (
+                      <li
+                        key={pt}
+                        className="flex items-start gap-2 text-xs leading-relaxed text-slate-700"
+                      >
+                        <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${theme.dot}`} />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200/80 pt-5 dark:border-slate-800">
           <div className="flex items-center gap-2">
             {onPrev && (
