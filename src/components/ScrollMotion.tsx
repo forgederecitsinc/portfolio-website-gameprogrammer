@@ -141,3 +141,107 @@ export function ScrollParallax({
     </div>
   );
 }
+
+interface ScrollScrub3DProps {
+  children: ReactNode;
+  /** 'left' | 'right' | 'center' fans columns into 3D formation as you scroll */
+  origin?: 'left' | 'right' | 'center';
+  /** Enables a scroll-scrubbed clip-path portal reveal */
+  portalWipe?: boolean;
+  className?: string;
+}
+
+/**
+ * Continuous scroll-scrubbed 3D spatial reveal (no one-shot fade, no sticky trap).
+ * Scrubs 3D perspective, lateral fan, scale, and optional clip-path portal wipe
+ * directly with scroll progress using smooth lerp damping.
+ */
+export function ScrollScrub3D({
+  children,
+  origin = 'center',
+  portalWipe = false,
+  className = '',
+}: ScrollScrub3DProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    let raf = 0;
+    let cur = 0;
+    let target = 0;
+    let active = true;
+
+    const measure = () => {
+      const el = ref.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      // 0 = well below viewport, 1 = centered/entered, 2 = scrolled past top
+      const enterProgress = (vh - rect.top) / (vh * 0.65);
+      target = Math.max(0, Math.min(1, enterProgress));
+    };
+
+    const apply = (p: number) => {
+      const el = ref.current;
+      if (!el) return;
+      const inv = 1 - p; // 1 before entering -> 0 when in view
+
+      const dirSign = origin === 'left' ? -1 : origin === 'right' ? 1 : 0;
+      const tx = dirSign * inv * 44;
+      const ty = inv * 52;
+      const scale = 0.88 + p * 0.12;
+      const rotX = inv * 14;
+      const rotY = dirSign * inv * -12;
+
+      el.style.transform = `perspective(1100px) translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+      el.style.opacity = Math.min(1, 0.15 + p * 0.85).toFixed(3);
+
+      if (portalWipe) {
+        const insetX = Math.max(0, inv * 6);
+        const insetY = Math.max(0, inv * 8);
+        const radius = Math.round(12 + inv * 24);
+        el.style.clipPath = `inset(${insetY.toFixed(1)}% ${insetX.toFixed(1)}% round ${radius}px)`;
+      }
+    };
+
+    const tick = () => {
+      if (!active) return;
+      cur += (target - cur) * 0.16;
+      apply(cur);
+
+      if (Math.abs(target - cur) > 0.002) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        cur = target;
+        apply(cur);
+        raf = 0;
+      }
+    };
+
+    const onScroll = () => {
+      measure();
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+
+    measure();
+    cur = target;
+    apply(cur);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      active = false;
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [origin, portalWipe]);
+
+  return (
+    <div ref={ref} className={`will-change-transform ${className}`}>
+      {children}
+    </div>
+  );
+}

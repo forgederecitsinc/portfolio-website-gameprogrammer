@@ -38,7 +38,7 @@ import { PASTEL_THEME } from './utils/theme';
 import { GameDevBackdrop } from './components/GameDevBackdrop';
 import { ProjectModal } from './components/ProjectModal';
 import { Reveal } from './components/Reveal';
-import { ScrollParallax, ScrollProgressBar } from './components/ScrollMotion';
+import { ScrollParallax, ScrollProgressBar, ScrollScrub3D } from './components/ScrollMotion';
 import { DualSenseScrollPointer } from './components/DualSenseScrollPointer';
 import { DualSensePlayground } from './components/DualSensePlayground';
 import { HeroNavMeshCanvas } from './components/HeroNavMeshCanvas';
@@ -455,10 +455,12 @@ export default function App() {
 
           <ScrollParallax offsetY={30} scaleFrom={0.94} tiltDeg={4.5}>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {visibleProjects.map((project) => {
+              {visibleProjects.map((project, idx) => {
               const theme = PASTEL_THEME[project.theme];
+              const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
-                <Card3DTilt key={project.id} className="h-full">
+                <ScrollScrub3D key={project.id} origin={origin} className="h-full">
+                  <Card3DTilt className="h-full">
                   <article
                     ref={(el) => {
                       if (el) cardRefs.current.set(project.id, el);
@@ -513,7 +515,8 @@ export default function App() {
                     </span>
                   </div>
                   </article>
-                </Card3DTilt>
+                  </Card3DTilt>
+                </ScrollScrub3D>
               );
             })}
             </div>
@@ -565,9 +568,9 @@ export default function App() {
         </section>
 
         {/* Interactive DualSense Haptics & Audio Lab */}
-        <ScrollParallax offsetY={32} scaleFrom={0.93} tiltDeg={5}>
+        <ScrollScrub3D portalWipe>
           <DualSensePlayground />
-        </ScrollParallax>
+        </ScrollScrub3D>
 
         {/* Character Design Section */}
         <section id="characters" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
@@ -591,10 +594,11 @@ export default function App() {
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CHARACTERS.map((char, idx) => {
               const theme = PASTEL_THEME[char.theme];
+              const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
-                <Reveal key={char.id} delayMs={idx * 60}>
+                <ScrollScrub3D key={char.id} origin={origin}>
                   <div
-                    className={`h-full rounded-3xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                    className={`h-full rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
                   >
                     <span
                       className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
@@ -609,7 +613,7 @@ export default function App() {
                       {char.summary}
                     </p>
                   </div>
-                </Reveal>
+                </ScrollScrub3D>
               );
             })}
           </div>
@@ -655,13 +659,14 @@ export default function App() {
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {WRITINGS.map((item, idx) => {
               const theme = PASTEL_THEME[item.theme];
+              const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
-                <Reveal key={item.id} delayMs={idx * 50}>
+                <ScrollScrub3D key={item.id} origin={origin}>
                   <a
                     href={item.url}
                     target="_blank"
                     rel="noreferrer"
-                    className={`group flex h-full flex-col justify-between rounded-3xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                    className={`group flex h-full flex-col justify-between rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
@@ -689,7 +694,7 @@ export default function App() {
                       <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
                   </a>
-                </Reveal>
+                </ScrollScrub3D>
               );
             })}
           </div>
