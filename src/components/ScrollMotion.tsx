@@ -49,7 +49,7 @@ interface ScrollParallaxProps {
   offsetY?: number;
   /** Optional subtle horizontal drift in pixels (Noomo XR spatial offset). */
   offsetX?: number;
-  /** Subtle scale-in range (e.g. 0.92 -> 1.0). */
+  /** Subtle scale-in range (e.g. 0.94 -> 1.0). */
   scaleFrom?: number;
   /** Subtle 3D pitch tilt in degrees at entry -> 0deg at center. */
   tiltDeg?: number;
@@ -59,15 +59,15 @@ interface ScrollParallaxProps {
 }
 
 /**
- * Noomo XR-inspired lerp-damped 3D camera-dolly scroll parallax container.
- * Uses native scroll + GPU-composited transform/opacity (zero scroll-jacking).
+ * Butter-smooth lerp-damped 3D camera-dolly scroll parallax container.
+ * Zero opacity fading and zero snapping (C2-smooth cosine easing).
  */
 export function ScrollParallax({
   children,
-  offsetY = 36,
+  offsetY = 30,
   offsetX = 0,
-  scaleFrom = 0.93,
-  tiltDeg = 6,
+  scaleFrom = 0.95,
+  tiltDeg = 5,
   yawDeg = 0,
   className = '',
 }: ScrollParallaxProps) {
@@ -88,7 +88,9 @@ export function ScrollParallax({
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const center = rect.top + rect.height / 2;
-      targetNorm = Math.max(-1, Math.min(1, (center - vh / 2) / (vh * 0.8)));
+      const raw = Math.max(-1, Math.min(1, (center - vh / 2) / (vh * 0.85)));
+      // Smooth sine curve so velocity eases to 0 at edges & center (no snap)
+      targetNorm = Math.sin((raw * Math.PI) / 2);
     };
 
     const tick = () => {
@@ -96,20 +98,18 @@ export function ScrollParallax({
       const el = ref.current;
       if (!el) return;
 
-      curNorm += (targetNorm - curNorm) * 0.14;
+      curNorm += (targetNorm - curNorm) * 0.085;
       const absNorm = Math.abs(curNorm);
 
       const y = curNorm * offsetY;
       const x = curNorm * offsetX;
-      const scale = 1 - (1 - scaleFrom) * Math.min(1, absNorm * 1.15);
+      const scale = 1 - (1 - scaleFrom) * (absNorm * absNorm);
       const tiltX = curNorm * tiltDeg;
       const tiltY = curNorm * yawDeg;
-      const opacity = Math.max(0.45, 1 - absNorm * 0.35);
 
       el.style.transform = `perspective(1200px) translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
-      el.style.opacity = opacity.toFixed(3);
 
-      if (Math.abs(targetNorm - curNorm) > 0.001) {
+      if (Math.abs(targetNorm - curNorm) > 0.0008) {
         raf = requestAnimationFrame(tick);
       } else {
         raf = 0;
@@ -144,17 +144,16 @@ export function ScrollParallax({
 
 interface ScrollScrub3DProps {
   children: ReactNode;
-  /** 'left' | 'right' | 'center' fans columns into 3D formation as you scroll */
+  /** 'left' | 'right' | 'center' fans columns smoothly in 3D space as you scroll */
   origin?: 'left' | 'right' | 'center';
-  /** Enables a scroll-scrubbed clip-path portal reveal */
+  /** Enables a smooth scroll-scrubbed border-radius & scale portal curve */
   portalWipe?: boolean;
   className?: string;
 }
 
 /**
- * Continuous scroll-scrubbed 3D spatial reveal (no one-shot fade, no sticky trap).
- * Scrubs 3D perspective, lateral fan, scale, and optional clip-path portal wipe
- * directly with scroll progress using smooth lerp damping.
+ * Liquid-smooth 3D spatial scrub with zero opacity fading and zero snapping.
+ * Uses a continuous symmetric bell-curve around viewport center + 0.085 lerp.
  */
 export function ScrollScrub3D({
   children,
@@ -178,40 +177,39 @@ export function ScrollScrub3D({
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      // 0 = well below viewport, 1 = centered/entered, 2 = scrolled past top
-      const enterProgress = (vh - rect.top) / (vh * 0.65);
-      target = Math.max(0, Math.min(1, enterProgress));
+      const center = rect.top + rect.height / 2;
+      // -1 below viewport, 0 centered, +1 above viewport
+      target = Math.max(-1, Math.min(1, (center - vh / 2) / (vh * 0.85)));
     };
 
-    const apply = (p: number) => {
+    const apply = (signed: number) => {
       const el = ref.current;
       if (!el) return;
-      const inv = 1 - p; // 1 before entering -> 0 when in view
-
+      // C2-continuous bell curve: 0 at center, smoothly rising to 1 at edges
+      const edgeFactor = 0.5 - 0.5 * Math.cos(signed * Math.PI);
       const dirSign = origin === 'left' ? -1 : origin === 'right' ? 1 : 0;
-      const tx = dirSign * inv * 44;
-      const ty = inv * 52;
-      const scale = 0.88 + p * 0.12;
-      const rotX = inv * 14;
-      const rotY = dirSign * inv * -12;
 
-      el.style.transform = `perspective(1100px) translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
-      el.style.opacity = Math.min(1, 0.15 + p * 0.85).toFixed(3);
+      const tx = dirSign * edgeFactor * 34;
+      const ty = signed * 26;
+      const scale = 1 - edgeFactor * 0.075;
+      const rotX = -signed * 9;
+      const rotY = dirSign * edgeFactor * -10;
+
+      el.style.transform = `perspective(1200px) translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) scale(${scale.toFixed(4)}) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
 
       if (portalWipe) {
-        const insetX = Math.max(0, inv * 6);
-        const insetY = Math.max(0, inv * 8);
-        const radius = Math.round(12 + inv * 24);
-        el.style.clipPath = `inset(${insetY.toFixed(1)}% ${insetX.toFixed(1)}% round ${radius}px)`;
+        const inset = edgeFactor * 3.5;
+        const radius = Math.round(12 + edgeFactor * 22);
+        el.style.clipPath = `inset(0% ${inset.toFixed(2)}% round ${radius}px)`;
       }
     };
 
     const tick = () => {
       if (!active) return;
-      cur += (target - cur) * 0.16;
+      cur += (target - cur) * 0.085;
       apply(cur);
 
-      if (Math.abs(target - cur) > 0.002) {
+      if (Math.abs(target - cur) > 0.0008) {
         raf = requestAnimationFrame(tick);
       } else {
         cur = target;

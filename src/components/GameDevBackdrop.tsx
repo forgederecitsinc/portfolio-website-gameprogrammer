@@ -122,6 +122,7 @@ const TOKENS: FloatingToken[] = [
 export function GameDevBackdrop() {
   const layerRef = useRef<HTMLDivElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
+  const gridCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -175,6 +176,99 @@ export function GameDevBackdrop() {
     };
   }, []);
 
+  useEffect(() => {
+    const canvas = gridCanvasRef.current;
+    if (!canvas) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+    if (prefersReduced || !isDesktop) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let w = 0;
+    let h = 0;
+    let raf = 0;
+    let curScroll = window.scrollY;
+    let targetScroll = window.scrollY;
+    let curMouseX = 0;
+    let targetMouseX = 0;
+
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = Math.round(window.innerHeight * 0.42);
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const onScroll = () => {
+      targetScroll = window.scrollY;
+    };
+
+    const onMove = (e: PointerEvent) => {
+      targetMouseX = (e.clientX / Math.max(1, window.innerWidth) - 0.5) * 2;
+    };
+
+    const render = () => {
+      curScroll += (targetScroll - curScroll) * 0.085;
+      curMouseX += (targetMouseX - curMouseX) * 0.06;
+
+      ctx.clearRect(0, 0, w, h);
+
+      const horizonY = 12;
+      const vanishX = w * 0.5 + curMouseX * 90;
+      const numRays = 18;
+      const spread = w * 1.45;
+
+      // Perspective longitudinal rays
+      for (let i = -numRays; i <= numRays; i++) {
+        const bottomX = vanishX + (i / numRays) * spread;
+        const grad = ctx.createLinearGradient(vanishX, horizonY, bottomX, h);
+        grad.addColorStop(0, 'rgba(0, 112, 209, 0)');
+        grad.addColorStop(0.35, 'rgba(0, 112, 209, 0.07)');
+        grad.addColorStop(1, 'rgba(0, 112, 209, 0.14)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(vanishX, horizonY);
+        ctx.lineTo(bottomX, h);
+        ctx.stroke();
+      }
+
+      // Scroll-scrubbed horizontal depth rings advancing toward viewer
+      const rows = 10;
+      const phase = ((curScroll * 0.0028) % 1 + 1) % 1;
+      for (let r = 0; r < rows; r++) {
+        const t = (r + phase) / rows;
+        const depthY = horizonY + t * t * (h - horizonY);
+        const alpha = Math.min(0.16, t * 0.16);
+        ctx.strokeStyle = `rgba(0, 112, 209, ${alpha.toFixed(3)})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, depthY);
+        ctx.lineTo(w, depthY);
+        ctx.stroke();
+      }
+
+      raf = requestAnimationFrame(render);
+    };
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('pointermove', onMove, { passive: true });
+    raf = requestAnimationFrame(render);
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('pointermove', onMove);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       {/* Subtle level-design dot grid */}
@@ -209,6 +303,12 @@ export function GameDevBackdrop() {
           </div>
         ))}
       </div>
+
+      {/* Scroll-scrubbed 3D spatial wireframe floor */}
+      <canvas
+        ref={gridCanvasRef}
+        className="absolute inset-x-0 bottom-0 hidden h-[42vh] w-full md:block"
+      />
     </div>
   );
 }
