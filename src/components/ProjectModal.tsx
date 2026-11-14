@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import {
+  Check,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
+  Code2,
+  Copy,
   ExternalLink,
+  GitBranch,
+  Sliders,
   Smartphone,
   X,
 } from 'lucide-react';
+import { CODE_HIGHLIGHTS } from '../data/codeHighlights';
 import type { ProjectItem } from '../data/portfolio';
 import { PASTEL_THEME } from '../utils/theme';
 import { GameplayLoopFlowchart } from './GameplayLoopFlowchart';
 import { GameDemo } from './demos/GameDemo';
+import { DialoguePlayer } from './features/DialoguePlayer';
+import { SystemsInspector } from './features/SystemsInspector';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -24,9 +32,13 @@ interface ProjectModalProps {
  */
 export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalProps) {
   const [isDemoPlaying, setIsDemoPlaying] = useState(false);
+  const [activeTab, setActiveTab] = useState<'flowchart' | 'code' | 'systems'>('flowchart');
+  const [copiedFile, setCopiedFile] = useState<string | null>(null);
 
   useEffect(() => {
     setIsDemoPlaying(false);
+    setActiveTab('flowchart');
+    setCopiedFile(null);
   }, [project?.id]);
 
   useEffect(() => {
@@ -116,13 +128,101 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
         </div>
 
         <div className="mt-6">
-          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-            System Architecture &amp; Gameplay Loop
-          </h4>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
+              System Architecture &amp; Gameplay Loop
+            </h4>
+            <div className="flex flex-wrap items-center gap-1 rounded-full border border-slate-300/80 bg-white/80 p-1">
+              <button
+                type="button"
+                onClick={() => setActiveTab('flowchart')}
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
+                  activeTab === 'flowchart'
+                    ? 'bg-slate-900 text-white'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <GitBranch className="h-3 w-3" />
+                Flowchart
+              </button>
+              {CODE_HIGHLIGHTS[project.id] && (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('code')}
+                  className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
+                    activeTab === 'code'
+                      ? 'bg-slate-900 text-white'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  <Code2 className="h-3 w-3" />
+                  Code Highlights
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => setActiveTab('systems')}
+                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
+                  activeTab === 'systems'
+                    ? 'bg-slate-900 text-white'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                <Sliders className="h-3 w-3" />
+                GDD / Systems Dial
+              </button>
+            </div>
+          </div>
+
           <div className="mt-3">
-            <GameplayLoopFlowchart projectId={project.id} theme={project.theme} />
+            {activeTab === 'flowchart' && (
+              <GameplayLoopFlowchart projectId={project.id} theme={project.theme} />
+            )}
+            {activeTab === 'code' && CODE_HIGHLIGHTS[project.id] && (
+              <div className="space-y-3">
+                {CODE_HIGHLIGHTS[project.id].map((snippet) => (
+                  <div
+                    key={snippet.filename}
+                    className="overflow-hidden rounded-xl border border-slate-700 bg-slate-950 text-slate-100"
+                  >
+                    <div className="flex items-center justify-between border-b border-slate-800 bg-slate-900 px-3.5 py-2">
+                      <div>
+                        <span className="font-mono text-xs font-semibold text-sky-300">
+                          {snippet.filename}
+                        </span>
+                        <span className="ml-2 text-[11px] text-slate-400">
+                          {snippet.summary}
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          navigator.clipboard?.writeText(snippet.code);
+                          setCopiedFile(snippet.filename);
+                          setTimeout(() => setCopiedFile(null), 1500);
+                        }}
+                        className="inline-flex items-center gap-1 rounded bg-slate-800 px-2 py-1 text-[10px] font-medium text-slate-200 hover:bg-slate-700"
+                      >
+                        {copiedFile === snippet.filename ? (
+                          <Check className="h-3 w-3 text-emerald-400" />
+                        ) : (
+                          <Copy className="h-3 w-3" />
+                        )}
+                        {copiedFile === snippet.filename ? 'Copied' : 'Copy'}
+                      </button>
+                    </div>
+                    <pre className="overflow-x-auto p-3.5 font-mono text-[11px] leading-relaxed text-emerald-200">
+                      <code>{snippet.code}</code>
+                    </pre>
+                  </div>
+                ))}
+              </div>
+            )}
+            {activeTab === 'systems' && <SystemsInspector compact />}
           </div>
         </div>
+
+        <DialoguePlayer key={`dialogue-${project.id}`} projectId={project.id} />
 
         <GameDemo
           key={project.id}

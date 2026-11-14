@@ -46,6 +46,34 @@ import { Resn3DShowcase } from './components/Resn3DShowcase';
 import { Card3DTilt } from './components/Card3DTilt';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
+import { AudioAtmosphereDock } from './components/features/AudioAtmosphereDock';
+import { useGamepadNav } from './hooks/useGamepadNav';
+import { useKonamiCode } from './hooks/useKonamiCode';
+
+const TECH_TAGS = [
+  'All Tech',
+  'Unreal 5.8 / C++',
+  'Unity 6 / C#',
+  'AI / StateTree',
+  'Networking',
+  'Narrative / Yarn',
+  'Puzzle Design',
+] as const;
+type TechTag = (typeof TECH_TAGS)[number];
+
+const RECRUITER_FLAGSHIP_IDS = new Set(['live-wire', 'trap-rooms', 'grim-of-legacy']);
+
+function projectMatchesTech(p: ProjectItem, tech: TechTag): boolean {
+  if (tech === 'All Tech') return true;
+  const hay = `${p.context} ${p.overview} ${p.contributions.join(' ')} ${p.roles.join(' ')}`.toLowerCase();
+  if (tech === 'Unreal 5.8 / C++') return hay.includes('unreal') || hay.includes('c++');
+  if (tech === 'Unity 6 / C#') return hay.includes('unity') || hay.includes('c#');
+  if (tech === 'AI / StateTree') return hay.includes('statetree') || hay.includes('navmesh') || hay.includes('ai');
+  if (tech === 'Networking') return hay.includes('multiplayer') || hay.includes('server') || hay.includes('tcp');
+  if (tech === 'Narrative / Yarn') return hay.includes('narrative') || hay.includes('yarn') || hay.includes('story');
+  if (tech === 'Puzzle Design') return hay.includes('puzzle') || hay.includes('escape');
+  return true;
+}
 
 type PageRoute = 'home' | 'professional' | 'school';
 
@@ -75,6 +103,8 @@ const NAV_LINKS = [
 export default function App() {
   const [route, setRoute] = useState<PageRoute>(() => getRouteFromHash());
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
+  const [activeTech, setActiveTech] = useState<TechTag>('All Tech');
+  const [recruiterTour, setRecruiterTour] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -120,14 +150,25 @@ export default function App() {
   };
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'All') return PROJECTS;
-    return PROJECTS.filter((p) => p.category === activeFilter);
-  }, [activeFilter]);
+    let list = PROJECTS;
+    if (recruiterTour) {
+      return list.filter((p) => RECRUITER_FLAGSHIP_IDS.has(p.id));
+    }
+    if (activeFilter !== 'All') {
+      list = list.filter((p) => p.category === activeFilter);
+    }
+    if (activeTech !== 'All Tech') {
+      list = list.filter((p) => projectMatchesTech(p, activeTech));
+    }
+    return list;
+  }, [activeFilter, activeTech, recruiterTour]);
 
   const visibleProjects = useMemo(() => {
-    if (activeFilter !== 'All' || showAllProjects) return filteredProjects;
+    if (recruiterTour || activeFilter !== 'All' || activeTech !== 'All Tech' || showAllProjects) {
+      return filteredProjects;
+    }
     return filteredProjects.slice(0, 6);
-  }, [activeFilter, showAllProjects, filteredProjects]);
+  }, [recruiterTour, activeFilter, activeTech, showAllProjects, filteredProjects]);
 
   // FLIP (First-Last-Invert-Play) layout transitions for project filtering
   const cardRefs = useRef<Map<string, HTMLElement>>(new Map());
@@ -181,9 +222,37 @@ export default function App() {
     ? filteredProjects.findIndex((p) => p.id === selectedProject.id)
     : -1;
 
+  const { crtMode, setCrtMode } = useKonamiCode();
+  const { connectedName, focusedIndex } = useGamepadNav({
+    itemCount: visibleProjects.length,
+    isModalOpen: Boolean(selectedProject),
+    onOpenIndex: (idx) => {
+      const target = visibleProjects[idx];
+      if (target) setSelectedProject(target);
+    },
+    onCloseModal: () => setSelectedProject(null),
+    onPrevModal: () => {
+      if (selectedIndex > 0) setSelectedProject(filteredProjects[selectedIndex - 1]);
+    },
+    onNextModal: () => {
+      if (selectedIndex >= 0 && selectedIndex < filteredProjects.length - 1) {
+        setSelectedProject(filteredProjects[selectedIndex + 1]);
+      }
+    },
+  });
+
+  useEffect(() => {
+    if (focusedIndex === null) return;
+    const p = visibleProjects[focusedIndex];
+    if (!p) return;
+    const el = cardRefs.current.get(p.id);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, [focusedIndex, visibleProjects]);
+
   return (
-    <div className="relative min-h-screen overflow-x-clip text-[#0F0F0F]">
+    <div className={`relative min-h-screen overflow-x-clip text-[#0F0F0F] ${crtMode ? 'brightness-95 contrast-110 saturate-125' : ''}`}>
       <div className="film-grain pointer-events-none fixed inset-0 z-50 opacity-[0.025]" aria-hidden="true" />
+      {crtMode && <div className="crt-scanlines pointer-events-none fixed inset-0 z-50" aria-hidden="true" />}
       <ScrollProgressBar />
       <DualSenseScrollPointer />
       <GameDevBackdrop />
@@ -425,9 +494,24 @@ export default function App() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  captureCardPositions();
+                  setRecruiterTour((prev) => !prev);
+                }}
+                className={`inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition ${
+                  recruiterTour
+                    ? 'bg-[#0070D1] text-white shadow-sm'
+                    : 'border border-[#0070D1]/40 bg-[#F0F7FF] text-[#005BB5] hover:bg-[#E0EFFF]'
+                }`}
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                {recruiterTour ? 'Exit Recruiter Tour' : '30s Recruiter Tour'}
+              </button>
               {PROJECT_FILTERS.map((filter) => {
-                const isActive = activeFilter === filter;
+                const isActive = !recruiterTour && activeFilter === filter;
                 const count =
                   filter === 'All'
                     ? PROJECTS.length
@@ -438,6 +522,7 @@ export default function App() {
                     type="button"
                     onClick={() => {
                       captureCardPositions();
+                      setRecruiterTour(false);
                       setActiveFilter(filter);
                     }}
                     className={`rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] ${
@@ -452,6 +537,54 @@ export default function App() {
               })}
             </div>
           </div>
+
+          {/* Tech Stack & System Dependency Matrix */}
+          {!recruiterTour && (
+            <div className="mt-4 flex flex-wrap items-center gap-1.5">
+              <span className="mr-1 font-mono text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+                Tech Matrix:
+              </span>
+              {TECH_TAGS.map((tag) => {
+                const active = activeTech === tag;
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => {
+                      captureCardPositions();
+                      setActiveTech(tag);
+                    }}
+                    className={`rounded-full px-3 py-1 font-mono text-[10px] font-medium transition ${
+                      active
+                        ? 'bg-slate-900 text-white'
+                        : 'border border-slate-300/80 bg-white/75 text-slate-600 hover:border-slate-500 hover:text-slate-900'
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
+          {recruiterTour && (
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#0070D1]/30 bg-[#F0F7FF] p-4 text-xs text-slate-800">
+              <div>
+                <p className="font-mono text-[11px] font-bold tracking-wider text-[#005BB5] uppercase">
+                  30-Second Recruiter Highlights · Flagship 3
+                </p>
+                <p className="mt-1 text-slate-700">
+                  Core Stack: <strong>UE 5.8 (C++ / StateTree)</strong> · <strong>Unity 6 (C# / URP / Netcode)</strong> · <strong>170K+ Shipped Mobile Downloads</strong>. Click any card for live demos, flowcharts &amp; code.
+                </p>
+              </div>
+              <a
+                href="#resume"
+                className="rounded-full bg-[#0070D1] px-4 py-1.5 font-semibold text-white hover:bg-[#005BB5]"
+              >
+                Jump to Experience &amp; Resume
+              </a>
+            </div>
+          )}
 
           <ScrollParallax offsetY={30} scaleFrom={0.94} tiltDeg={4.5}>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -475,7 +608,9 @@ export default function App() {
                     }}
                     tabIndex={0}
                     role="button"
-                    className={`group flex h-full cursor-pointer flex-col justify-between rounded-xl border ${theme.border} ${theme.surface} p-6 transition focus:outline-none focus:ring-2 focus:ring-[#1A1715]`}
+                    className={`group flex h-full cursor-pointer flex-col justify-between rounded-xl border ${theme.border} ${theme.surface} p-6 transition focus:outline-none focus:ring-2 focus:ring-[#1A1715] ${
+                      focusedIndex === idx ? 'ring-2 ring-[#0070D1] shadow-lg' : ''
+                    }`}
                   >
                   <div>
                     <div className="flex items-center justify-between gap-2">
@@ -999,6 +1134,24 @@ export default function App() {
           className="fixed right-5 bottom-5 z-30 rounded-full border border-slate-200 bg-white/95 p-3 text-slate-700 shadow-md backdrop-blur-xs transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-200 dark:hover:bg-slate-100 dark:hover:text-slate-900"
         >
           <ArrowUp className="h-4 w-4" />
+        </button>
+      )}
+
+      <AudioAtmosphereDock />
+
+      {connectedName && (
+        <div className="fixed right-5 bottom-18 z-40 rounded-full border border-sky-400/50 bg-slate-900/95 px-3.5 py-1.5 font-mono text-[11px] font-semibold text-sky-300 shadow-lg">
+          🎮 {connectedName} · D-Pad / ✕ Open / ○ Close
+        </div>
+      )}
+
+      {crtMode && (
+        <button
+          type="button"
+          onClick={() => setCrtMode(false)}
+          className="fixed top-20 right-4 z-50 rounded-full border border-emerald-400 bg-slate-950 px-3 py-1 font-mono text-[11px] font-bold text-emerald-300 shadow-lg"
+        >
+          CRT 8-BIT MODE ON · Click to Exit
         </button>
       )}
 
