@@ -42,6 +42,8 @@ import { ScrollParallax, ScrollProgressBar } from './components/ScrollMotion';
 import { DualSenseScrollPointer } from './components/DualSenseScrollPointer';
 import { DualSensePlayground } from './components/DualSensePlayground';
 import { HeroNavMeshCanvas } from './components/HeroNavMeshCanvas';
+import { Resn3DShowcase } from './components/Resn3DShowcase';
+import { Card3DTilt } from './components/Card3DTilt';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
 
@@ -377,7 +379,8 @@ export default function App() {
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
               <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
-                <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm transition duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/90">
+                <div className="space-y-3 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-4 shadow-sm transition duration-300 hover:shadow-lg">
+                <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-amber-700/60 dark:bg-amber-950/45">
                     <Gamepad2 className="mx-auto h-7 w-7 text-amber-600 dark:text-amber-300" />
@@ -454,23 +457,23 @@ export default function App() {
               {visibleProjects.map((project) => {
               const theme = PASTEL_THEME[project.theme];
               return (
-                <article
-                  key={project.id}
-                  ref={(el) => {
-                    if (el) cardRefs.current.set(project.id, el);
-                    else cardRefs.current.delete(project.id);
-                  }}
-                  onClick={() => setSelectedProject(project)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      setSelectedProject(project);
-                    }
-                  }}
-                  tabIndex={0}
-                  role="button"
-                  className={`group flex cursor-pointer flex-col justify-between rounded-3xl border ${theme.border} ${theme.surface} p-6 transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400`}
-                >
+                <Card3DTilt key={project.id} className="h-full">
+                  <article
+                    ref={(el) => {
+                      if (el) cardRefs.current.set(project.id, el);
+                      else cardRefs.current.delete(project.id);
+                    }}
+                    onClick={() => setSelectedProject(project)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setSelectedProject(project);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    className={`group flex h-full cursor-pointer flex-col justify-between rounded-3xl border ${theme.border} ${theme.surface} p-6 transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-slate-400`}
+                  >
                   <div>
                     <div className="flex items-center justify-between gap-2">
                       <span
@@ -508,7 +511,8 @@ export default function App() {
                       <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
                   </div>
-                </article>
+                  </article>
+                </Card3DTilt>
               );
             })}
             </div>
