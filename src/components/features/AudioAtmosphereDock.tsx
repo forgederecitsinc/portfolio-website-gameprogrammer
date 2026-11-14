@@ -103,23 +103,23 @@ export function AudioAtmosphereDock() {
           aria-label="Open ambient audio dock"
           className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold shadow-lg backdrop-blur-md transition ${
             preset !== 'off'
-              ? 'border-[#2EF2A8] bg-[#121216] text-[#2EF2A8]'
-              : 'border-white/15 bg-[#121216]/95 text-slate-200 hover:border-[#F6CF3B] hover:text-[#F6CF3B]'
+              ? 'border-emerald-500 bg-emerald-50 text-emerald-800 dark:border-[#2EF2A8] dark:bg-[#121216] dark:text-[#2EF2A8]'
+              : 'border-slate-200 bg-white/95 text-slate-800 hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-[#121216]/95 dark:text-slate-200 dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]'
           }`}
         >
           {preset !== 'off' ? <Volume2 className="h-3.5 w-3.5 animate-pulse" /> : <VolumeX className="h-3.5 w-3.5" />}
           <span>{preset === 'off' ? 'Audio Lab' : `Ambient: ${preset}`}</span>
         </button>
       ) : (
-        <div className="w-64 rounded-2xl border border-[#D4D4D2] bg-[#F7F7F5]/95 p-3.5 shadow-xl backdrop-blur-md">
+        <div className="w-64 rounded-2xl border border-slate-200 bg-white/95 p-3.5 text-slate-800 shadow-xl backdrop-blur-md dark:border-white/15 dark:bg-[#121216]/95 dark:text-slate-200">
           <div className="flex items-center justify-between">
-            <span className="font-mono text-[10px] font-semibold tracking-wider text-slate-600 uppercase">
+            <span className="font-mono text-[10px] font-semibold tracking-wider text-slate-600 uppercase dark:text-slate-400">
               Ambient Audio Dock
             </span>
             <button
               type="button"
               onClick={() => setExpanded(false)}
-              className="text-xs font-semibold text-slate-500 hover:text-slate-900"
+              className="text-xs font-semibold text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
             >
               Minimize
             </button>
@@ -131,8 +131,8 @@ export function AudioAtmosphereDock() {
               onClick={() => selectPreset('rain')}
               className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-2 text-[10px] font-semibold transition ${
                 preset === 'rain'
-                  ? 'border-sky-500 bg-sky-50 text-sky-800'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'border-sky-500 bg-sky-50 text-sky-800 dark:border-[#38BDF8] dark:bg-[#38BDF8]/15 dark:text-[#7DD3FC]'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-white/10 dark:bg-[#18181D] dark:text-slate-300 dark:hover:bg-white/10'
               }`}
             >
               <CloudRain className="h-3.5 w-3.5" />
@@ -143,8 +143,8 @@ export function AudioAtmosphereDock() {
               onClick={() => selectPreset('substation')}
               className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-2 text-[10px] font-semibold transition ${
                 preset === 'substation'
-                  ? 'border-amber-500 bg-amber-50 text-amber-800'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'border-amber-500 bg-amber-50 text-amber-800 dark:border-[#F6CF3B] dark:bg-[#F6CF3B]/15 dark:text-[#FDE047]'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-white/10 dark:bg-[#18181D] dark:text-slate-300 dark:hover:bg-white/10'
               }`}
             >
               <Zap className="h-3.5 w-3.5" />
@@ -155,8 +155,8 @@ export function AudioAtmosphereDock() {
               onClick={() => selectPreset('horror')}
               className={`flex flex-col items-center gap-1 rounded-lg border px-2 py-2 text-[10px] font-semibold transition ${
                 preset === 'horror'
-                  ? 'border-rose-500 bg-rose-50 text-rose-800'
-                  : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  ? 'border-rose-500 bg-rose-50 text-rose-800 dark:border-[#EC1D7B] dark:bg-[#EC1D7B]/15 dark:text-[#F472B6]'
+                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-white/10 dark:bg-[#18181D] dark:text-slate-300 dark:hover:bg-white/10'
               }`}
             >
               <Radio className="h-3.5 w-3.5" />
@@ -165,7 +165,7 @@ export function AudioAtmosphereDock() {
           </div>
 
           <div className="mt-3 flex items-center gap-2">
-            <Volume2 className="h-3.5 w-3.5 text-slate-500" />
+            <Volume2 className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
             <input
               type="range"
               min={0}
@@ -173,14 +173,14 @@ export function AudioAtmosphereDock() {
               step={0.05}
               value={volume}
               onChange={(e) => setVolume(Number(e.target.value))}
-              className="w-full accent-slate-900"
+              className="w-full accent-slate-900 dark:accent-[#F6CF3B]"
               aria-label="Ambient volume"
             />
             {preset !== 'off' && (
               <button
                 type="button"
                 onClick={() => selectPreset('off')}
-                className="rounded bg-slate-900 px-2 py-0.5 text-[10px] font-semibold text-white"
+                className="rounded bg-slate-900 px-2 py-0.5 text-[10px] font-semibold text-white dark:bg-[#F6CF3B] dark:text-slate-950"
               >
                 Stop
               </button>
@@ -188,7 +188,7 @@ export function AudioAtmosphereDock() {
           </div>
 
           {preset !== 'off' && (
-            <div className="mt-2.5 flex items-center gap-1.5 font-mono text-[10px] text-slate-600">
+            <div className="mt-2.5 flex items-center gap-1.5 font-mono text-[10px] text-slate-600 dark:text-slate-300">
               <span className="h-2 w-2 animate-ping rounded-full bg-amber-500" />
               <span>Signal Active · {Math.round(volume * 100)}% Gain</span>
             </div>

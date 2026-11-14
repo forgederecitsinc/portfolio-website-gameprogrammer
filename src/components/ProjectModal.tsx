@@ -67,14 +67,14 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
       aria-labelledby="project-modal-title"
     >
       <div
-        className={`animate-modal-in relative max-h-[90vh] w-full max-w-3xl overscroll-contain overflow-y-auto rounded-2xl border ${theme.border} bg-[#111115] p-6 text-slate-100 shadow-2xl sm:p-8`}
+        className={`animate-modal-in relative max-h-[90vh] w-full max-w-3xl overscroll-contain overflow-y-auto rounded-2xl border ${theme.border} bg-white p-6 text-slate-900 shadow-2xl dark:bg-[#111115] dark:text-slate-100 sm:p-8`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close project details"
-          className="absolute top-5 right-5 rounded-full border border-white/15 bg-white/5 p-2 text-slate-300 transition hover:bg-white/15 hover:text-white"
+          className="absolute top-5 right-5 rounded-full border border-slate-200 bg-slate-100 p-2 text-slate-600 transition hover:bg-slate-200 hover:text-slate-900 dark:border-white/15 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/15 dark:hover:text-white"
         >
           <X className="h-4 w-4" />
         </button>
@@ -89,7 +89,7 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
           {project.platforms?.map((platform) => (
             <span
               key={platform}
-              className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-300"
+              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/15 dark:bg-white/5 dark:text-slate-300"
             >
               <Smartphone className="h-3 w-3" />
               {platform}
@@ -99,11 +99,11 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
 
         <h3
           id="project-modal-title"
-          className="mt-4 font-serif text-2xl font-semibold text-[#F6CF3B] sm:text-3xl"
+          className="mt-4 font-serif text-2xl font-semibold text-amber-800 dark:text-[#F6CF3B] sm:text-3xl"
         >
           {project.title}
         </h3>
-        <p className="mt-1 text-sm font-medium text-slate-400">
+        <p className="mt-1 text-sm font-medium text-slate-600 dark:text-slate-400">
           {project.context}
         </p>
 
@@ -111,7 +111,7 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
           {project.roles.map((role) => (
             <span
               key={role}
-              className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-200"
+              className="rounded-lg border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-800 dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
             >
               {role}
             </span>
@@ -119,27 +119,27 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
         </div>
 
         <div className={`mt-6 rounded-2xl border ${theme.border} ${theme.surface} p-5`}>
-          <h4 className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
             Overview
           </h4>
-          <p className="mt-2 leading-relaxed text-slate-200">
+          <p className="mt-2 leading-relaxed text-slate-700 dark:text-slate-200">
             {project.overview}
           </p>
         </div>
 
         <div className="mt-6">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
               System Architecture &amp; Gameplay Loop
             </h4>
-            <div className="flex flex-wrap items-center gap-1 rounded-full border border-white/15 bg-white/5 p-1">
+            <div className="flex flex-wrap items-center gap-1 rounded-full border border-slate-200 bg-slate-100 p-1 dark:border-white/15 dark:bg-white/5">
               <button
                 type="button"
                 onClick={() => setActiveTab('flowchart')}
                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
                   activeTab === 'flowchart'
-                    ? 'bg-[#F6CF3B] text-slate-950'
-                    : 'text-slate-300 hover:text-white'
+                    ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
                 }`}
               >
                 <GitBranch className="h-3 w-3" />
@@ -151,9 +151,9 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
                   onClick={() => setActiveTab('code')}
                   className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
                     activeTab === 'code'
-                      ? 'bg-[#F6CF3B] text-slate-950'
-                      : 'text-slate-300 hover:text-white'
-                }`}
+                      ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                      : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
+                  }`}
                 >
                   <Code2 className="h-3 w-3" />
                   Code Highlights
@@ -164,8 +164,8 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
                 onClick={() => setActiveTab('systems')}
                 className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
                   activeTab === 'systems'
-                    ? 'bg-[#F6CF3B] text-slate-950'
-                    : 'text-slate-300 hover:text-white'
+                    ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
                 }`}
               >
                 <Sliders className="h-3 w-3" />
@@ -232,14 +232,14 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
         />
 
         <div className="mt-6">
-          <h4 className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
             Key Contributions
           </h4>
           <ul className="mt-3 space-y-2.5">
             {project.contributions.map((item) => (
               <li
                 key={item}
-                className="flex items-start gap-2.5 text-sm leading-relaxed text-slate-200"
+                className="flex items-start gap-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-200"
               >
                 <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${theme.accentText}`} />
                 <span>{item}</span>
@@ -250,23 +250,23 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
 
         {project.mechanics && project.mechanics.length > 0 && (
           <div className="mt-6 space-y-4">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
               Detailed Mechanics &amp; Systems Breakdown
             </h4>
             <div className="grid gap-3">
               {project.mechanics.map((section) => (
                 <div
                   key={section.heading}
-                  className="rounded-xl border border-white/10 bg-[#16161B] p-4"
+                  className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-white/10 dark:bg-[#16161B]"
                 >
-                  <h5 className="text-xs font-semibold tracking-wide text-[#F6CF3B] uppercase">
+                  <h5 className="text-xs font-semibold tracking-wide text-amber-800 uppercase dark:text-[#F6CF3B]">
                     {section.heading}
                   </h5>
                   <ul className="mt-2 space-y-1.5">
                     {section.points.map((pt) => (
                       <li
                         key={pt}
-                        className="flex items-start gap-2 text-xs leading-relaxed text-slate-300"
+                        className="flex items-start gap-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300"
                       >
                         <span className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${theme.dot}`} />
                         <span>{pt}</span>
@@ -279,14 +279,14 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
           </div>
         )}
 
-        <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-5">
+        <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200 pt-5 dark:border-white/10">
           <div className="flex items-center gap-2">
             {onPrev && (
               <button
                 type="button"
                 onClick={onPrev}
                 aria-label="Previous project"
-                className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-white/15"
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-200 dark:border-white/15 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/15"
               >
                 <ChevronLeft className="h-3.5 w-3.5" />
                 Prev
@@ -297,7 +297,7 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
                 type="button"
                 onClick={onNext}
                 aria-label="Next project"
-                className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-200 transition hover:bg-white/15"
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-200 dark:border-white/15 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/15"
               >
                 Next
                 <ChevronRight className="h-3.5 w-3.5" />

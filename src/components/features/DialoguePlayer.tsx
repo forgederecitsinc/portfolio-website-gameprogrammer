@@ -146,23 +146,23 @@ export function DialoguePlayer({ projectId }: { projectId: string }) {
   };
 
   return (
-    <div className="mt-6 rounded-2xl border border-violet-200/80 bg-slate-900 p-4 text-slate-100">
+    <div className="mt-6 rounded-2xl border border-violet-200 bg-violet-50/50 p-4 text-slate-900 dark:border-violet-800/60 dark:bg-slate-900 dark:text-slate-100">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <MessageSquare className="h-4 w-4 text-violet-400" />
-          <h4 className="text-xs font-semibold tracking-wider text-violet-200 uppercase">
+          <MessageSquare className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+          <h4 className="text-xs font-semibold tracking-wider text-violet-900 uppercase dark:text-violet-200">
             {script.title}
           </h4>
         </div>
         <div className="flex items-center gap-3">
-          <span className="font-mono text-[11px] text-emerald-300">
+          <span className="font-mono text-[11px] text-emerald-700 dark:text-emerald-300">
             AFFINITY / EVIDENCE: {'★'.repeat(trust)}
             {'☆'.repeat(5 - trust)}
           </span>
           <button
             type="button"
             onClick={reset}
-            className="inline-flex items-center gap-1 rounded-full bg-slate-800 px-2.5 py-1 text-[11px] text-slate-200 hover:bg-slate-700"
+            className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
           >
             <RotateCcw className="h-3 w-3" />
             Replay
@@ -170,12 +170,12 @@ export function DialoguePlayer({ projectId }: { projectId: string }) {
         </div>
       </div>
 
-      <div className="mt-3 rounded-xl border border-slate-800 bg-slate-950 p-3.5">
+      <div className="mt-3 rounded-xl border border-slate-200 bg-white p-3.5 dark:border-slate-800 dark:bg-slate-950">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-[11px] font-bold text-violet-300">{node.speaker}</span>
+          <span className="font-mono text-[11px] font-bold text-violet-700 dark:text-violet-300">{node.speaker}</span>
           <span className="font-mono text-[10px] text-slate-500">{lastCmd}</span>
         </div>
-        <p className="mt-1.5 text-sm leading-relaxed text-slate-100">{node.line}</p>
+        <p className="mt-1.5 text-sm leading-relaxed text-slate-800 dark:text-slate-100">{node.line}</p>
 
         {node.choices && (
           <div className="mt-3 space-y-1.5">
@@ -184,7 +184,7 @@ export function DialoguePlayer({ projectId }: { projectId: string }) {
                 key={c.label}
                 type="button"
                 onClick={() => choose(c)}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-left text-xs font-medium text-slate-200 transition hover:border-violet-400 hover:bg-slate-800"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-left text-xs font-medium text-slate-800 transition hover:border-violet-400 hover:bg-violet-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-violet-400 dark:hover:bg-slate-800"
               >
                 → {c.label}
               </button>
@@ -193,7 +193,7 @@ export function DialoguePlayer({ projectId }: { projectId: string }) {
         )}
 
         {node.ending && (
-          <div className="mt-3 rounded-lg border border-emerald-500/40 bg-emerald-950/50 px-3 py-2 font-mono text-xs font-semibold text-emerald-300">
+          <div className="mt-3 rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-2 font-mono text-xs font-semibold text-emerald-800 dark:border-emerald-500/40 dark:bg-emerald-950/50 dark:text-emerald-300">
             {node.ending}
           </div>
         )}

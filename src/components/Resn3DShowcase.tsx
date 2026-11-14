@@ -256,9 +256,9 @@ export function Resn3DShowcase() {
   }, []);
 
   return (
-    <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#D4D4D2] bg-gradient-to-br from-[#F7F7F5] via-[#ECEBE9] to-[#E2E1DF] sm:h-64">
+    <div className="relative h-56 w-full overflow-hidden rounded-lg border border-[#D4D4D2] bg-gradient-to-br from-[#F7F7F5] via-[#ECEBE9] to-[#E2E1DF] dark:border-white/10 dark:from-[#17171D] dark:via-[#121216] dark:to-[#0C0C10] sm:h-64">
       <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
-      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5]/95 px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-widest text-[#0F0F0F] uppercase">
+      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5]/95 px-2.5 py-0.5 font-mono text-[10px] font-medium tracking-widest text-[#0F0F0F] uppercase dark:border-white/15 dark:bg-[#121216]/90 dark:text-slate-200">
         3D Specimen · Scroll &amp; Move
       </div>
     </div>

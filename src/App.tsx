@@ -14,8 +14,10 @@ import {
   Mail,
   MapPin,
   Menu,
+  Moon,
   Phone,
   Sparkles,
+  Sun,
   Users,
   X,
 } from 'lucide-react';
@@ -51,6 +53,7 @@ import { DialoguePlayer } from './components/features/DialoguePlayer';
 import { useGamepadNav } from './hooks/useGamepadNav';
 import { useKonamiCode } from './hooks/useKonamiCode';
 import { TOUR_STOPS, useRecruiterTour } from './hooks/useRecruiterTour';
+import { useTheme } from './hooks/useTheme';
 
 const TECH_TAGS = [
   'All Tech',
@@ -225,6 +228,7 @@ export default function App() {
     ? filteredProjects.findIndex((p) => p.id === selectedProject.id)
     : -1;
 
+  const { isDark, toggleTheme } = useTheme();
   const { crtMode, setCrtMode } = useKonamiCode();
 
   // Dynamic SEO document title for routes and opened project modals
@@ -282,7 +286,7 @@ export default function App() {
   }, [focusedIndex, visibleProjects]);
 
   return (
-    <div className={`relative min-h-screen overflow-x-clip text-slate-100 ${crtMode ? 'brightness-95 contrast-110 saturate-125' : ''}`}>
+    <div className={`relative min-h-screen overflow-x-clip text-slate-900 dark:text-slate-100 ${crtMode ? 'brightness-95 contrast-110 saturate-125' : ''}`}>
       <div className="film-grain pointer-events-none fixed inset-0 z-50 opacity-[0.025]" aria-hidden="true" />
       {crtMode && <div className="crt-scanlines pointer-events-none fixed inset-0 z-50" aria-hidden="true" />}
       <ScrollProgressBar />
@@ -290,7 +294,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#080808]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-[#FAF9F5]/90 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/90">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -300,14 +304,14 @@ export default function App() {
             }}
             className="flex items-center gap-3"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#F6CF3B]/40 bg-[#121216] text-[#F6CF3B]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-amber-300 bg-amber-50 text-amber-700 dark:border-[#F6CF3B]/40 dark:bg-[#121216] dark:text-[#F6CF3B]">
               <Gamepad2 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <span className="block font-serif text-lg font-bold tracking-wide text-[#F6CF3B]">
+              <span className="block font-serif text-lg font-bold tracking-wide text-amber-800 dark:text-[#F6CF3B]">
                 {PROFILE.name}
               </span>
-              <span className="block font-mono text-[10px] font-medium tracking-wider text-[#FF8A3D] uppercase">
+              <span className="block font-mono text-[10px] font-medium tracking-wider text-orange-700 uppercase dark:text-[#FF8A3D]">
                 Ludonode Studios · Toronto
               </span>
             </div>
@@ -320,8 +324,8 @@ export default function App() {
                 onClick={() => navigateTo('professional')}
                 className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
                   route === 'professional'
-                    ? 'bg-[#F6CF3B] text-slate-950'
-                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
+                    ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                    : 'text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white'
                 }`}
               >
                 Professional
@@ -331,8 +335,8 @@ export default function App() {
                 onClick={() => navigateTo('school')}
                 className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
                   route === 'school'
-                    ? 'bg-[#F6CF3B] text-slate-950'
-                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
+                    ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                    : 'text-slate-700 hover:bg-slate-200/70 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white'
                 }`}
               >
                 School Projects
@@ -342,7 +346,7 @@ export default function App() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="text-sm font-medium text-slate-300 transition hover:text-[#F6CF3B]"
+                    className="text-sm font-medium text-slate-700 transition hover:text-amber-700 dark:text-slate-300 dark:hover:text-[#F6CF3B]"
                   >
                     {item.label}
                   </a>
@@ -351,7 +355,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => navigateTo('home')}
-                  className="text-sm font-medium text-slate-300 transition hover:text-[#F6CF3B]"
+                  className="text-sm font-medium text-slate-700 transition hover:text-amber-700 dark:text-slate-300 dark:hover:text-[#F6CF3B]"
                 >
                   Main Page
                 </button>
@@ -359,18 +363,27 @@ export default function App() {
             </div>
             <button
               type="button"
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 transition hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-[#121216] dark:text-slate-200 dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]"
+            >
+              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            <button
+              type="button"
               onClick={toggleTour}
               className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
                 recruiterTour
                   ? 'bg-[#EC1D7B] text-white shadow-sm'
-                  : 'border border-[#EC1D7B]/50 bg-[#EC1D7B]/15 text-[#F472B6] hover:bg-[#EC1D7B]/25'
+                  : 'border border-rose-300 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:border-[#EC1D7B]/50 dark:bg-[#EC1D7B]/15 dark:text-[#F472B6] dark:hover:bg-[#EC1D7B]/25'
               }`}
             >
               {recruiterTour ? `Stop Tour (${secondsLeft}s)` : '30s Tour'}
             </button>
             <a
               href={`mailto:${PROFILE.emails[0].address}`}
-              className={`inline-flex items-center gap-1.5 rounded-full bg-[#F37336] px-4 py-2 text-xs font-semibold text-slate-950 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#FF8A3D] active:scale-[0.97] ${
+              className={`inline-flex items-center gap-1.5 rounded-full bg-[#F37336] px-4 py-2 text-xs font-semibold text-white transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#e26124] active:scale-[0.97] dark:text-slate-950 dark:hover:bg-[#FF8A3D] ${
                 recruiterTour ? 'pointer-events-none opacity-45' : ''
               }`}
             >
@@ -382,9 +395,17 @@ export default function App() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="rounded-xl border border-slate-200 bg-white p-2 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+            >
+              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+            <button
+              type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-label="Toggle menu"
-              className="rounded-xl border border-slate-200 bg-[#16161B] dark:border-slate-700 dark:bg-slate-900 p-2 text-slate-200 dark:text-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              className="rounded-xl border border-slate-200 bg-white p-2 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -392,26 +413,26 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-white/10 bg-[#0F0F12] px-4 py-4 md:hidden">
+          <div className="border-t border-slate-200 bg-[#FAF9F5] px-4 py-4 dark:border-white/10 dark:bg-[#0F0F12] md:hidden">
             <div className="flex flex-col gap-2">
               <button
                 type="button"
                 onClick={() => navigateTo('home')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-800 hover:bg-slate-200/70 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Main Page
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('professional')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-800 hover:bg-slate-200/70 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Professional
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('school')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-800 hover:bg-slate-200/70 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 School Projects
               </button>
@@ -421,7 +442,7 @@ export default function App() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
+                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-800 hover:bg-slate-200/70 dark:text-slate-200 dark:hover:bg-slate-800"
                   >
                     {item.label}
                   </a>
@@ -445,65 +466,65 @@ export default function App() {
           <HeroNavMeshCanvas />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="animate-fade-up lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-sm border border-[#F6CF3B]/30 bg-[#121216] px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-slate-300 uppercase">
-                <MapPin className="h-3.5 w-3.5 text-[#F6CF3B]" />
+              <div className="inline-flex items-center gap-2 rounded-sm border border-amber-300 bg-amber-50 px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-slate-800 uppercase dark:border-[#F6CF3B]/30 dark:bg-[#121216] dark:text-slate-300">
+                <MapPin className="h-3.5 w-3.5 text-amber-700 dark:text-[#F6CF3B]" />
                 “founder of LUDONODE STUDIOS” · {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-5xl leading-[1.02] font-bold tracking-tight text-[#F6CF3B] uppercase sm:text-6xl lg:text-[4.5rem]">
+              <h1 className="mt-5 font-serif text-5xl leading-[1.02] font-bold tracking-tight text-amber-800 uppercase dark:text-[#F6CF3B] sm:text-6xl lg:text-[4.5rem]">
                 {PROFILE.name}
               </h1>
-              <p className="mt-2.5 text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
+              <p className="mt-2.5 text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-300 sm:text-base">
                 {PROFILE.title}
               </p>
 
               {/* Signature Discipline Banner Strip */}
-              <div className="mt-5 space-y-2 border-y border-white/15 py-4">
+              <div className="mt-5 space-y-2 border-y border-slate-200 py-4 dark:border-white/15">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-[#FF8A3D] uppercase">
+                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-orange-700 uppercase dark:text-[#FF8A3D]">
                     WRITER
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-300 uppercase">
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-600 uppercase dark:text-slate-300">
                     NARRATIVE DESIGNER | WORLDBUILDING | DIALOGUES
                   </span>
                 </div>
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-[#EC1D7B] uppercase">
+                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-rose-700 uppercase dark:text-[#EC1D7B]">
                     GAME DESIGNER
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-300 uppercase">
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-600 uppercase dark:text-slate-300">
                     MECHANICS | ECONOMY | SYSTEMS DESIGN
                   </span>
                 </div>
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-[#2EF2A8] uppercase">
+                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-emerald-700 uppercase dark:text-[#2EF2A8]">
                     PUZZLE DESIGNER
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-300 uppercase">
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-600 uppercase dark:text-slate-300">
                     BOARD PUZZLES | RUBE GOLDBERG | STRUCTURAL ENGINEERING
                   </span>
                 </div>
               </div>
 
-              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-700 dark:text-slate-300 sm:text-base">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-lg border border-white/10 bg-[#121216] px-5 py-4 font-serif text-base italic text-slate-200">
+              <blockquote className="mt-6 rounded-lg border border-slate-200 bg-white/90 px-5 py-4 font-serif text-base italic text-slate-800 shadow-2xs dark:border-white/10 dark:bg-[#121216] dark:text-slate-200 dark:shadow-none">
                 “{PROFILE.tagline}”
               </blockquote>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-md bg-[#F37336] px-6 py-3 text-sm font-semibold text-slate-950 transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#FF8A3D] active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#F37336] px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#e26124] active:scale-[0.97] dark:text-slate-950 dark:hover:bg-[#FF8A3D]"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-[#121216] px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#F6CF3B] hover:text-[#F6CF3B] active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-amber-500 hover:text-amber-700 active:scale-[0.97] dark:border-white/20 dark:bg-[#121216] dark:text-white dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]"
                 >
                   Contact &amp; Socials
                 </a>
@@ -516,7 +537,7 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-sm border border-white/15 bg-[#121216] px-3 py-1.5 font-mono text-[11px] font-medium text-slate-300 transition hover:-translate-y-0.5 hover:border-[#F6CF3B] hover:text-[#F6CF3B]"
+                    className="inline-flex items-center gap-1.5 rounded-sm border border-slate-200 bg-white px-3 py-1.5 font-mono text-[11px] font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-[#121216] dark:text-slate-300 dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]"
                   >
                     {social.name}
                     <ArrowUpRight className="h-3 w-3" />
@@ -527,24 +548,24 @@ export default function App() {
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
               <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
-                <div className="space-y-3 overflow-hidden rounded-xl border border-white/10 bg-[#121216] p-4 transition duration-300">
+                <div className="space-y-3 overflow-hidden rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition duration-300 dark:border-white/10 dark:bg-[#121216] dark:shadow-none">
                 <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#18181D] p-3 text-center transition hover:-translate-y-0.5 hover:border-[#EC1D7B]/50">
-                    <Gamepad2 className="mx-auto h-6 w-6 text-[#EC1D7B]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-200">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-3 text-center transition hover:-translate-y-0.5 hover:border-rose-400 dark:border-white/10 dark:bg-[#18181D] dark:hover:border-[#EC1D7B]/50">
+                    <Gamepad2 className="mx-auto h-6 w-6 text-rose-600 dark:text-[#EC1D7B]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-800 dark:text-slate-200">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#18181D] p-3 text-center transition hover:-translate-y-0.5 hover:border-[#2EF2A8]/50">
-                    <GraduationCap className="mx-auto h-6 w-6 text-[#2EF2A8]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-200">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-3 text-center transition hover:-translate-y-0.5 hover:border-emerald-400 dark:border-white/10 dark:bg-[#18181D] dark:hover:border-[#2EF2A8]/50">
+                    <GraduationCap className="mx-auto h-6 w-6 text-emerald-600 dark:text-[#2EF2A8]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-800 dark:text-slate-200">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#18181D] p-3 text-center transition hover:-translate-y-0.5 hover:border-[#FF8A3D]/50">
-                    <Sparkles className="mx-auto h-6 w-6 text-[#FF8A3D]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-200">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-3 text-center transition hover:-translate-y-0.5 hover:border-orange-400 dark:border-white/10 dark:bg-[#18181D] dark:hover:border-[#FF8A3D]/50">
+                    <Sparkles className="mx-auto h-6 w-6 text-orange-600 dark:text-[#FF8A3D]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-800 dark:text-slate-200">
                       Ludonode Studios
                     </p>
                   </div>
@@ -556,17 +577,17 @@ export default function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
+        <section id="projects" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#EC1D7B] uppercase">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-[#EC1D7B]">
                 <Layers className="h-3.5 w-3.5" />
                 Selected Works
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-[#F6CF3B] sm:text-4xl">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-[#F6CF3B] sm:text-4xl">
                 Games, Levels &amp; Narrative Worlds
               </h2>
-              <p className="mt-2 max-w-2xl text-sm text-slate-300 sm:text-base">
+              <p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300 sm:text-base">
                 Commercial mobile escape rooms, George Brown College game jams and capstones,
                 original puzzle prototypes, and lore bibles. Click any card for full details.
               </p>
@@ -579,7 +600,7 @@ export default function App() {
                 className={`inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition ${
                   recruiterTour
                     ? 'bg-[#EC1D7B] text-white shadow-sm'
-                    : 'border border-[#EC1D7B]/50 bg-[#EC1D7B]/15 text-[#F472B6] hover:bg-[#EC1D7B]/25'
+                    : 'border border-rose-300 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:border-[#EC1D7B]/50 dark:bg-[#EC1D7B]/15 dark:text-[#F472B6] dark:hover:bg-[#EC1D7B]/25'
                 }`}
               >
                 <Sparkles className="h-3.5 w-3.5" />
@@ -602,8 +623,8 @@ export default function App() {
                     }}
                     className={`rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] ${
                       isActive
-                        ? 'bg-[#F6CF3B] text-slate-950'
-                        : 'border border-white/15 bg-[#121216] text-slate-300 hover:border-[#F6CF3B]/60 hover:text-white'
+                        ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                        : 'border border-slate-200 bg-white text-slate-700 hover:border-amber-500 hover:text-slate-950 dark:border-white/15 dark:bg-[#121216] dark:text-slate-300 dark:hover:border-[#F6CF3B]/60 dark:hover:text-white'
                     }`}
                   >
                     {filter} <span className="ml-1 opacity-70">({count})</span>
@@ -616,7 +637,7 @@ export default function App() {
           {/* Tech Stack & System Dependency Matrix */}
           {!recruiterTour && (
             <div className="mt-4 flex flex-wrap items-center gap-1.5">
-              <span className="mr-1 font-mono text-[10px] font-semibold tracking-wider text-slate-400 uppercase">
+              <span className="mr-1 font-mono text-[10px] font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                 Tech Matrix:
               </span>
               {TECH_TAGS.map((tag) => {
@@ -631,8 +652,8 @@ export default function App() {
                     }}
                     className={`rounded-full px-3 py-1 font-mono text-[10px] font-medium transition ${
                       active
-                        ? 'bg-[#2EF2A8] text-slate-950 font-semibold'
-                        : 'border border-white/15 bg-[#121216] text-slate-300 hover:border-[#2EF2A8]/60 hover:text-white'
+                        ? 'bg-emerald-600 text-white font-semibold dark:bg-[#2EF2A8] dark:text-slate-950'
+                        : 'border border-slate-200 bg-white text-slate-700 hover:border-emerald-500 hover:text-slate-950 dark:border-white/15 dark:bg-[#121216] dark:text-slate-300 dark:hover:border-[#2EF2A8]/60 dark:hover:text-white'
                     }`}
                   >
                     {tag}
@@ -643,18 +664,18 @@ export default function App() {
           )}
 
           {recruiterTour && (
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#EC1D7B]/40 bg-[#16161B] p-4 text-xs text-slate-200">
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-rose-300 bg-rose-50/80 p-4 text-xs text-slate-800 dark:border-[#EC1D7B]/40 dark:bg-[#16161B] dark:text-slate-200">
               <div>
-                <p className="font-mono text-[11px] font-bold tracking-wider text-[#EC1D7B] uppercase">
+                <p className="font-mono text-[11px] font-bold tracking-wider text-rose-700 uppercase dark:text-[#EC1D7B]">
                   30-Second Recruiter Highlights · Flagship 3
                 </p>
-                <p className="mt-1 text-slate-300">
+                <p className="mt-1 text-slate-700 dark:text-slate-300">
                   Core Stack: <strong>UE 5.8 (C++ / StateTree)</strong> · <strong>Unity 6 (C# / URP / Netcode)</strong> · <strong>170K+ Shipped Mobile Downloads</strong>.
                 </p>
               </div>
               <a
                 href="#resume"
-                className="rounded-full bg-[#F37336] px-4 py-1.5 font-semibold text-slate-950 hover:bg-[#FF8A3D]"
+                className="rounded-full bg-[#F37336] px-4 py-1.5 font-semibold text-white hover:bg-[#e26124] dark:text-slate-950 dark:hover:bg-[#FF8A3D]"
               >
                 Jump to Experience &amp; Resume
               </a>
@@ -697,21 +718,21 @@ export default function App() {
                       </span>
                     </div>
 
-                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-100 dark:text-slate-100 group-hover:text-[#F6CF3B]">
+                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 group-hover:text-amber-700 dark:text-slate-100 dark:group-hover:text-[#F6CF3B]">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-xs font-medium text-slate-400 dark:text-slate-400">{project.context}</p>
-                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-200 dark:text-slate-300 dark:text-slate-300">
+                    <p className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{project.context}</p>
+                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       {project.overview}
                     </p>
                   </div>
 
-                  <div className="mt-5 border-t border-slate-200/60 dark:border-slate-800/60 pt-4">
+                  <div className="mt-5 border-t border-slate-200/80 pt-4 dark:border-slate-800/60">
                     <div className="flex flex-wrap gap-1.5">
                       {project.roles.map((role) => (
                         <span
                           key={role}
-                          className="rounded-md bg-[#16161B] dark:bg-slate-900/85 px-2 py-0.5 text-[11px] font-medium text-slate-200 dark:text-slate-300 ring-1 ring-slate-200/70 dark:ring-slate-700"
+                          className="rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-800 ring-1 ring-slate-200/80 dark:bg-[#16161B] dark:text-slate-300 dark:ring-slate-700"
                         >
                           {role}
                         </span>
@@ -737,7 +758,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setShowAllProjects((prev) => !prev)}
-                className="rounded-full border border-slate-300 bg-[#16161B] px-6 py-2.5 text-xs font-semibold text-slate-200 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-full border border-slate-300 bg-white px-6 py-2.5 text-xs font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 {showAllProjects
                   ? 'Show featured (6)'
@@ -748,15 +769,15 @@ export default function App() {
 
           {/* Additional GBC Works Strip */}
           <Reveal className="mt-8">
-            <div className="rounded-2xl border border-sky-200/70 bg-[#121216] p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+            <div className="rounded-2xl border border-sky-200/80 bg-sky-50/75 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <GraduationCap className="h-5 w-5 text-sky-300 dark:text-sky-300" />
-                  <h3 className="font-serif text-lg font-semibold text-slate-100 dark:text-slate-100">
+                  <GraduationCap className="h-5 w-5 text-sky-700 dark:text-sky-300" />
+                  <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
                     Additional George Brown College Projects
                   </h3>
                 </div>
-                <span className="text-xs font-medium text-slate-400 dark:text-slate-400">
+                <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
                   Screenwriting, Cartography &amp; Programming
                 </span>
               </div>
@@ -764,12 +785,12 @@ export default function App() {
                 {GBC_ADDITIONAL_WORKS.map((item) => (
                   <div
                     key={item.title}
-                    className="flex h-full flex-col justify-between rounded-xl border border-sky-200/60 bg-[#16161B] p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
+                    className="flex h-full flex-col justify-between rounded-xl border border-sky-200/80 bg-white p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
                   >
-                    <p className="text-sm font-semibold text-slate-100 dark:text-slate-100">
+                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                       {item.title}
                     </p>
-                    <p className="mt-1 text-xs text-slate-300 dark:text-slate-300">{item.detail}</p>
+                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{item.detail}</p>
                   </div>
                 ))}
               </div>
@@ -785,17 +806,17 @@ export default function App() {
         </div>
 
         {/* Character Design Section */}
-        <section id="characters" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
+        <section id="characters" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
           <Reveal>
             <div className="flex flex-col gap-2">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-300 uppercase dark:text-violet-300">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
                 <Users className="h-3.5 w-3.5" />
                 Character Design
               </span>
-              <h2 className="font-serif text-3xl font-semibold text-slate-100 sm:text-4xl dark:text-slate-100">
+              <h2 className="font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-100">
                 Original Character Profiles
               </h2>
-              <p className="max-w-2xl text-sm text-slate-300 sm:text-base dark:text-slate-300">
+              <p className="max-w-2xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
                 Five complete character concepts built with personality profiles, narrative
                 archetypes, and dramatic motivations.
               </p>
@@ -818,10 +839,10 @@ export default function App() {
                       <Sparkles className="h-3 w-3" />
                       {char.archetype}
                     </span>
-                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-100 dark:text-slate-100">
+                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100">
                       {char.name}
                     </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                       {char.summary}
                     </p>
                   </div>
@@ -833,15 +854,15 @@ export default function App() {
         </section>
 
         {/* Writing & Blog Section */}
-        <section id="writing" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
+        <section id="writing" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
           <Reveal>
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-300 uppercase dark:text-teal-300">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-700 uppercase dark:text-teal-300">
                   <Feather className="h-3.5 w-3.5" />
                   Short Stories &amp; Essays
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-100 sm:text-4xl dark:text-slate-100">
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-100">
                   Fiction &amp; Game Design Writing
                 </h2>
               </div>
@@ -850,7 +871,7 @@ export default function App() {
                   href="https://medium.com/@ludonodestudios"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-[#16161B] px-4 py-2 text-xs font-semibold text-slate-200 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Medium
                   <ArrowUpRight className="h-3.5 w-3.5" />
@@ -859,7 +880,7 @@ export default function App() {
                   href="http://www.wattpad.com/user/roshan_christy"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-[#16161B] px-4 py-2 text-xs font-semibold text-slate-200 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Wattpad
                   <ArrowUpRight className="h-3.5 w-3.5" />
@@ -869,9 +890,9 @@ export default function App() {
           </Reveal>
 
           {/* On-Page Interactive Yarn Spinner Dialogue Showcase */}
-          <div className="mt-8 rounded-2xl border border-white/10 bg-[#121216] p-5">
+          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-xs dark:border-white/10 dark:bg-[#121216] dark:shadow-none">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="font-mono text-[11px] font-semibold tracking-wider text-[#FF8A3D] uppercase">
+              <span className="font-mono text-[11px] font-semibold tracking-wider text-orange-700 uppercase dark:text-[#FF8A3D]">
                 Interactive Branching Dialogue Showcase
               </span>
               <div className="flex gap-1.5">
@@ -880,8 +901,8 @@ export default function App() {
                   onClick={() => setDialogueSampleId('carpe-dino')}
                   className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                     dialogueSampleId === 'carpe-dino'
-                      ? 'bg-[#F6CF3B] text-slate-950'
-                      : 'border border-white/15 bg-white/5 text-slate-300 hover:bg-white/10'
+                      ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                      : 'border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-white/15 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10'
                   }`}
                 >
                   Carpe Dino
@@ -891,8 +912,8 @@ export default function App() {
                   onClick={() => setDialogueSampleId('red-tide')}
                   className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                     dialogueSampleId === 'red-tide'
-                      ? 'bg-[#F6CF3B] text-slate-950'
-                      : 'border border-white/15 bg-white/5 text-slate-300 hover:bg-white/10'
+                      ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
+                      : 'border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-white/15 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10'
                   }`}
                 >
                   Red Tide
@@ -922,14 +943,14 @@ export default function App() {
                           <BookOpen className="h-3 w-3" />
                           {item.kind}
                         </span>
-                        <span className="text-[11px] font-medium text-slate-400 dark:text-slate-400">
+                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
                           {item.platform}
                         </span>
                       </div>
-                      <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-100 dark:text-slate-100">
+                      <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-900 dark:text-slate-100">
                         {item.title}
                       </h3>
-                      <p className="mt-2.5 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
+                      <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                         {item.summary}
                       </p>
                     </div>
@@ -947,44 +968,44 @@ export default function App() {
         </section>
 
         {/* Business & Resume Section */}
-        <section id="resume" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
+        <section id="resume" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Studio Card */}
             <div className="lg:col-span-5">
               <ScrollParallax offsetY={26} offsetX={-12} scaleFrom={0.94} tiltDeg={4} yawDeg={-3}>
-              <div className="rounded-2xl border border-[#FF8A3D]/35 bg-[#121216] p-7">
+              <div className="rounded-2xl border border-orange-200 bg-white p-7 shadow-xs dark:border-[#FF8A3D]/35 dark:bg-[#121216] dark:shadow-none">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-[#16161B] text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-violet-50 text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
                     <Sparkles className="h-6 w-6" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-semibold tracking-wider text-violet-300 uppercase dark:text-violet-300">
+                    <span className="text-[11px] font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
                       {STUDIO.brand}
                     </span>
-                    <h2 className="font-serif text-2xl font-semibold text-slate-100 dark:text-slate-100">
+                    <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-slate-100">
                       {STUDIO.name}
                     </h2>
                   </div>
                 </div>
 
-                <p className="mt-3 text-xs font-medium text-slate-400 dark:text-slate-400">
+                <p className="mt-3 text-xs font-medium text-slate-500 dark:text-slate-400">
                   {STUDIO.established}
                 </p>
-                <p className="mt-3 text-sm font-medium italic text-violet-300 dark:text-violet-200">
+                <p className="mt-3 text-sm font-medium italic text-violet-700 dark:text-violet-200">
                   “{STUDIO.motto}”
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                   {STUDIO.mission}
                 </p>
 
                 <div className="mt-5 space-y-2">
-                  <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase dark:text-slate-400">
+                  <h3 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                     Studio Services
                   </h3>
                   {STUDIO.services.map((service) => (
                     <div
                       key={service}
-                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-[#16161B] px-3.5 py-2 text-xs font-medium text-slate-200 dark:border-violet-800/50 dark:bg-slate-900/85 dark:text-slate-200"
+                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/80 bg-violet-50/50 px-3.5 py-2 text-xs font-medium text-slate-800 dark:border-violet-800/50 dark:bg-slate-900/85 dark:text-slate-200"
                     >
                       <Compass className="h-3.5 w-3.5 shrink-0 text-violet-600 dark:text-violet-300" />
                       {service}
@@ -994,16 +1015,16 @@ export default function App() {
               </div>
 
               {/* Education */}
-              <div className="mt-6 rounded-2xl border border-sky-200/80 bg-[#121216] p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+              <div className="mt-6 rounded-2xl border border-sky-200/80 bg-sky-50/75 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 bg-[#16161B] text-sky-600 dark:border-sky-700 dark:bg-slate-900 dark:text-sky-300">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600 dark:border-sky-700 dark:bg-slate-900 dark:text-sky-300">
                     <GraduationCap className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-semibold text-slate-100 dark:text-slate-100">
+                    <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
                       Education
                     </h3>
-                    <p className="text-xs font-medium text-slate-300 dark:text-slate-300">
+                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300">
                       Academic Credentials &amp; Training
                     </p>
                   </div>
@@ -1012,20 +1033,20 @@ export default function App() {
                   {EDUCATION.map((edu) => (
                     <div
                       key={`${edu.school}-${edu.degree}`}
-                      className="rounded-2xl border border-sky-200/60 bg-[#16161B] p-3.5 dark:border-sky-800/50 dark:bg-slate-900/85"
+                      className="rounded-2xl border border-sky-200/80 bg-white p-3.5 dark:border-sky-800/50 dark:bg-slate-900/85"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-1">
-                        <p className="text-xs font-semibold text-slate-100 dark:text-slate-100">
+                        <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
                           {edu.degree}
                         </p>
-                        <span className="text-[11px] font-medium text-slate-400 dark:text-slate-400">
+                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
                           {edu.period}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-[11px] font-medium text-sky-300 dark:text-sky-300">
+                      <p className="mt-0.5 text-[11px] font-medium text-sky-700 dark:text-sky-300">
                         {edu.school}
                       </p>
-                      <p className="mt-1 text-[11px] text-slate-300 dark:text-slate-300">
+                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-300">
                         {edu.detail}
                       </p>
                     </div>
@@ -1035,17 +1056,17 @@ export default function App() {
               </ScrollParallax>
 
               {/* Languages & Certifications */}
-              <div className="mt-6 rounded-2xl border border-[#2EF2A8]/30 bg-[#121216] p-6">
-                <h3 className="text-xs font-semibold tracking-wider text-[#2EF2A8] uppercase">
+              <div className="mt-6 rounded-2xl border border-emerald-200 bg-white p-6 shadow-xs dark:border-[#2EF2A8]/30 dark:bg-[#121216] dark:shadow-none">
+                <h3 className="text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-[#2EF2A8]">
                   Languages
                 </h3>
                 <div className="mt-2.5 flex flex-wrap gap-2">
                   {LANGUAGES.map((lang) => (
                     <span
                       key={lang.name}
-                      className="rounded-full border border-[#2EF2A8]/30 bg-[#16161B] px-3 py-1 text-xs font-medium text-slate-200"
+                      className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-slate-800 dark:border-[#2EF2A8]/30 dark:bg-[#16161B] dark:text-slate-200"
                     >
-                      <span className="font-semibold text-white">
+                      <span className="font-semibold text-slate-950 dark:text-white">
                         {lang.name}
                       </span>{' '}
                       · {lang.proficiency}
@@ -1053,19 +1074,19 @@ export default function App() {
                   ))}
                 </div>
 
-                <h3 className="mt-5 text-xs font-semibold tracking-wider text-[#2EF2A8] uppercase">
+                <h3 className="mt-5 text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-[#2EF2A8]">
                   Licenses &amp; Certifications
                 </h3>
                 <ul className="mt-2.5 space-y-1.5">
                   {CERTIFICATIONS.map((cert) => (
                     <li
                       key={cert.title}
-                      className="flex items-baseline justify-between gap-2 text-xs text-slate-200 dark:text-slate-300"
+                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700 dark:text-slate-300"
                     >
-                      <span className="font-medium text-slate-100 dark:text-slate-100">
+                      <span className="font-medium text-slate-900 dark:text-slate-100">
                         {cert.title}
                       </span>
-                      <span className="shrink-0 text-[11px] text-slate-400 dark:text-slate-400">
+                      <span className="shrink-0 text-[11px] text-slate-500 dark:text-slate-400">
                         {cert.issuer}
                         {cert.date ? ` · ${cert.date}` : ''}
                       </span>
@@ -1078,12 +1099,12 @@ export default function App() {
             {/* Experience & Skills */}
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2">
-                <Briefcase className="h-4 w-4 text-emerald-300 dark:text-emerald-300" />
-                <span className="text-xs font-semibold tracking-wider text-emerald-300 uppercase dark:text-emerald-300">
+                <Briefcase className="h-4 w-4 text-emerald-700 dark:text-emerald-300" />
+                <span className="text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-300">
                   Experience &amp; Skills
                 </span>
               </div>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-100 dark:text-slate-100">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100">
                 Career Timeline
               </h2>
 
@@ -1096,17 +1117,17 @@ export default function App() {
                       className={`rounded-2xl border ${theme.border} ${theme.surface} p-5`}
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <h3 className="font-serif text-lg font-semibold text-slate-100 dark:text-slate-100">
+                        <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
                           {exp.role}
                         </h3>
-                        <span className="text-xs font-semibold text-slate-400 dark:text-slate-400">
+                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
                           {exp.period}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-xs font-semibold text-slate-300 dark:text-slate-400 dark:text-slate-400">
+                      <p className="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-400">
                         {exp.organization} · {exp.location}
                       </p>
-                      <p className="mt-2 text-sm text-slate-200 dark:text-slate-300 dark:text-slate-300">{exp.highlights}</p>
+                      <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">{exp.highlights}</p>
                     </div>
                   );
                 })}
@@ -1119,9 +1140,9 @@ export default function App() {
                   return (
                     <div
                       key={group.group}
-                      className={`rounded-2xl border ${theme.border} bg-[#16161B] dark:bg-slate-900/80 p-4`}
+                      className={`rounded-2xl border ${theme.border} bg-white p-4 shadow-xs dark:bg-slate-900/80 dark:shadow-none`}
                     >
-                      <h3 className="text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-400 uppercase">
+                      <h3 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                         {group.group}
                       </h3>
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -1143,17 +1164,17 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
-          <div className="rounded-2xl border border-[#EC1D7B]/30 bg-gradient-to-br from-[#18121A] via-[#121216] to-[#12161B] p-8 sm:p-10">
+        <section id="contact" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
+          <div className="rounded-2xl border border-rose-200 bg-gradient-to-br from-rose-50/80 via-white to-sky-50/70 p-8 shadow-xs dark:border-[#EC1D7B]/30 dark:from-[#18121A] dark:via-[#121216] dark:to-[#12161B] dark:shadow-none sm:p-10">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div>
-                <span className="text-xs font-semibold tracking-wider text-[#EC1D7B] uppercase">
+                <span className="text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-[#EC1D7B]">
                   Contact
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-semibold text-[#F6CF3B]">
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-amber-800 dark:text-[#F6CF3B]">
                   Let&apos;s build a world together
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-200">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-200">
                   Available for Narrative Design, Game &amp; Puzzle Design, Screenwriting, and
                   French/English Localization collaborations.
                 </p>
@@ -1163,15 +1184,15 @@ export default function App() {
                 {PROFILE.emails.map((email) => (
                   <div
                     key={email.address}
-                    className="flex items-center justify-between gap-2 rounded-2xl border border-white/15 bg-[#16161B] px-4 py-3 text-sm font-medium text-slate-100"
+                    className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 dark:border-white/15 dark:bg-[#16161B] dark:text-slate-100"
                   >
                     <a
                       href={`mailto:${email.address}`}
-                      className="flex min-w-0 items-center gap-2.5 truncate transition hover:text-rose-300 dark:hover:text-rose-300"
+                      className="flex min-w-0 items-center gap-2.5 truncate transition hover:text-rose-700 dark:hover:text-rose-300"
                     >
                       <Mail className="h-4 w-4 shrink-0 text-rose-600 dark:text-rose-400" />
                       <span className="truncate">
-                        <span className="mr-2 text-xs font-semibold text-slate-400 uppercase">
+                        <span className="mr-2 text-xs font-semibold text-slate-500 uppercase dark:text-slate-400">
                           {email.label}
                         </span>
                         {email.address}
@@ -1181,7 +1202,7 @@ export default function App() {
                       type="button"
                       onClick={() => copyEmail(email.address)}
                       aria-label={`Copy ${email.address}`}
-                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-slate-200 bg-[#16161B] px-2.5 py-1 text-[11px] font-semibold text-slate-300 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                     >
                       {copiedEmail === email.address ? (
                         <>
@@ -1200,13 +1221,13 @@ export default function App() {
 
                 <a
                   href={`tel:${PROFILE.phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-[#16161B] px-4 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
                 >
                   <span className="flex items-center gap-2.5">
                     <Phone className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                     {PROFILE.phone}
                   </span>
-                  <span className="text-xs text-slate-400 dark:text-slate-400">Toronto, ON</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Toronto, ON</span>
                 </a>
               </div>
             </div>
@@ -1216,8 +1237,8 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-200/80 bg-[#0B0B0E] py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-400 sm:flex-row sm:px-6 dark:text-slate-400">
+      <footer className="border-t border-slate-200/80 bg-[#F3F1EA] py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-600 sm:flex-row sm:px-6 dark:text-slate-400">
           <p>
             © {new Date().getFullYear()} {PROFILE.name} · {STUDIO.name}
           </p>
@@ -1228,7 +1249,7 @@ export default function App() {
                 href={social.url}
                 target="_blank"
                 rel="noreferrer"
-                className="transition hover:text-white dark:hover:text-white"
+                className="transition hover:text-slate-950 dark:hover:text-white"
               >
                 {social.name}
               </a>
@@ -1242,7 +1263,7 @@ export default function App() {
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="fixed right-5 bottom-5 z-30 rounded-full border border-slate-200 bg-[#16161B] p-3 text-slate-200 shadow-md backdrop-blur-xs transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white"
+          className="fixed right-5 bottom-5 z-30 rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-md backdrop-blur-xs transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white"
         >
           <ArrowUp className="h-4 w-4" />
         </button>

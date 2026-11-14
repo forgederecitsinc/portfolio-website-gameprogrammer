@@ -45,15 +45,15 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
   }, [gravity, jumpVel, enemySpeed, cooldown]);
 
   return (
-    <div className="rounded-xl border border-slate-200/80 bg-slate-900 p-4 text-slate-100">
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <Sliders className="h-4 w-4 text-sky-400" />
-          <h5 className="text-xs font-semibold tracking-wider text-slate-200 uppercase">
+          <Sliders className="h-4 w-4 text-sky-600 dark:text-sky-400" />
+          <h5 className="text-xs font-semibold tracking-wider text-slate-800 uppercase dark:text-slate-200">
             Live GDD &amp; Physics Tuning Inspector
           </h5>
         </div>
-        <span className="font-mono text-[11px] text-sky-300">
+        <span className="font-mono text-[11px] text-sky-700 dark:text-sky-300">
           Apex: {metrics.maxHeight}m · Air: {metrics.totalAirTime}s
         </span>
       </div>
@@ -61,9 +61,9 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
       <div className={`mt-3 grid gap-4 ${compact ? 'sm:grid-cols-2' : 'md:grid-cols-2'}`}>
         <div className="space-y-2.5 text-xs">
           <label className="block">
-            <div className="flex justify-between font-mono text-[11px] text-slate-300">
+            <div className="flex justify-between font-mono text-[11px] text-slate-700 dark:text-slate-300">
               <span>Gravity</span>
-              <span className="text-sky-300">-{gravity} m/s²</span>
+              <span className="text-sky-700 dark:text-sky-300">-{gravity} m/s²</span>
             </div>
             <input
               type="range"
@@ -72,14 +72,14 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
               step={1}
               value={gravity}
               onChange={(e) => setGravity(Number(e.target.value))}
-              className="mt-1 w-full accent-sky-400"
+              className="mt-1 w-full accent-sky-600 dark:accent-sky-400"
             />
           </label>
 
           <label className="block">
-            <div className="flex justify-between font-mono text-[11px] text-slate-300">
+            <div className="flex justify-between font-mono text-[11px] text-slate-700 dark:text-slate-300">
               <span>Jump Velocity</span>
-              <span className="text-emerald-300">{jumpVel.toFixed(1)} m/s</span>
+              <span className="text-emerald-700 dark:text-emerald-300">{jumpVel.toFixed(1)} m/s</span>
             </div>
             <input
               type="range"
@@ -88,14 +88,14 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
               step={0.5}
               value={jumpVel}
               onChange={(e) => setJumpVel(Number(e.target.value))}
-              className="mt-1 w-full accent-emerald-400"
+              className="mt-1 w-full accent-emerald-600 dark:accent-emerald-400"
             />
           </label>
 
           <label className="block">
-            <div className="flex justify-between font-mono text-[11px] text-slate-300">
+            <div className="flex justify-between font-mono text-[11px] text-slate-700 dark:text-slate-300">
               <span>Enemy Chase Speed</span>
-              <span className="text-rose-300">{enemySpeed} cm/s</span>
+              <span className="text-rose-700 dark:text-rose-300">{enemySpeed} cm/s</span>
             </div>
             <input
               type="range"
@@ -104,14 +104,14 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
               step={25}
               value={enemySpeed}
               onChange={(e) => setEnemySpeed(Number(e.target.value))}
-              className="mt-1 w-full accent-rose-400"
+              className="mt-1 w-full accent-rose-600 dark:accent-rose-400"
             />
           </label>
 
           <label className="block">
-            <div className="flex justify-between font-mono text-[11px] text-slate-300">
+            <div className="flex justify-between font-mono text-[11px] text-slate-700 dark:text-slate-300">
               <span>Ability / Hazard Cooldown</span>
-              <span className="text-amber-300">{cooldown.toFixed(1)}s</span>
+              <span className="text-amber-700 dark:text-amber-300">{cooldown.toFixed(1)}s</span>
             </div>
             <input
               type="range"
@@ -120,12 +120,12 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
               step={0.1}
               value={cooldown}
               onChange={(e) => setCooldown(Number(e.target.value))}
-              className="mt-1 w-full accent-amber-400"
+              className="mt-1 w-full accent-amber-600 dark:accent-amber-400"
             />
           </label>
         </div>
 
-        <div className="flex flex-col justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950 p-3">
+        <div className="flex flex-col justify-between gap-2 rounded-lg border border-slate-200 bg-white p-3 dark:border-slate-800 dark:bg-slate-950">
           <svg viewBox="0 0 320 110" className="h-auto w-full" aria-label="Jump arc curve">
             <line x1="12" y1="96" x2="308" y2="96" stroke="#334155" strokeWidth="1.5" />
             <line x1="16" y1="14" x2="16" y2="96" stroke="#334155" strokeWidth="1" strokeDasharray="3 3" />
@@ -143,17 +143,17 @@ export function SystemsInspector({ compact = false }: SystemsInspectorProps) {
           </svg>
 
           <div className="grid grid-cols-3 gap-1.5 text-center font-mono text-[10px]">
-            <div className="rounded bg-slate-900 px-1.5 py-1">
-              <div className="text-slate-400">APEX TIME</div>
-              <div className="text-sky-300">{metrics.timeToApex}s</div>
+            <div className="rounded bg-slate-100 px-1.5 py-1 dark:bg-slate-900">
+              <div className="text-slate-500 dark:text-slate-400">APEX TIME</div>
+              <div className="font-semibold text-sky-700 dark:text-sky-300">{metrics.timeToApex}s</div>
             </div>
-            <div className="rounded bg-slate-900 px-1.5 py-1">
-              <div className="text-slate-400">CHASE GAP</div>
-              <div className="text-rose-300">{metrics.catchUpDist}m</div>
+            <div className="rounded bg-slate-100 px-1.5 py-1 dark:bg-slate-900">
+              <div className="text-slate-500 dark:text-slate-400">CHASE GAP</div>
+              <div className="font-semibold text-rose-700 dark:text-rose-300">{metrics.catchUpDist}m</div>
             </div>
-            <div className="rounded bg-slate-900 px-1.5 py-1">
-              <div className="text-slate-400">EFF. DPS</div>
-              <div className="text-amber-300">{metrics.dpsPerCycle}</div>
+            <div className="rounded bg-slate-100 px-1.5 py-1 dark:bg-slate-900">
+              <div className="text-slate-500 dark:text-slate-400">EFF. DPS</div>
+              <div className="font-semibold text-amber-700 dark:text-amber-300">{metrics.dpsPerCycle}</div>
             </div>
           </div>
         </div>
