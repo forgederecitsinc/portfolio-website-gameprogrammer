@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import type { ProjectItem } from '../data/portfolio';
 import { PASTEL_THEME } from '../utils/theme';
+import { GameplayLoopFlowchart } from './GameplayLoopFlowchart';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -105,23 +106,14 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
           </p>
         </div>
 
-        {project.images && project.images.length > 0 && (
-          <div className="mt-6">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
-              System Architecture
-            </h4>
-            <div className="mt-3 space-y-3">
-              {project.images.map((img) => (
-                <img
-                  key={img.src}
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full rounded-2xl border border-slate-200/80 bg-white object-contain dark:border-slate-700"
-                />
-              ))}
-            </div>
+        <div className="mt-6">
+          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
+            System Architecture &amp; Gameplay Loop
+          </h4>
+          <div className="mt-3">
+            <GameplayLoopFlowchart projectId={project.id} theme={project.theme} />
           </div>
-        )}
+        </div>
 
         <div className="mt-6">
           <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">

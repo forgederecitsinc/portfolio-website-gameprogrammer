@@ -4,11 +4,11 @@ import {
   Briefcase,
   CheckCircle2,
   ExternalLink,
-  Image as ImageIcon,
   Smartphone,
 } from 'lucide-react';
 import { EXPERIENCE, PROJECTS, STUDIO, type ProjectItem } from '../data/portfolio';
 import { PASTEL_THEME } from '../utils/theme';
+import { GameplayLoopFlowchart } from '../components/GameplayLoopFlowchart';
 
 interface ProfessionalPageProps {
   onNavigate: (route: 'home' | 'professional' | 'school') => void;
@@ -86,40 +86,9 @@ export function ProfessionalPage({ onNavigate, onSelectProject }: ProfessionalPa
               className={`rounded-3xl border ${theme.border} ${theme.surface} p-6 sm:p-8`}
             >
               <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-                {/* Visual / Work Image Panel */}
+                {/* Gameplay Loop Architecture Panel */}
                 <div className="lg:col-span-5">
-                  <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900 p-5">
-                    {project.images && project.images.length > 0 ? (
-                      <div className="grid gap-3">
-                        {project.images.map((img) => (
-                          <img
-                            key={img.src}
-                            src={img.src}
-                            alt={img.alt}
-                            className="w-full rounded-xl object-cover"
-                          />
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50/70 px-6 py-10 text-center">
-                        {project.badgeImage ? (
-                          <img
-                            src={project.badgeImage}
-                            alt={project.context}
-                            className="h-14 w-auto object-contain"
-                          />
-                        ) : (
-                          <ImageIcon className="h-8 w-8 text-slate-400" />
-                        )}
-                        <p className="mt-3 text-xs font-semibold text-slate-700 dark:text-slate-300 dark:text-slate-300">
-                          {project.title}
-                        </p>
-                        <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400 dark:text-slate-400">
-                          {project.context} · {project.platforms?.join(' / ')}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                  <GameplayLoopFlowchart projectId={project.id} theme={project.theme} />
                 </div>
 
                 {/* Details */}
