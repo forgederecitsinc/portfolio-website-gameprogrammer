@@ -63,7 +63,7 @@ export const PROFILE = {
   subheadline:
     'Pursuing an Advanced Diploma in Game Programming at George Brown College while serving as a Game Writer at Black Squirrels Studio. Background in Screenwriting & Narrative Design and Digital Game Design, focused on "show, don’t tell" storytelling, puzzle architecture, and C++ / C# gameplay systems.',
   emails: [
-    { label: 'Studio', address: 'forgederecits@gmail.com' },
+    { label: 'Studio', address: 'ludonodestudios@outlook.com' },
     { label: 'Personal', address: 'roshanchristyr@hotmail.com' },
   ],
   phone: '(437) 937-3469',
