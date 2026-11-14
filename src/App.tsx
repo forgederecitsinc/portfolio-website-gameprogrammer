@@ -383,19 +383,19 @@ export default function App() {
                 <div className="space-y-3 overflow-hidden rounded-xl border border-[#D4D4D2] bg-[#F7F7F5] p-4 transition duration-300">
                 <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
                     <Gamepad2 className="mx-auto h-6 w-6 text-[#0F0F0F]" />
                     <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
                     <GraduationCap className="mx-auto h-6 w-6 text-[#0F0F0F]" />
                     <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
                     <Sparkles className="mx-auto h-6 w-6 text-[#0F0F0F]" />
                     <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
                       Ludonode Studios
@@ -538,7 +538,7 @@ export default function App() {
 
           {/* Additional GBC Works Strip */}
           <Reveal className="mt-8">
-            <div className="rounded-3xl border border-sky-200/70 bg-sky-50/50 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+            <div className="rounded-2xl border border-sky-200/70 bg-sky-50/50 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
                   <GraduationCap className="h-5 w-5 text-sky-700 dark:text-sky-300" />
@@ -554,7 +554,7 @@ export default function App() {
                 {GBC_ADDITIONAL_WORKS.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-2xl border border-sky-200/60 bg-white/80 p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
+                    className="flex h-full flex-col justify-between rounded-xl border border-sky-200/60 bg-white/80 p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
                   >
                     <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
                       {item.title}
@@ -596,9 +596,9 @@ export default function App() {
               const theme = PASTEL_THEME[char.theme];
               const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
-                <ScrollScrub3D key={char.id} origin={origin}>
+                <ScrollScrub3D key={char.id} origin={origin} className="h-full">
                   <div
-                    className={`h-full rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                    className={`flex h-full flex-col rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
                   >
                     <span
                       className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
@@ -621,7 +621,7 @@ export default function App() {
         </section>
 
         {/* Writing & Blog Section */}
-        <section id="writing" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
+        <section id="writing" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
           <Reveal>
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
@@ -661,7 +661,7 @@ export default function App() {
               const theme = PASTEL_THEME[item.theme];
               const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
-                <ScrollScrub3D key={item.id} origin={origin}>
+                <ScrollScrub3D key={item.id} origin={origin} className="h-full">
                   <a
                     href={item.url}
                     target="_blank"
@@ -706,7 +706,7 @@ export default function App() {
             {/* Studio Card */}
             <div className="lg:col-span-5">
               <ScrollParallax offsetY={26} offsetX={-12} scaleFrom={0.94} tiltDeg={4} yawDeg={-3}>
-              <div className="rounded-3xl border border-[#DCD0C7] bg-[#F7F3EF] p-7">
+              <div className="rounded-2xl border border-[#DCD0C7] bg-[#F7F3EF] p-7">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
                     <Sparkles className="h-6 w-6" />
@@ -748,7 +748,7 @@ export default function App() {
               </div>
 
               {/* Education */}
-              <div className="mt-6 rounded-3xl border border-sky-200/80 bg-sky-50/60 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+              <div className="mt-6 rounded-2xl border border-sky-200/80 bg-sky-50/60 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600 dark:border-sky-700 dark:bg-slate-900 dark:text-sky-300">
                     <GraduationCap className="h-5 w-5" />
