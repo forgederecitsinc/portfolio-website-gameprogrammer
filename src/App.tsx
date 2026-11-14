@@ -366,9 +366,10 @@ export default function App() {
               onClick={toggleTheme}
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
               title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 transition hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-[#121216] dark:text-slate-200 dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-amber-500 hover:text-amber-700 dark:border-white/15 dark:bg-[#121216] dark:text-slate-200 dark:hover:border-[#F6CF3B] dark:hover:text-[#F6CF3B]"
             >
-              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {isDark ? <Sun className="h-3.5 w-3.5 text-[#F6CF3B]" /> : <Moon className="h-3.5 w-3.5 text-slate-700" />}
+              <span>{isDark ? 'Light' : 'Dark'}</span>
             </button>
             <button
               type="button"
