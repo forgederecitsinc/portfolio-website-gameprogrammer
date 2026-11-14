@@ -349,7 +349,7 @@ export default function App() {
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-md bg-[#0F0F0F] px-6 py-3 text-sm font-semibold text-[#F7F7F5] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#262626] active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#0070D1] px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#005BB5] active:scale-[0.97]"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />

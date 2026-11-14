@@ -162,8 +162,8 @@ export function Resn3DShowcase() {
         ctx.stroke();
       };
 
-      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(15, 15, 15, 0.25)');
-      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(82, 82, 82, 0.28)');
+      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(0, 112, 209, 0.36)');
+      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(0, 180, 255, 0.30)');
 
       // Transform vertices
       const transformed = RAW_VERTS.map((v) => rotatePoint(v, ax, ay, az));
@@ -214,12 +214,13 @@ export function Resn3DShowcase() {
         ctx.lineTo(p2.x, p2.y);
         ctx.closePath();
 
-        // Pure silver-gelatin black & white facet shading
-        const lightness = Math.round(18 + face.light * 74);
-        ctx.fillStyle = `hsla(0, 0%, ${lightness}%, 0.94)`;
+        // PlayStation Cobalt -> DualSense Cyan facet shading
+        const hue = 205 + ((face.idx * 4) % 28);
+        const lightness = Math.round(36 + face.light * 44);
+        ctx.fillStyle = `hsla(${hue}, 82%, ${lightness}%, 0.90)`;
         ctx.fill();
 
-        ctx.strokeStyle = 'rgba(15, 15, 15, 0.5)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)';
         ctx.lineWidth = 0.85;
         ctx.stroke();
       }

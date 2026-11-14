@@ -65,9 +65,9 @@ export function DualSenseScrollPointer() {
     window.scrollTo({ top: ratio * maxScroll, behavior: 'smooth' });
   };
 
-  // Pure monochrome silver-gelatin scale (light grey -> carbon black)
-  const lightness = Math.round(58 - progress * 48);
-  const lightbarColor = `hsl(0, 0%, ${lightness}%)`;
+  // PlayStation DualSense Lightbar: PS5 Cyan (#00B4FF) -> Cobalt (#0070D1) -> Astro Indigo
+  const hue = Math.round(196 + progress * 42);
+  const lightbarColor = `hsl(${hue}, 95%, 52%)`;
   const tiltDeg = velocity * 10;
   const stickOffsetY = velocity * 2.4;
   const pctLabel = Math.round(progress * 100);
@@ -89,7 +89,7 @@ export function DualSenseScrollPointer() {
 
         {/* Active progress fill */}
         <div
-          className="absolute top-0 left-1/2 w-[2px] -translate-x-1/2 bg-[#0F0F0F] transition-[height] duration-75 ease-out"
+          className="absolute top-0 left-1/2 w-[2.5px] -translate-x-1/2 bg-gradient-to-b from-[#00B4FF] via-[#0070D1] to-[#4F46E5] transition-[height] duration-75 ease-out"
           style={{ height: `${progress * 100}%` }}
         />
 
