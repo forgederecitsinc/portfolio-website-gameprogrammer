@@ -283,12 +283,7 @@ export default function App() {
 
             <div className="lg:col-span-5">
               <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm">
-                <img
-                  src="./images/writer-banner.png"
-                  alt="Roshan Christy Writer Banner"
-                  className="h-56 w-full rounded-2xl bg-slate-50 object-cover sm:h-64"
-                />
-                <div className="mt-4 grid grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-3 gap-2.5">
                   <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center">
                     <img
                       src="./images/hfg-badge.png"
