@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowUp,
   ArrowUpRight,
@@ -50,6 +50,7 @@ import { AudioAtmosphereDock } from './components/features/AudioAtmosphereDock';
 import { DialoguePlayer } from './components/features/DialoguePlayer';
 import { useGamepadNav } from './hooks/useGamepadNav';
 import { useKonamiCode } from './hooks/useKonamiCode';
+import { TOUR_STOPS, useRecruiterTour } from './hooks/useRecruiterTour';
 
 const TECH_TAGS = [
   'All Tech',
@@ -225,6 +226,21 @@ export default function App() {
     : -1;
 
   const { crtMode, setCrtMode } = useKonamiCode();
+  const stopTour = useCallback(() => setRecruiterTour(false), []);
+  const { secondsLeft, stopIndex, currentStop, progressPct } = useRecruiterTour(
+    recruiterTour,
+    stopTour
+  );
+
+  const toggleTour = () => {
+    if (!recruiterTour) {
+      if (route !== 'home') navigateTo('home');
+      setSelectedProject(null);
+      setMobileMenuOpen(false);
+    }
+    captureCardPositions();
+    setRecruiterTour((prev) => !prev);
+  };
   const { connectedName, focusedIndex } = useGamepadNav({
     itemCount: visibleProjects.length,
     isModalOpen: Boolean(selectedProject),
@@ -284,65 +300,65 @@ export default function App() {
           </a>
 
           <nav className="hidden items-center gap-4 md:flex">
-            <button
-              type="button"
-              onClick={() => navigateTo('professional')}
-              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
-                route === 'professional'
-                  ? 'bg-[#0F0F0F] text-[#F7F7F5]'
-                  : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
-              }`}
-            >
-              Professional
-            </button>
-            <button
-              type="button"
-              onClick={() => navigateTo('school')}
-              className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
-                route === 'school'
-                  ? 'bg-[#0F0F0F] text-[#F7F7F5]'
-                  : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
-              }`}
-            >
-              School Projects
-            </button>
-            {route === 'home' ? (
-              NAV_LINKS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
-                >
-                  {item.label}
-                </a>
-              ))
-            ) : (
+            <div className={`flex items-center gap-4 ${recruiterTour ? 'pointer-events-none opacity-45' : ''}`}>
               <button
                 type="button"
-                onClick={() => navigateTo('home')}
-                className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                onClick={() => navigateTo('professional')}
+                className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
+                  route === 'professional'
+                    ? 'bg-[#0F0F0F] text-[#F7F7F5]'
+                    : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
+                }`}
               >
-                Main Page
+                Professional
               </button>
-            )}
+              <button
+                type="button"
+                onClick={() => navigateTo('school')}
+                className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
+                  route === 'school'
+                    ? 'bg-[#0F0F0F] text-[#F7F7F5]'
+                    : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
+                }`}
+              >
+                School Projects
+              </button>
+              {route === 'home' ? (
+                NAV_LINKS.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                ))
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => navigateTo('home')}
+                  className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                >
+                  Main Page
+                </button>
+              )}
+            </div>
             <button
               type="button"
-              onClick={() => {
-                if (route !== 'home') navigateTo('home');
-                setRecruiterTour((prev) => !prev);
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+              onClick={toggleTour}
+              className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
                 recruiterTour
-                  ? 'bg-[#0070D1] text-white'
+                  ? 'bg-[#0070D1] text-white shadow-sm'
                   : 'border border-[#0070D1]/40 bg-[#F0F7FF] text-[#005BB5] hover:bg-[#E0EFFF]'
               }`}
             >
-              {recruiterTour ? 'Exit Tour' : '30s Tour'}
+              {recruiterTour ? `Stop Tour (${secondsLeft}s)` : '30s Tour'}
             </button>
             <a
               href={`mailto:${PROFILE.emails[0].address}`}
-              className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-slate-800 active:scale-[0.97]"
+              className={`inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-slate-800 active:scale-[0.97] ${
+                recruiterTour ? 'pointer-events-none opacity-45' : ''
+              }`}
             >
               Get in Touch
               <ArrowUpRight className="h-3.5 w-3.5" />
@@ -406,7 +422,10 @@ export default function App() {
       ) : route === 'school' ? (
         <SchoolPage onNavigate={navigateTo} onSelectProject={setSelectedProject} />
       ) : (
-        <main id="top" className="mx-auto max-w-6xl px-4 sm:px-6">
+        <main
+          id="top"
+          className={`mx-auto max-w-6xl px-4 sm:px-6 ${recruiterTour ? 'pointer-events-none select-none' : ''}`}
+        >
         {/* Hero Section */}
         <section className="relative overflow-hidden py-14 sm:py-20">
           <HeroNavMeshCanvas />
@@ -720,9 +739,11 @@ export default function App() {
         </section>
 
         {/* Interactive DualSense Haptics & Audio Lab */}
-        <ScrollScrub3D portalWipe>
-          <DualSensePlayground />
-        </ScrollScrub3D>
+        <div id="dualsense" className="scroll-mt-20">
+          <ScrollScrub3D portalWipe>
+            <DualSensePlayground />
+          </ScrollScrub3D>
+        </div>
 
         {/* Character Design Section */}
         <section id="characters" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
@@ -1186,6 +1207,40 @@ export default function App() {
         >
           <ArrowUp className="h-4 w-4" />
         </button>
+      )}
+
+      {recruiterTour && (
+        <div className="fixed bottom-5 left-1/2 z-50 w-[min(92vw,440px)] -translate-x-1/2 rounded-2xl border border-[#0070D1]/50 bg-slate-950/95 p-3.5 text-white shadow-2xl backdrop-blur-md">
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <p className="font-mono text-[10px] font-bold tracking-wider text-sky-400 uppercase">
+                Guided Tour · Stop {stopIndex + 1}/{TOUR_STOPS.length}
+              </p>
+              <p className="text-xs font-semibold text-white">{currentStop.label}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="rounded bg-slate-800 px-2 py-0.5 font-mono text-xs text-sky-300">
+                {secondsLeft}s
+              </span>
+              <button
+                type="button"
+                onClick={toggleTour}
+                className="rounded-full bg-[#0070D1] px-3 py-1 text-xs font-semibold text-white hover:bg-[#005BB5]"
+              >
+                Stop Tour
+              </button>
+            </div>
+          </div>
+          <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+            <div
+              className="h-full bg-sky-400 transition-all duration-500"
+              style={{ width: `${progressPct}%` }}
+            />
+          </div>
+          <p className="mt-1.5 text-[10px] text-slate-400">
+            Navigation locked during tour · Stops automatically at 0s or click Stop Tour
+          </p>
+        </div>
       )}
 
       <AudioAtmosphereDock />
