@@ -65,9 +65,9 @@ export function DualSenseScrollPointer() {
     window.scrollTo({ top: ratio * maxScroll, behavior: 'smooth' });
   };
 
-  // Shift lightbar hue from cyan-blue (200) -> violet (265) -> amber-rose (335)
-  const hue = Math.round(200 + progress * 135);
-  const lightbarColor = `hsl(${hue}, 90%, 60%)`;
+  // Shift lightbar between warm latte -> Mocha Mousse -> deep espresso
+  const lightness = Math.round(66 - progress * 28);
+  const lightbarColor = `hsl(19, 32%, ${lightness}%)`;
   const tiltDeg = velocity * 10;
   const stickOffsetY = velocity * 2.4;
   const pctLabel = Math.round(progress * 100);
@@ -89,7 +89,7 @@ export function DualSenseScrollPointer() {
 
         {/* Active progress fill */}
         <div
-          className="absolute top-0 left-1/2 w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-sky-400 via-violet-500 to-rose-500 transition-[height] duration-75 ease-out"
+          className="absolute top-0 left-1/2 w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#D7C4B6] via-[#A47864] to-[#4A352C] transition-[height] duration-75 ease-out"
           style={{ height: `${progress * 100}%` }}
         />
 

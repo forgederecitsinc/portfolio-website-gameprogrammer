@@ -9,8 +9,8 @@
 @layer base {
   body {
     font-family: var(--font-sans);
-    background-color: #edeae4;
-    color: #1e293b;
+    background-color: #ede4dc;
+    color: #231b18;
   }
 
   .dark body {

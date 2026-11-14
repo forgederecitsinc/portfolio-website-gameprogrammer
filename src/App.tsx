@@ -188,7 +188,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-slate-300/70 bg-[#EDEAE4]/85 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#D6C7BC] bg-[#EDE4DC]/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -198,14 +198,14 @@ export default function App() {
             }}
             className="flex items-center gap-3"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-violet-200/80 bg-violet-100/80 text-violet-700 shadow-2xs dark:border-violet-700/60 dark:bg-violet-950/60 dark:text-violet-300">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#D7C4B6] bg-[#F7F3EF] text-[#A47864] shadow-2xs">
               <Gamepad2 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <span className="block font-serif text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100 dark:text-slate-100">
+              <span className="block font-serif text-base font-semibold tracking-tight text-[#231B18]">
                 {PROFILE.name}
               </span>
-              <span className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 dark:text-slate-400">
+              <span className="block text-[11px] font-medium text-[#7A645B]">
                 Narrative &amp; Game Designer
               </span>
             </div>
@@ -217,8 +217,8 @@ export default function App() {
               onClick={() => navigateTo('professional')}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 route === 'professional'
-                  ? 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-200'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
+                  ? 'bg-[#A47864]/15 text-[#5B3A2E]'
+                  : 'text-[#5E4D45] hover:bg-[#F7F3EF] hover:text-[#231B18]'
               }`}
             >
               Professional
@@ -228,8 +228,8 @@ export default function App() {
               onClick={() => navigateTo('school')}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 route === 'school'
-                  ? 'bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-200'
-                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
+                  ? 'bg-[#A47864]/15 text-[#5B3A2E]'
+                  : 'text-[#5E4D45] hover:bg-[#F7F3EF] hover:text-[#231B18]'
               }`}
             >
               School Projects
@@ -330,32 +330,32 @@ export default function App() {
                 {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem] dark:text-white">
+              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-[#231B18] sm:text-5xl lg:text-[3.25rem]">
                 {PROFILE.name}
               </h1>
-              <p className="mt-3 text-base font-semibold text-slate-700 sm:text-lg dark:text-slate-200">
+              <p className="mt-3 text-base font-semibold text-[#5E4D45] sm:text-lg">
                 {PROFILE.title}
               </p>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#5E4D45]">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-2xl border border-amber-200/70 bg-amber-50/60 px-5 py-4 text-sm italic text-slate-700 dark:border-amber-700/60 dark:bg-amber-950/40 dark:text-amber-100">
+              <blockquote className="mt-6 rounded-2xl border border-[#DCD0C7] bg-[#F7F3EF]/90 px-5 py-4 text-sm italic text-[#5E4D45]">
                 “{PROFILE.tagline}”
               </blockquote>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800 hover:shadow-lg dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#231B18] px-6 py-3 text-sm font-semibold text-[#F7F3EF] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#3A2D28] hover:shadow-lg active:scale-[0.97]"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#D7C4B6] bg-[#F7F3EF] px-6 py-3 text-sm font-semibold text-[#231B18] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-white active:scale-[0.97]"
                 >
                   Contact &amp; Socials
                 </a>
@@ -368,7 +368,7 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 transition hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#DCD0C7] bg-[#F7F3EF]/90 px-3.5 py-1.5 text-xs font-medium text-[#5E4D45] transition hover:-translate-y-0.5 hover:border-[#A47864] hover:text-[#231B18]"
                   >
                     {social.name}
                     <ArrowUpRight className="h-3 w-3" />
@@ -379,24 +379,24 @@ export default function App() {
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
               <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
-                <div className="space-y-3 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 p-4 shadow-sm transition duration-300 hover:shadow-lg">
+                <div className="space-y-3 overflow-hidden rounded-3xl border border-[#DCD0C7] bg-[#F7F3EF] p-4 shadow-sm transition duration-300 hover:shadow-lg">
                 <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-amber-700/60 dark:bg-amber-950/45">
-                    <Gamepad2 className="mx-auto h-7 w-7 text-amber-600 dark:text-amber-300" />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-amber-100">
+                  <div className="rounded-2xl border border-[#DCD0C7] bg-white/80 p-3 text-center transition hover:-translate-y-0.5">
+                    <Gamepad2 className="mx-auto h-7 w-7 text-[#A47864]" />
+                    <p className="mt-1.5 text-[11px] font-medium text-[#473832]">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-sky-200/70 bg-sky-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-sky-700/60 dark:bg-sky-950/45">
-                    <GraduationCap className="mx-auto h-7 w-7 text-sky-600 dark:text-sky-300" />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-sky-100">
+                  <div className="rounded-2xl border border-[#DCD0C7] bg-white/80 p-3 text-center transition hover:-translate-y-0.5">
+                    <GraduationCap className="mx-auto h-7 w-7 text-[#7A645B]" />
+                    <p className="mt-1.5 text-[11px] font-medium text-[#473832]">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-violet-200/70 bg-violet-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-violet-700/60 dark:bg-violet-950/45">
-                    <Sparkles className="mx-auto h-7 w-7 text-violet-600 dark:text-violet-300" />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-violet-100">
+                  <div className="rounded-2xl border border-[#DCD0C7] bg-white/80 p-3 text-center transition hover:-translate-y-0.5">
+                    <Sparkles className="mx-auto h-7 w-7 text-[#A47864]" />
+                    <p className="mt-1.5 text-[11px] font-medium text-[#473832]">
                       Ludonode Studios
                     </p>
                   </div>
@@ -441,8 +441,8 @@ export default function App() {
                     }}
                     className={`rounded-full px-4 py-2 text-xs font-semibold transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] ${
                       isActive
-                        ? 'bg-slate-900 text-white shadow-2xs'
-                        : 'border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900'
+                        ? 'bg-[#231B18] text-[#F7F3EF] shadow-2xs'
+                        : 'border border-[#DCD0C7] bg-[#F7F3EF] text-[#5E4D45] hover:border-[#A47864] hover:text-[#231B18]'
                     }`}
                   >
                     {filter} <span className="ml-1 opacity-70">({count})</span>

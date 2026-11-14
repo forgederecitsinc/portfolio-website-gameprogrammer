@@ -162,8 +162,8 @@ export function Resn3DShowcase() {
         ctx.stroke();
       };
 
-      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(139, 92, 246, 0.28)');
-      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(14, 165, 233, 0.22)');
+      drawOrbitRing(1.42, 1.42, ax * 0.6 + 1.0, ay * 0.5, 'rgba(164, 120, 100, 0.36)');
+      drawOrbitRing(1.62, 1.62, -ax * 0.4 + 0.5, ay * 0.8 + 0.7, 'rgba(74, 53, 44, 0.22)');
 
       // Transform vertices
       const transformed = RAW_VERTS.map((v) => rotatePoint(v, ax, ay, az));
@@ -214,13 +214,14 @@ export function Resn3DShowcase() {
         ctx.lineTo(p2.x, p2.y);
         ctx.closePath();
 
-        // Soft pastel palette shifting across facets
-        const hue = (245 + face.idx * 9 + scrollAngle * 18) % 360;
-        const lightness = Math.round(58 + face.light * 30);
-        ctx.fillStyle = `hsla(${hue}, 72%, ${lightness}%, 0.88)`;
+        // Pantone 2025 Mocha Mousse -> Warm Latte facet shading
+        const hue = 18 + ((face.idx * 2) % 14);
+        const saturation = Math.round(24 + face.light * 16);
+        const lightness = Math.round(38 + face.light * 38);
+        ctx.fillStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.92)`;
         ctx.fill();
 
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)';
+        ctx.strokeStyle = 'rgba(247, 243, 239, 0.65)';
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -256,9 +257,9 @@ export function Resn3DShowcase() {
   }, []);
 
   return (
-    <div className="relative h-56 w-full overflow-hidden rounded-2xl border border-violet-200/70 bg-gradient-to-br from-violet-100/50 via-white/80 to-sky-100/50 sm:h-64">
+    <div className="relative h-56 w-full overflow-hidden rounded-2xl border border-[#DCD0C7] bg-gradient-to-br from-[#F7F3EF] via-[#EDE4DC] to-[#E2D4C8] sm:h-64">
       <canvas ref={canvasRef} className="h-full w-full" aria-hidden="true" />
-      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-full border border-violet-200/80 bg-white/85 px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-violet-800 uppercase backdrop-blur-xs">
+      <div className="pointer-events-none absolute right-3 bottom-2.5 rounded-full border border-[#D7C4B6] bg-[#F7F3EF]/90 px-2.5 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-[#5E4D45] uppercase backdrop-blur-xs">
         3D Specimen · Scroll &amp; Move
       </div>
     </div>
