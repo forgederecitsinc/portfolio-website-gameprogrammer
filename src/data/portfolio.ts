@@ -310,14 +310,47 @@ export const PROJECTS: ProjectItem[] = [
     title: 'Multiplayer Tic-Tac-Toe (Client-Server)',
     category: 'GBC School',
     roles: ['Network Programmer', 'Game Designer'],
-    context: 'George Brown College · Oct 2026 – Present · Unity 6 & Unity Transport',
-    platforms: ['PC', 'Multiplayer'],
+    context: 'George Brown College · GAME3110 · Unity 6 & Unity Transport (C#)',
+    platforms: ['PC', 'Online Multiplayer', 'Local 2-Player'],
     overview:
-      'Real-time, server-authoritative multiplayer Tic-Tac-Toe built in Unity 6 and C# using a dedicated client-server architecture powered by Unity.Networking.Transport.',
+      '3x3 Tic-Tac-Toe featuring a server-authoritative online multiplayer architecture (accounts, matchmaking rooms, quick-chat wheel, and live spectator sync) alongside an offline pass-and-play 2-player mode.',
     contributions: [
-      'Implemented reliable, sequenced, and fragmented NetworkDriver pipelines with a custom pipe-delimited protocol.',
-      'Built account authentication, room-based matchmaking lobbies, spectator state sync, and a PvP quick-chat wheel.',
-      'Centralized server-authoritative turn validation, move processing, and win/draw detection.',
+      'Server-Authoritative Core (NetworkServer.cs): Owns GameRoom board state (cells 0–8), CurrentTurn, 8-line win/draw checks, and rejects invalid, out-of-turn, occupied-cell, or spectator moves with MOVE_ERROR.',
+      'Auth, Rooms & State Machine (GameStateManager.cs): Connects to 127.0.0.1:9001 via Unity Transport reliableAndInOrderPipeline across 6 states (MainMenu → Login/CreateAccount → RoomLobby → WaitingForOpponent → Playing).',
+      'Spectator Sync & Quick-Chat Wheel: Assigns Host = X, Guest = O, and 3rd+ clients as Observers (SPECTATOR_JOINED live board sync); supports 5 preset CHAT_MSG quick-chats while blocking spectator inputs.',
+      'Offline Local 2-Player Mode: LocalTicTacToeScene (TicTacToeGame.cs & TicTacToeUI.cs) runs same-device pass-and-play with instant RestartButton and BackToMenuButton transitions.',
+    ],
+    mechanics: [
+      {
+        heading: '1. Core Game Mechanics',
+        points: [
+          'Board & Symbols: 3x3 grid indexed 0–8; X always goes first, alternating turns with O.',
+          'Win & Draw Detection: Checks 8 winning lines (3 rows, 3 columns, 2 diagonals) after every move; 9 filled cells with no winner triggers a draw.',
+          'Server-Authoritative Validation: NetworkServer.cs owns board state, active turn, and match status inside GameRoom, rejecting invalid, out-of-turn, occupied-cell, or spectator moves with MOVE_ERROR.',
+        ],
+      },
+      {
+        heading: '2. Multiplayer Gameplay Loop',
+        points: [
+          'Connect & Authenticate: Client connects to 127.0.0.1:9001 via Unity Transport (reliableAndInOrderPipeline) and sends CREATE_ACCOUNT or LOGIN; server stores accounts in memory and replies LOGIN_SUCCESS → RoomLobby.',
+          'Room Matchmaking & Roles: Players send JOIN_ROOM|<roomName> (1–24 chars). 1st Player (Host = X) enters WaitingForOpponent (ROOM_WAITING); 2nd Player (Guest = O) triggers GAME_START + ROOM_STARTED → Playing; 3rd+ Players join room.Observers (SPECTATOR_JOINED) synced to live board/turn.',
+          'Turn-Based Match Loop: Active player clicks empty cell 0–8 to send MAKE_MOVE|<cellIndex>; server broadcasts MOVE_MADE (flipping X ↔ O) or GAME_OVER|<X|O|DRAW>|<winningLine>.',
+          'Rematch & Disconnects: Players click RestartButton (RESTART_GAME) to reset with X first (SPECTATOR_RESET for observers). Leaving spectators are removed silently; if Host or Guest leaves, OPPONENT_LEFT returns everyone to RoomLobby.',
+        ],
+      },
+      {
+        heading: '3. Preset Chat Wheel & Spectator Mode',
+        points: [
+          'Chat Wheel (ChatWheelPanel): Host and Guest send 5 preset messages ("Good luck!", "Nice move!", "Well played!", "Oops!", "Thinking...") via CHAT_MSG|<text>, forwarded to opponent and spectators.',
+          'Spectator Mode: Read-only live board, turn status, chat banner, and resets; board buttons, RestartButton, and ChatWheelButton are disabled, and server blocks spectator MAKE_MOVE, RESTART_GAME, and CHAT_MSG packets.',
+        ],
+      },
+      {
+        heading: '4. Local 2-Player Mode (Offline)',
+        points: [
+          'PlayLocalButton loads LocalTicTacToeScene where TicTacToeGame.cs and TicTacToeUI.cs run pass-and-play on one device (X starts first) with RestartButton and BackToMenuButton to SampleScene.',
+        ],
+      },
     ],
     badgeImage: './images/gbc-badge.png',
     images: [
