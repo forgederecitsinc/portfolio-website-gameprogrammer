@@ -33,6 +33,7 @@ import {
 } from './data/portfolio';
 import { PASTEL_THEME } from './utils/theme';
 import { ProjectModal } from './components/ProjectModal';
+import { ThemeToggle } from './components/ThemeToggle';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
 
@@ -91,12 +92,12 @@ export default function App() {
   }, [activeFilter]);
 
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-slate-800">
+    <div className="min-h-screen bg-[#FAF8F5] text-slate-800 dark:bg-slate-950 dark:text-slate-100">
       {/* Subtle decorative pastel wash */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-violet-50/70 via-rose-50/40 to-transparent" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-violet-50/70 via-rose-50/40 to-transparent dark:from-violet-950/30 dark:via-rose-950/15" />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-[#FAF8F5]/85 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-[#FAF8F5]/85 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/85">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -109,26 +110,26 @@ export default function App() {
             <img
               src="./images/ludonode-logo.jpg"
               alt="Ludonode Studios — Roshan's Forge de Récits Inc."
-              className="h-9 w-9 rounded-xl border border-slate-200/80 object-cover shadow-2xs"
+              className="h-9 w-9 rounded-xl border border-slate-200/80 object-cover shadow-2xs dark:border-slate-700"
             />
             <div>
-              <span className="block font-serif text-base font-semibold tracking-tight text-slate-900">
+              <span className="block font-serif text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100 dark:text-slate-100">
                 {PROFILE.name}
               </span>
-              <span className="block text-[11px] font-medium text-slate-500">
+              <span className="block text-[11px] font-medium text-slate-500 dark:text-slate-400 dark:text-slate-400">
                 Narrative &amp; Game Designer
               </span>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-5 md:flex">
+          <nav className="hidden items-center gap-4 md:flex">
             <button
               type="button"
               onClick={() => navigateTo('professional')}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 route === 'professional'
-                  ? 'bg-amber-100 text-amber-900'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
+                  ? 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-200'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
               }`}
             >
               Professional
@@ -138,8 +139,8 @@ export default function App() {
               onClick={() => navigateTo('school')}
               className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                 route === 'school'
-                  ? 'bg-sky-100 text-sky-900'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
+                  ? 'bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-200'
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
               }`}
             >
               School Projects
@@ -149,7 +150,7 @@ export default function App() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-slate-600 transition hover:text-slate-950"
+                  className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
                 >
                   {item.label}
                 </a>
@@ -158,28 +159,32 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('home')}
-                className="text-sm font-medium text-slate-600 transition hover:text-slate-950"
+                className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
               >
                 Main Page
               </button>
             )}
+            <ThemeToggle />
             <a
               href={`mailto:${PROFILE.emails[0].address}`}
-              className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-800"
+              className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:text-slate-100 dark:hover:bg-white"
             >
               Get in Touch
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </nav>
 
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-            className="rounded-xl border border-slate-200 bg-white p-2 text-slate-700 md:hidden"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              className="rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 p-2 text-slate-700 dark:text-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
@@ -188,21 +193,21 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('home')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
               >
                 Main Page
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('professional')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
               >
                 Professional
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('school')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
               >
                 School Projects
               </button>
@@ -212,7 +217,7 @@ export default function App() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100"
+                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100"
                   >
                     {item.label}
                   </a>
@@ -237,18 +242,18 @@ export default function App() {
                 {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.25rem]">
+              <h1 className="mt-5 font-serif text-4xl leading-tight font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl lg:text-[3.25rem]">
                 {PROFILE.name}
               </h1>
-              <p className="mt-3 text-base font-semibold text-slate-700 sm:text-lg">
+              <p className="mt-3 text-base font-semibold text-slate-700 dark:text-slate-300 sm:text-lg">
                 {PROFILE.title}
               </p>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400 dark:text-slate-400">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-2xl border border-amber-200/70 bg-amber-50/60 px-5 py-4 text-sm italic text-slate-700">
+              <blockquote className="mt-6 rounded-2xl border border-amber-200/70 bg-amber-50/60 px-5 py-4 text-sm italic text-slate-700 dark:text-slate-300 dark:text-slate-300">
                 “{PROFILE.tagline}”
               </blockquote>
 
@@ -275,7 +280,7 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/80 dark:bg-slate-900/80 px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-400 transition hover:border-slate-300 hover:text-slate-900"
                   >
                     {social.name}
                     <ArrowUpRight className="h-3 w-3" />
@@ -285,7 +290,7 @@ export default function App() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm">
+              <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white dark:border-slate-800 dark:bg-slate-900 p-4 shadow-sm">
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center">
                     <img
@@ -293,7 +298,7 @@ export default function App() {
                       alt="HFG Entertainments"
                       className="mx-auto h-8 w-auto object-contain"
                     />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700">
+                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300">
                       Shipped Mobile Titles
                     </p>
                   </div>
@@ -303,7 +308,7 @@ export default function App() {
                       alt="George Brown College"
                       className="mx-auto h-8 w-auto object-contain"
                     />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700">
+                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300">
                       GBC Game Design
                     </p>
                   </div>
@@ -313,7 +318,7 @@ export default function App() {
                       alt="Ludonode Studios — Roshan's Forge de Récits Inc."
                       className="mx-auto h-8 w-8 rounded-lg object-cover"
                     />
-                    <p className="mt-1.5 text-[11px] font-medium text-slate-700">
+                    <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300">
                       Ludonode Studios
                     </p>
                   </div>
@@ -324,17 +329,17 @@ export default function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16">
+        <section id="projects" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase">
                 <Layers className="h-3.5 w-3.5" />
                 Selected Works
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">
                 Games, Levels &amp; Narrative Worlds
               </h2>
-              <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">
+              <p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-400 sm:text-base">
                 Commercial mobile escape rooms, George Brown College game jams and capstones,
                 original puzzle prototypes, and lore bibles. Click any card for full details.
               </p>
@@ -351,7 +356,7 @@ export default function App() {
                     className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
                       isActive
                         ? 'bg-slate-900 text-white shadow-2xs'
-                        : 'border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900'
+                        : 'border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-300 hover:text-slate-900'
                     }`}
                   >
                     {filter}
@@ -395,21 +400,21 @@ export default function App() {
                       )}
                     </div>
 
-                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 group-hover:text-slate-950">
+                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-950">
                       {project.title}
                     </h3>
                     <p className="mt-1 text-xs font-medium text-slate-500">{project.context}</p>
-                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-700">
+                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">
                       {project.overview}
                     </p>
                   </div>
 
-                  <div className="mt-5 border-t border-slate-200/60 pt-4">
+                  <div className="mt-5 border-t border-slate-200/60 dark:border-slate-800/60 pt-4">
                     <div className="flex flex-wrap gap-1.5">
                       {project.roles.map((role) => (
                         <span
                           key={role}
-                          className="rounded-md bg-white/85 px-2 py-0.5 text-[11px] font-medium text-slate-700 ring-1 ring-slate-200/70"
+                          className="rounded-md bg-white/85 dark:bg-slate-900/85 px-2 py-0.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 ring-1 ring-slate-200/70 dark:ring-slate-700"
                         >
                           {role}
                         </span>
@@ -444,10 +449,10 @@ export default function App() {
               {GBC_ADDITIONAL_WORKS.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-sky-200/60 bg-white/80 p-3.5"
+                  className="rounded-2xl border border-sky-200/60 bg-white/80 dark:bg-slate-900/80 p-3.5"
                 >
                   <p className="text-sm font-semibold text-slate-900">{item.title}</p>
-                  <p className="mt-1 text-xs text-slate-600">{item.detail}</p>
+                  <p className="mt-1 text-xs text-slate-600 dark:text-slate-400 dark:text-slate-400">{item.detail}</p>
                 </div>
               ))}
             </div>
@@ -455,16 +460,16 @@ export default function App() {
         </section>
 
         {/* Character Design Section */}
-        <section id="characters" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16">
+        <section id="characters" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
           <div className="flex flex-col gap-2">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase">
               <Users className="h-3.5 w-3.5" />
               Character Design
             </span>
-            <h2 className="font-serif text-3xl font-semibold text-slate-900 sm:text-4xl">
+            <h2 className="font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">
               Original Character Profiles
             </h2>
-            <p className="max-w-2xl text-sm text-slate-600 sm:text-base">
+            <p className="max-w-2xl text-sm text-slate-600 dark:text-slate-400 sm:text-base">
               Five complete character concepts built with personality profiles, narrative
               archetypes, and dramatic motivations.
             </p>
@@ -487,7 +492,7 @@ export default function App() {
                   <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900">
                     {char.name}
                   </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-slate-700">{char.summary}</p>
+                  <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">{char.summary}</p>
                 </div>
               );
             })}
@@ -495,14 +500,14 @@ export default function App() {
         </section>
 
         {/* Writing & Blog Section */}
-        <section id="writing" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16">
+        <section id="writing" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-700 uppercase">
                 <Feather className="h-3.5 w-3.5" />
                 Short Stories &amp; Essays
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">
                 Fiction &amp; Game Design Writing
               </h2>
             </div>
@@ -511,7 +516,7 @@ export default function App() {
                 href="https://medium.com/@ludonodestudios"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 transition hover:bg-slate-50"
               >
                 Medium
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -520,7 +525,7 @@ export default function App() {
                 href="http://www.wattpad.com/user/roshan_christy"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 transition hover:bg-slate-50"
               >
                 Wattpad
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -554,7 +559,7 @@ export default function App() {
                     <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-900">
                       {item.title}
                     </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700">{item.summary}</p>
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">{item.summary}</p>
                   </div>
                   <span
                     className={`mt-4 inline-flex items-center gap-1 text-xs font-semibold ${theme.accentText}`}
@@ -569,7 +574,7 @@ export default function App() {
         </section>
 
         {/* Business & Resume Section */}
-        <section id="resume" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16">
+        <section id="resume" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Studio Card */}
             <div className="lg:col-span-5">
@@ -594,16 +599,16 @@ export default function App() {
                 <p className="mt-3 text-sm font-medium italic text-violet-900">
                   “{STUDIO.motto}”
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">{STUDIO.mission}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">{STUDIO.mission}</p>
 
                 <div className="mt-5 space-y-2">
-                  <h3 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                  <h3 className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                     Studio Services
                   </h3>
                   {STUDIO.services.map((service) => (
                     <div
                       key={service}
-                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-white/85 px-3.5 py-2 text-xs font-medium text-slate-700"
+                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-white/85 dark:bg-slate-900/85 px-3.5 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300"
                     >
                       <Compass className="h-3.5 w-3.5 shrink-0 text-violet-600" />
                       {service}
@@ -624,7 +629,7 @@ export default function App() {
                     <h3 className="font-serif text-lg font-semibold text-slate-900">
                       Education
                     </h3>
-                    <p className="text-xs font-medium text-slate-600">
+                    <p className="text-xs font-medium text-slate-600 dark:text-slate-400 dark:text-slate-400">
                       Academic Credentials &amp; Training
                     </p>
                   </div>
@@ -633,7 +638,7 @@ export default function App() {
                   {EDUCATION.map((edu) => (
                     <div
                       key={`${edu.school}-${edu.degree}`}
-                      className="rounded-2xl border border-sky-200/60 bg-white/85 p-3.5"
+                      className="rounded-2xl border border-sky-200/60 bg-white/85 dark:bg-slate-900/85 p-3.5"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-1">
                         <p className="text-xs font-semibold text-slate-900">{edu.degree}</p>
@@ -642,7 +647,7 @@ export default function App() {
                         </span>
                       </div>
                       <p className="mt-0.5 text-[11px] font-medium text-sky-900">{edu.school}</p>
-                      <p className="mt-1 text-[11px] text-slate-600">{edu.detail}</p>
+                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-400 dark:text-slate-400">{edu.detail}</p>
                     </div>
                   ))}
                 </div>
@@ -657,7 +662,7 @@ export default function App() {
                   {LANGUAGES.map((lang) => (
                     <span
                       key={lang.name}
-                      className="rounded-full border border-emerald-200/80 bg-white/90 px-3 py-1 text-xs font-medium text-slate-700"
+                      className="rounded-full border border-emerald-200/80 bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 dark:text-slate-300 dark:text-slate-300"
                     >
                       <span className="font-semibold text-slate-900">{lang.name}</span> ·{' '}
                       {lang.proficiency}
@@ -672,7 +677,7 @@ export default function App() {
                   {CERTIFICATIONS.map((cert) => (
                     <li
                       key={cert.title}
-                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700"
+                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700 dark:text-slate-300 dark:text-slate-300"
                     >
                       <span className="font-medium text-slate-800">{cert.title}</span>
                       <span className="shrink-0 text-[11px] text-slate-500">
@@ -711,10 +716,10 @@ export default function App() {
                         </h3>
                         <span className="text-xs font-semibold text-slate-500">{exp.period}</span>
                       </div>
-                      <p className="mt-0.5 text-xs font-semibold text-slate-600">
+                      <p className="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-400 dark:text-slate-400">
                         {exp.organization} · {exp.location}
                       </p>
-                      <p className="mt-2 text-sm text-slate-700">{exp.highlights}</p>
+                      <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 dark:text-slate-300">{exp.highlights}</p>
                     </div>
                   );
                 })}
@@ -727,9 +732,9 @@ export default function App() {
                   return (
                     <div
                       key={group.group}
-                      className={`rounded-2xl border ${theme.border} bg-white/80 p-4`}
+                      className={`rounded-2xl border ${theme.border} bg-white/80 dark:bg-slate-900/80 p-4`}
                     >
-                      <h3 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                      <h3 className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                         {group.group}
                       </h3>
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -751,7 +756,7 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16">
+        <section id="contact" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
           <div className="rounded-3xl border border-rose-200/70 bg-gradient-to-br from-rose-50/80 via-amber-50/50 to-violet-50/70 p-8 sm:p-10">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div>
@@ -761,7 +766,7 @@ export default function App() {
                 <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900">
                   Let&apos;s build a world together
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">
                   Available for Narrative Design, Game &amp; Puzzle Design, Screenwriting, and
                   French/English Localization collaborations.
                 </p>
@@ -772,7 +777,7 @@ export default function App() {
                   <a
                     key={email.address}
                     href={`mailto:${email.address}`}
-                    className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300"
+                    className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 dark:border-slate-800 dark:bg-slate-900/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300"
                   >
                     <span className="flex items-center gap-2.5">
                       <Mail className="h-4 w-4 text-rose-600" />
@@ -789,7 +794,7 @@ export default function App() {
 
                 <a
                   href={`tel:${PROFILE.phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 dark:border-slate-800 dark:bg-slate-900/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300"
                 >
                   <span className="flex items-center gap-2.5">
                     <Phone className="h-4 w-4 text-emerald-600" />
@@ -805,8 +810,8 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-200/80 bg-white/50 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 sm:flex-row sm:px-6">
+      <footer className="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 py-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 dark:text-slate-400 sm:flex-row sm:px-6">
           <p>
             © {new Date().getFullYear()} {PROFILE.name} · {STUDIO.name}
           </p>

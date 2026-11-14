@@ -34,14 +34,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
       aria-labelledby="project-modal-title"
     >
       <div
-        className={`relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border ${theme.border} bg-[#FAF8F5] p-6 shadow-xl sm:p-8`}
+        className={`relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border ${theme.border} bg-[#FAF8F5] p-6 shadow-xl sm:p-8 dark:bg-slate-900`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close project details"
-          className="absolute top-5 right-5 rounded-full border border-slate-200 bg-white/90 p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+          className="absolute top-5 right-5 rounded-full border border-slate-200 bg-white/90 p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
         >
           <X className="h-4 w-4" />
         </button>
@@ -66,17 +66,19 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         <h3
           id="project-modal-title"
-          className="mt-4 font-serif text-2xl font-semibold text-slate-900 sm:text-3xl"
+          className="mt-4 font-serif text-2xl font-semibold text-slate-900 sm:text-3xl dark:text-slate-100"
         >
           {project.title}
         </h3>
-        <p className="mt-1 text-sm font-medium text-slate-500">{project.context}</p>
+        <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+          {project.context}
+        </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {project.roles.map((role) => (
             <span
               key={role}
-              className="rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200/80"
+              className="rounded-lg bg-white px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200/80 dark:bg-slate-800 dark:text-slate-200 dark:ring-slate-700"
             >
               {role}
             </span>
@@ -84,15 +86,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         </div>
 
         <div className={`mt-6 rounded-2xl border ${theme.border} ${theme.surface} p-5`}>
-          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
             Overview
           </h4>
-          <p className="mt-2 leading-relaxed text-slate-700">{project.overview}</p>
+          <p className="mt-2 leading-relaxed text-slate-700 dark:text-slate-200">
+            {project.overview}
+          </p>
         </div>
 
         {project.images && project.images.length > 0 && (
           <div className="mt-6">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
               System Architecture
             </h4>
             <div className="mt-3 space-y-3">
@@ -101,7 +105,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   key={img.src}
                   src={img.src}
                   alt={img.alt}
-                  className="w-full rounded-2xl border border-slate-200/80 bg-white object-contain"
+                  className="w-full rounded-2xl border border-slate-200/80 bg-white object-contain dark:border-slate-700"
                 />
               ))}
             </div>
@@ -109,12 +113,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         )}
 
         <div className="mt-6">
-          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+          <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
             Key Contributions
           </h4>
           <ul className="mt-3 space-y-2.5">
             {project.contributions.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-slate-700">
+              <li
+                key={item}
+                className="flex items-start gap-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300"
+              >
                 <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${theme.accentText}`} />
                 <span>{item}</span>
               </li>
