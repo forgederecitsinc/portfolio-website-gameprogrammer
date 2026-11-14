@@ -252,13 +252,49 @@ export const PROJECTS: ProjectItem[] = [
     category: 'GBC School',
     roles: ['Game Programmer', 'UI & Systems Designer'],
     context: 'George Brown College · Sep 2026 – Present · Unreal Engine 5.8 (C++ & Blueprints)',
-    platforms: ['PC', 'Gamepad'],
+    platforms: ['PC', 'PS5 DualSense'],
     overview:
-      '3D third-person risk-reward arcade game built in Unreal Engine 5.8 focusing on console-ready UI, Enhanced Input gamepad navigation, and modular gameplay subsystems.',
+      '3D third-person risk-reward arcade game (A_Christy_Roshan) built in Unreal Engine 5.8 C++. Players race a 300-second global match timer, unlock timed poison-gas trap rooms to gamble UnbankedScore vs. BankedScore, cross breakable Glass Bridge platforms, and unlock elevators and the Final Key.',
     contributions: [
-      'Implemented timed trap rooms with poison gas countdowns and banked vs. unbanked coin scoring.',
-      'Built persistent C++ GameInstanceSubsystems for cross-level music fading (BGMAudioSubsystem) and screen fades (GlobalFadeSubsystem).',
-      'Engineered full UMG/Slate gamepad focus management, controller mapping, and disconnect handling.',
+      'Match Flow & Risk-Reward Scoring (AGameGM & ATrapRoom): 300 s match timer, 1-key inventory cap, 10 s trap-room countdowns, Banked vs. UnbankedScore transfers, PoisonGas failure penalties (-10 BankedScore), and WBP_ResultScreen victory/defeat states.',
+      'DualSense Haptics & Tuned Platforming (AGameCharacter): Tunable jump physics (JumpStrength 550, Gravity 1.75, AirControl 0.5), stride-based footstep taps (135 cm), landing pulses, and PlayDynamicForceFeedback for heartbeats, coins, glass shatters, and enemy hits.',
+      'AI, Glass Bridge & Hazard Actors: Built AEnemyCharacter (500 cm wander / 1000 cm chase / -5 BankedScore), configurable AGlassPlatform (3-blink shatter), AElevator (40+ BankedScore unlock), AFinalKey (150+ BankedScore), AKillVolume, and ARespawnTrigger.',
+      'Persistent Subsystems & Console UI: Implemented UBGMAudioSubsystem, UGlobalFadeSubsystem, AJesus shrine 5 s pray-to-earn key mechanic (1.0/s decay), and full UMG/Slate gamepad focus management.',
+    ],
+    mechanics: [
+      {
+        heading: 'Core Gameplay Loop (6 Stages)',
+        points: [
+          '1. Start & Match Timer (AGameGM): Match begins in 01_Gameplay with a 300-second (5-minute) global countdown; hitting 0 opens WBP_ResultScreen in Defeat state.',
+          '2. Acquire a Key: Hold at most 1 key (KeysCollected max 1) via AKeyPickup, praying at an AJesus shrine (hold Square for 5.0 s, 1.0/s decay on release), or collecting AFinalKey at 150+ BankedScore.',
+          '3. Unlock & Enter Trap Room (ATrapRoom): Interact in UnlockZone to call TryUnlock() (consumes key, opens DoorMesh), then step into TriggerZone to start the 10.0 s TrapDuration countdown.',
+          '4. Risk-Reward Coin Collection: Outside coins bank directly into BankedScore; inside coins accumulate in UnbankedScore ("At Risk").',
+          '5. Escape or Fail: Exiting TriggerZone in time banks UnbankedScore (room re-arms after timer); running out of time triggers ExecuteTrap() with PoisonGas, wiping UnbankedScore and deducting 10 BankedScore.',
+          '6. Progression & Win Flow: OnBankedScoreChanged unlocks AElevator at 40 BankedScore and AFinalKey at 150 BankedScore; ShowResultScreen(bool bVictory) pauses and focuses UResultScreenWidget.',
+        ],
+      },
+      {
+        heading: 'Movement & DualSense Force Feedback',
+        points: [
+          'Tuned third-person platforming (AGameCharacter): JumpStrength = 550.0, JumpGravityScale = 1.75, JumpAirControl = 0.5.',
+          'Dynamic controller haptics: Stride-based footstep taps (135 cm), jump takeoff & fall-scaled landing pulses, heartbeat warnings inside trap rooms / final 10 s, coin pickups, door unlocks/rejections, and glass shatter feedback.',
+        ],
+      },
+      {
+        heading: 'Enemies, Glass Bridge & Hazards',
+        points: [
+          'AEnemyCharacter: Wanders within 500 cm (150 cm/s), chases player within 1000 cm (300 cm/s), and deals 5 BankedScore damage via DamageSphere with a 1.0 s cooldown.',
+          'AGlassPlatform: Tempered (safe) or breakable (bBreakWhenSteppedOn = true) blinking 3 times every 0.2 s before destroying.',
+          'AKillVolume (3.0 s delay, -20 ScorePenalty) and ARespawnTrigger (controller rumble, 1.0 s delay, optional velocity reset) teleport back to safe checkpoints.',
+        ],
+      },
+      {
+        heading: 'Audio & Transition Subsystems',
+        points: [
+          'UBGMAudioSubsystem manages cross-level background music across Start Screen, Menu, and Gameplay states.',
+          'UGlobalFadeSubsystem handles smooth screen fade transitions.',
+        ],
+      },
     ],
     badgeImage: './images/gbc-badge.png',
     images: [
