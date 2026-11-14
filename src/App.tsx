@@ -17,9 +17,12 @@ import {
   X,
 } from 'lucide-react';
 import {
+  CERTIFICATIONS,
   CHARACTERS,
+  EDUCATION,
   EXPERIENCE,
   GBC_ADDITIONAL_WORKS,
+  LANGUAGES,
   PROFILE,
   PROJECTS,
   SKILLS,
@@ -614,18 +617,71 @@ export default function App() {
                 <div className="flex items-center gap-3">
                   <img
                     src="./images/gbc-badge.png"
-                    alt="George Brown College"
+                    alt="George Brown Polytechnic"
                     className="h-10 w-auto object-contain"
                   />
                   <div>
                     <h3 className="font-serif text-lg font-semibold text-slate-900">
-                      George Brown College
+                      Education
                     </h3>
                     <p className="text-xs font-medium text-slate-600">
-                      Game Design Post-Graduate Program · Toronto, ON
+                      Academic Credentials &amp; Training
                     </p>
                   </div>
                 </div>
+                <div className="mt-4 space-y-3">
+                  {EDUCATION.map((edu) => (
+                    <div
+                      key={`${edu.school}-${edu.degree}`}
+                      className="rounded-2xl border border-sky-200/60 bg-white/85 p-3.5"
+                    >
+                      <div className="flex flex-wrap items-baseline justify-between gap-1">
+                        <p className="text-xs font-semibold text-slate-900">{edu.degree}</p>
+                        <span className="text-[11px] font-medium text-slate-500">
+                          {edu.period}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-[11px] font-medium text-sky-900">{edu.school}</p>
+                      <p className="mt-1 text-[11px] text-slate-600">{edu.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Languages & Certifications */}
+              <div className="mt-6 rounded-3xl border border-emerald-200/80 bg-emerald-50/50 p-6">
+                <h3 className="text-xs font-semibold tracking-wider text-emerald-800 uppercase">
+                  Languages
+                </h3>
+                <div className="mt-2.5 flex flex-wrap gap-2">
+                  {LANGUAGES.map((lang) => (
+                    <span
+                      key={lang.name}
+                      className="rounded-full border border-emerald-200/80 bg-white/90 px-3 py-1 text-xs font-medium text-slate-700"
+                    >
+                      <span className="font-semibold text-slate-900">{lang.name}</span> ·{' '}
+                      {lang.proficiency}
+                    </span>
+                  ))}
+                </div>
+
+                <h3 className="mt-5 text-xs font-semibold tracking-wider text-emerald-800 uppercase">
+                  Licenses &amp; Certifications
+                </h3>
+                <ul className="mt-2.5 space-y-1.5">
+                  {CERTIFICATIONS.map((cert) => (
+                    <li
+                      key={cert.title}
+                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700"
+                    >
+                      <span className="font-medium text-slate-800">{cert.title}</span>
+                      <span className="shrink-0 text-[11px] text-slate-500">
+                        {cert.issuer}
+                        {cert.date ? ` · ${cert.date}` : ''}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 

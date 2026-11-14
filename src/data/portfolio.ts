@@ -56,15 +56,16 @@ export interface ExperienceItem {
 
 export const PROFILE = {
   name: 'Roshan Christy',
-  title: 'Narrative Designer | Game Designer | Puzzle Designer',
+  title: 'Game Designer | Game Writer | Puzzle Designer | Screenwriter',
   location: 'Toronto, Ontario, Canada',
   tagline:
     'Navigating the Evolution of Story Ideas: From Better Past Concepts to Stronger Present Narratives',
   subheadline:
-    'I am a Narrative Designer, Game Designer, and Puzzle Designer based in Toronto, crafting player-driven worlds, intricate puzzle architectures, and branching stories.',
+    'Pursuing an Advanced Diploma in Game Programming at George Brown College while serving as a Game Writer at Black Squirrels Studio. Background in Screenwriting & Narrative Design and Digital Game Design, focused on "show, don’t tell" storytelling, puzzle architecture, and C++ / C# gameplay systems.',
   emails: [
     { label: 'Work', address: 'roshanchristy.work@gmail.com' },
     { label: 'Studio', address: 'forgederecits@gmail.com' },
+    { label: 'Personal', address: 'roshanchristyr@hotmail.com' },
   ],
   phone: '(437) 937-3469',
   socials: [
@@ -529,6 +530,16 @@ export const WRITINGS: WritingItem[] = [
     theme: 'violet',
   },
   {
+    id: 'every-christmas-eve',
+    title: 'Every Christmas Eve',
+    kind: 'Short Story',
+    summary:
+      'Published on Wattpad (Dec 2021) — a story about a girl stuck in a time loop who uncovers deep truths about herself along the journey.',
+    platform: 'Wattpad',
+    url: 'http://www.wattpad.com/user/roshan_christy',
+    theme: 'rose',
+  },
+  {
     id: 'switch-maze',
     title: 'Designing Tension, Timing, and Trust: Behind the Puzzle of Switch Maze',
     kind: 'Game Design Essay',
@@ -598,96 +609,183 @@ export const STUDIO = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    role: 'Peer Tutor',
+    role: 'Peer Tutor (Accessible Learning Services)',
     organization: 'George Brown Polytechnic',
-    location: 'Toronto, Ontario',
+    location: 'Toronto, ON · Hybrid',
     period: 'Oct 2026 – Present',
     highlights:
-      'Supporting fellow Game Programming & Design students across Unity 6, Unreal Engine 5.8, and C++ / C# coursework.',
+      'Deliver one-on-one academic coaching across hybrid environments, breaking down complex programming and design concepts with Mutual Learning Agreements.',
     theme: 'sky',
   },
   {
     role: 'Game Writer',
     organization: 'Black Squirrels Studio',
-    location: 'Toronto / Remote',
+    location: 'Toronto, ON · Hybrid',
     period: 'Jan 2026 – Present',
     highlights:
-      'Writing Yarn Spinner–style branching dialogue and show-don’t-tell narrative design for Carpe Dino: Seize the Date.',
+      'Edit and refine dialogue, redesign narrative elements around "show, don’t tell" principles, and integrate story beats with game designers.',
     theme: 'rose',
   },
   {
     role: 'Founder | Game Designer',
     organization: "Ludonode Studios (Roshan's Forge de Récits Inc.)",
-    location: 'Toronto, Ontario',
+    location: 'Toronto, ON · Remote',
     period: 'Jan 2025 – Present',
     highlights:
-      'Defining creative direction, game concept design, documentation, and prototyping (Slide ’n Ball).',
+      'Lead creative direction, game concept design, GDD authoring, prototyping, and milestone planning for original interactive projects.',
     theme: 'violet',
   },
   {
-    role: 'Narrative Translator',
-    organization: '4S Interpretation and Translation Services Inc.',
-    location: 'Toronto / Remote',
-    period: 'Jul 2024 – Present',
-    highlights: 'Bilingual French/English narrative translation and localization.',
+    role: 'English Translator',
+    organization: '4S Interpretation & Translation Services Inc.',
+    location: 'Ontario, Canada · Hybrid',
+    period: 'Jul 2024 – Dec 2024',
+    highlights:
+      'Delivered English translation, proofreading, and editing while preserving tone, context, and cultural nuance.',
     theme: 'teal',
+  },
+  {
+    role: 'Server',
+    organization: 'Markham Station Restaurant',
+    location: 'Ontario, Canada · On-site',
+    period: 'Sep 2023 – Present',
+    highlights:
+      'High-volume guest service, POS operations, kitchen/front-of-house coordination, and multitasking under pressure.',
+    theme: 'emerald',
   },
   {
     role: 'Game Designer',
     organization: 'HFG Entertainments Private Limited',
-    location: 'Chennai, India',
-    period: 'Jan – May 2023',
+    location: 'Chennai, India · On-site',
+    period: 'Jan 2023 – May 2023',
     highlights:
-      'Designed levels, puzzles, and quest flow for Escape Room: Grim of Legacy 2 (250+ levels) and Escape Room: Ally’s Adventure (170K+ downloads).',
+      'Spearheaded level architecture, puzzle design, quest sequences, and UI wireframing for Grim of Legacy 2 (250+ levels) and Ally’s Adventure (170K+ downloads).',
     theme: 'amber',
   },
   {
-    role: 'Editor',
+    role: 'Content Editor (Internship)',
     organization: 'Cannibals Media',
-    location: 'Online',
-    period: 'Apr – May 2022',
-    highlights: 'Editorial review, story refinement, and content quality assurance.',
+    location: 'Pune District, India',
+    period: 'Apr 2022 – May 2022',
+    highlights:
+      'Edited, proofread, fact-checked, and SEO-formatted digital articles, reviews, and blog posts.',
     theme: 'rose',
   },
   {
-    role: 'Content Writer',
-    organization: 'DigitalImpulse Inc.',
-    location: 'Online',
-    period: 'Sep – Dec 2021',
-    highlights: 'Authored structured web copy, narrative articles, and creative briefs.',
-    theme: 'emerald',
+    role: 'Content Writer (Internship)',
+    organization: 'DigitalImpulse Online Private Limited',
+    location: 'India',
+    period: 'Sep 2021 – Dec 2021',
+    highlights:
+      'Researched and authored SEO-targeted articles, blog posts, and web copy across client verticals.',
+    theme: 'sky',
   },
+];
+
+export const EDUCATION = [
+  {
+    school: 'George Brown Polytechnic (George Brown College)',
+    degree: 'Advanced Diploma, Game Programming',
+    period: 'Sep 2025 – Aug 2027',
+    detail: 'C++, C#, Unreal Engine, Unity, gameplay systems & software architecture.',
+    theme: 'sky' as PastelTheme,
+  },
+  {
+    school: 'George Brown Polytechnic (George Brown College)',
+    degree: 'Postgraduate Degree, Screenwriting & Narrative Design',
+    period: 'Sep 2024 – Aug 2025',
+    detail: 'Ontario College Graduate Certificate in interactive narrative, dialogue & scripts.',
+    theme: 'violet' as PastelTheme,
+  },
+  {
+    school: 'George Brown Polytechnic (George Brown College)',
+    degree: 'Graduate Certificate, Digital Design – Game Design',
+    period: 'Sep 2023 – Sep 2024',
+    detail: 'Game design principles, systems balancing, GDD authoring & prototyping.',
+    theme: 'amber' as PastelTheme,
+  },
+  {
+    school: 'Sathyabama Institute of Science & Technology, Chennai',
+    degree: 'Bachelor of Technology (BTech), Information Technology',
+    period: '2018 – 2022',
+    detail: 'Programming, data structures, algorithms, databases & software development.',
+    theme: 'emerald' as PastelTheme,
+  },
+  {
+    school: 'ECT',
+    degree: 'Certification, Advanced Content Writing',
+    period: 'Oct 2021 – Dec 2021',
+    detail: 'Digital content writing, copywriting & audience-focused storytelling.',
+    theme: 'rose' as PastelTheme,
+  },
+];
+
+export const CERTIFICATIONS = [
+  { title: 'Cybersecurity at Work (2025)', issuer: 'LinkedIn', date: 'Nov 2026' },
+  {
+    title: 'Occupational Health And Safety Awareness',
+    issuer: 'George Brown Polytechnic',
+    date: 'Nov 2026',
+  },
+  { title: 'Prioritizing Effectively as a Leader', issuer: 'LinkedIn', date: 'Oct 2026' },
+  { title: 'Sharpen your logic', issuer: 'LinkedIn', date: 'Apr 2026' },
+  {
+    title: 'Worker Health and Safety Awareness in 4 Steps',
+    issuer: 'Ministry of Labour, Training and Skills Development',
+    date: 'Mar 2026',
+  },
+  {
+    title: 'Verified International Academic Qualifications',
+    issuer: 'World Education Services (WES)',
+    date: 'Nov 2025',
+  },
+  { title: 'Will Wright: Game Design and Theory', issuer: 'MasterClass', date: '' },
+  { title: 'James Cameron: Filmmaking', issuer: 'MasterClass', date: '' },
+  { title: 'John Douglas: How to Think Like an FBI Profiler', issuer: 'MasterClass', date: '' },
+  { title: 'The Art of Intelligence with Former CIA Officers', issuer: 'MasterClass', date: '' },
+];
+
+export const LANGUAGES = [
+  { name: 'English', proficiency: 'Full professional proficiency' },
+  { name: 'Tamil', proficiency: 'Native or bilingual proficiency' },
 ];
 
 export const SKILLS = [
   {
-    group: 'Game & Level Design',
+    group: 'Programming & Engines',
     theme: 'sky' as PastelTheme,
     items: [
-      'Unreal Engine',
-      'Unity',
-      'Paper Prototyping',
-      'Puzzle Flowcharts',
-      'GDD Authoring',
-      'Encounter Pacing',
+      'C++',
+      'C#',
+      'Python',
+      'Unreal Engine 5.8',
+      'Unity 6',
+      'Data Structures',
+      'Databases',
     ],
   },
   {
-    group: 'Narrative & Writing',
+    group: 'Game, Level & Narrative',
     theme: 'rose' as PastelTheme,
     items: [
-      'Branching Dialogue',
-      'Twine',
-      'Final Draft',
+      'Game & Puzzle Design',
+      'Level Design',
+      'Wireframing',
+      'Storytelling',
+      'Dialogue Editing',
       'Screenwriting',
-      'World Building',
-      'Character Conception',
-      'FR/EN Localization',
+      'Yarn Spinner / Twine',
+      'SEO & Copywriting',
     ],
   },
   {
-    group: 'Project Management',
+    group: 'Leadership & Tools',
     theme: 'emerald' as PastelTheme,
-    items: ['Agile', 'Jira', 'Trello', 'Sprint Planning'],
+    items: [
+      'Project Management',
+      'Agile / Jira / Trello',
+      'Academic Coaching',
+      'Translation & Proofreading',
+    ],
   },
 ];
