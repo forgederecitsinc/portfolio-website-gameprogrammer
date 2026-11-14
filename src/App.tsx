@@ -1035,17 +1035,17 @@ export default function App() {
               </ScrollParallax>
 
               {/* Languages & Certifications */}
-              <div className="mt-6 rounded-3xl border border-emerald-200/80 bg-emerald-50/50 p-6 dark:border-emerald-800/60 dark:bg-emerald-950/30">
-                <h3 className="text-xs font-semibold tracking-wider text-emerald-800 uppercase dark:text-emerald-300">
+              <div className="mt-6 rounded-2xl border border-[#2EF2A8]/30 bg-[#121216] p-6">
+                <h3 className="text-xs font-semibold tracking-wider text-[#2EF2A8] uppercase">
                   Languages
                 </h3>
                 <div className="mt-2.5 flex flex-wrap gap-2">
                   {LANGUAGES.map((lang) => (
                     <span
                       key={lang.name}
-                      className="rounded-full border border-emerald-200/80 bg-[#16161B] px-3 py-1 text-xs font-medium text-slate-200 dark:border-emerald-800/60 dark:bg-slate-900/90 dark:text-slate-200"
+                      className="rounded-full border border-[#2EF2A8]/30 bg-[#16161B] px-3 py-1 text-xs font-medium text-slate-200"
                     >
-                      <span className="font-semibold text-slate-100 dark:text-white">
+                      <span className="font-semibold text-white">
                         {lang.name}
                       </span>{' '}
                       · {lang.proficiency}
@@ -1053,7 +1053,7 @@ export default function App() {
                   ))}
                 </div>
 
-                <h3 className="mt-5 text-xs font-semibold tracking-wider text-emerald-800 uppercase dark:text-emerald-300">
+                <h3 className="mt-5 text-xs font-semibold tracking-wider text-[#2EF2A8] uppercase">
                   Licenses &amp; Certifications
                 </h3>
                 <ul className="mt-2.5 space-y-1.5">
@@ -1143,17 +1143,17 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
-          <div className="rounded-3xl border border-rose-200/70 bg-gradient-to-br from-rose-50/80 via-amber-50/50 to-violet-50/70 p-8 sm:p-10 dark:border-rose-900/50 dark:from-rose-950/30 dark:via-amber-950/20 dark:to-violet-950/30">
+        <section id="contact" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
+          <div className="rounded-2xl border border-[#EC1D7B]/30 bg-gradient-to-br from-[#18121A] via-[#121216] to-[#12161B] p-8 sm:p-10">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div>
-                <span className="text-xs font-semibold tracking-wider text-rose-300 uppercase dark:text-rose-300">
+                <span className="text-xs font-semibold tracking-wider text-[#EC1D7B] uppercase">
                   Contact
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-100 dark:text-slate-100">
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-[#F6CF3B]">
                   Let&apos;s build a world together
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-slate-200">
                   Available for Narrative Design, Game &amp; Puzzle Design, Screenwriting, and
                   French/English Localization collaborations.
                 </p>
@@ -1163,7 +1163,7 @@ export default function App() {
                 {PROFILE.emails.map((email) => (
                   <div
                     key={email.address}
-                    className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200/80 bg-[#16161B] px-4 py-3 text-sm font-medium text-slate-100 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
+                    className="flex items-center justify-between gap-2 rounded-2xl border border-white/15 bg-[#16161B] px-4 py-3 text-sm font-medium text-slate-100"
                   >
                     <a
                       href={`mailto:${email.address}`}
