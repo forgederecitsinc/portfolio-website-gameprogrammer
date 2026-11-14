@@ -54,7 +54,7 @@ const SVG_THEME: Record<
   },
 };
 
-function wrapLines(text: string, maxChars: number, maxLines = 3): string[] {
+function wrapLines(text: string, maxChars: number): string[] {
   const words = text.split(/\s+/).filter(Boolean);
   const lines: string[] = [];
   let current = '';
@@ -67,13 +67,12 @@ function wrapLines(text: string, maxChars: number, maxLines = 3): string[] {
     } else {
       lines.push(current);
       current = word;
-      if (lines.length >= maxLines) break;
     }
   }
-  if (current && lines.length < maxLines) {
+  if (current) {
     lines.push(current);
   }
-  return lines;
+  return lines.slice(0, 4);
 }
 
 interface WrappedTextProps {
@@ -92,10 +91,10 @@ function SvgWrappedText({
   centerY,
   text,
   maxChars,
-  fontSize = 10.5,
+  fontSize = 9.5,
   fontWeight = 600,
   fill,
-  lineHeight = 13,
+  lineHeight = 12,
 }: WrappedTextProps) {
   const lines = wrapLines(text, maxChars);
   const startY = centerY - ((lines.length - 1) * lineHeight) / 2;
@@ -129,13 +128,13 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
 
   const palette = SVG_THEME[theme];
   const retryText = `NO · ${loop.retryLabel}`;
-  const retryPillW = Math.min(340, Math.max(190, retryText.length * 6.2 + 28));
-  const retryPillX = 448 - retryPillW / 2;
+  const retryPillW = Math.min(380, Math.max(210, retryText.length * 6.0 + 32));
+  const retryPillX = 492 - retryPillW / 2;
 
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white dark:border-slate-700 dark:bg-slate-900">
       <svg
-        viewBox="0 0 860 345"
+        viewBox="0 0 960 360"
         className="h-auto w-full"
         role="img"
         aria-label={`${loop.title} gameplay loop flowchart`}
@@ -155,13 +154,13 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
         </defs>
 
         {/* Soft pastel background */}
-        <rect width="860" height="345" rx="18" fill={palette.bg} />
+        <rect width="960" height="360" rx="18" fill={palette.bg} />
 
         {/* Header */}
         <rect
           x="24"
-          y="20"
-          width="270"
+          y="18"
+          width="260"
           height="24"
           rx="12"
           fill={palette.pill}
@@ -169,49 +168,49 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
           strokeWidth="1.2"
         />
         <text
-          x="159"
-          y="36"
+          x="154"
+          y="34"
           textAnchor="middle"
-          fontSize="10.5"
+          fontSize="10"
           fontWeight="700"
           letterSpacing="0.7"
           fill={palette.text}
         >
           GAMEPLAY LOOP FLOWCHART
         </text>
-        <text x="24" y="68" fontSize="18" fontWeight="700" fill="#0F172A">
+        <text x="24" y="64" fontSize="17" fontWeight="700" fill="#0F172A">
           {loop.title}
         </text>
 
         {/* Step 1: Entry */}
         <rect
           x="20"
-          y="102"
-          width="150"
-          height="82"
+          y="96"
+          width="172"
+          height="96"
           rx="14"
           fill="#FFFFFF"
           stroke={palette.border}
           strokeWidth="2"
         />
-        <text x="95" y="122" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={palette.accent}>
+        <text x="106" y="114" textAnchor="middle" fontSize="9" fontWeight="700" fill={palette.accent}>
           1. ENTRY
         </text>
         <SvgWrappedText
-          x={95}
+          x={106}
           centerY={152}
           text={loop.entry}
-          maxChars={20}
-          fontSize={10.5}
+          maxChars={16}
+          fontSize={9.5}
           fill="#1E293B"
         />
 
         {/* Arrow 1 -> 2 */}
         <line
-          x1="170"
-          y1="143"
-          x2="192"
-          y2="143"
+          x1="192"
+          y1="144"
+          x2="212"
+          y2="144"
           stroke={palette.accent}
           strokeWidth="2"
           markerEnd={`url(#arrow-${projectId})`}
@@ -219,33 +218,33 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
 
         {/* Step 2: Core Action */}
         <rect
-          x="196"
-          y="102"
-          width="150"
-          height="82"
+          x="216"
+          y="96"
+          width="172"
+          height="96"
           rx="14"
           fill="#FFFFFF"
           stroke={palette.border}
           strokeWidth="2"
         />
-        <text x="271" y="122" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={palette.accent}>
+        <text x="302" y="114" textAnchor="middle" fontSize="9" fontWeight="700" fill={palette.accent}>
           2. PLAYER ACTION
         </text>
         <SvgWrappedText
-          x={271}
+          x={302}
           centerY={152}
           text={loop.action}
-          maxChars={20}
-          fontSize={10.5}
+          maxChars={16}
+          fontSize={9.5}
           fill="#1E293B"
         />
 
         {/* Arrow 2 -> 3 */}
         <line
-          x1="346"
-          y1="143"
-          x2="368"
-          y2="143"
+          x1="388"
+          y1="144"
+          x2="408"
+          y2="144"
           stroke={palette.accent}
           strokeWidth="2"
           markerEnd={`url(#arrow-${projectId})`}
@@ -253,33 +252,33 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
 
         {/* Step 3: System */}
         <rect
-          x="372"
-          y="102"
-          width="152"
-          height="82"
+          x="412"
+          y="96"
+          width="172"
+          height="96"
           rx="14"
           fill="#FFFFFF"
           stroke={palette.border}
           strokeWidth="2"
         />
-        <text x="448" y="122" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={palette.accent}>
+        <text x="498" y="114" textAnchor="middle" fontSize="9" fontWeight="700" fill={palette.accent}>
           3. CORE SYSTEM
         </text>
         <SvgWrappedText
-          x={448}
+          x={498}
           centerY={152}
           text={loop.system}
-          maxChars={20}
-          fontSize={10.5}
+          maxChars={16}
+          fontSize={9.5}
           fill="#1E293B"
         />
 
         {/* Arrow 3 -> Decision Diamond */}
         <line
-          x1="524"
-          y1="143"
-          x2="548"
-          y2="143"
+          x1="584"
+          y1="144"
+          x2="604"
+          y2="144"
           stroke={palette.accent}
           strokeWidth="2"
           markerEnd={`url(#arrow-${projectId})`}
@@ -287,62 +286,62 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
 
         {/* Decision Diamond */}
         <polygon
-          points="614,90 678,143 614,196 550,143"
+          points="682,82 758,144 682,206 606,144"
           fill={palette.pill}
           stroke={palette.accent}
           strokeWidth="2"
         />
         <SvgWrappedText
-          x={614}
-          centerY={143}
+          x={682}
+          centerY={144}
           text={loop.decision}
-          maxChars={13}
-          fontSize={10}
+          maxChars={11}
+          fontSize={9}
           fontWeight={700}
           fill={palette.text}
-          lineHeight={12}
+          lineHeight={11}
         />
 
         {/* YES branch -> Reward */}
         <line
-          x1="678"
-          y1="143"
-          x2="704"
-          y2="143"
+          x1="758"
+          y1="144"
+          x2="782"
+          y2="144"
           stroke={palette.accent}
           strokeWidth="2"
           markerEnd={`url(#arrow-${projectId})`}
         />
-        <text x="690" y="133" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={palette.text}>
+        <text x="770" y="134" textAnchor="middle" fontSize="9" fontWeight="700" fill={palette.text}>
           YES
         </text>
 
         <rect
-          x="708"
-          y="102"
-          width="132"
-          height="82"
+          x="786"
+          y="96"
+          width="154"
+          height="96"
           rx="14"
           fill="#FFFFFF"
           stroke={palette.accent}
           strokeWidth="2"
         />
-        <text x="774" y="122" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={palette.accent}>
+        <text x="863" y="114" textAnchor="middle" fontSize="9" fontWeight="700" fill={palette.accent}>
           4. ADVANCE
         </text>
         <SvgWrappedText
-          x={774}
+          x={863}
           centerY={152}
           text={loop.reward}
-          maxChars={18}
-          fontSize={10}
+          maxChars={15}
+          fontSize={9.5}
           fill="#1E293B"
           lineHeight={12}
         />
 
         {/* NO / Retry loop back from Diamond to Step 2 */}
         <path
-          d="M 614 196 L 614 256 L 271 256 L 271 188"
+          d="M 682 206 L 682 268 L 302 268 L 302 196"
           fill="none"
           stroke={palette.accent}
           strokeWidth="2"
@@ -351,7 +350,7 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
         />
         <rect
           x={retryPillX}
-          y="242"
+          y="254"
           width={retryPillW}
           height="26"
           rx="13"
@@ -359,13 +358,13 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
           stroke={palette.border}
           strokeWidth="1.5"
         />
-        <text x="448" y="259" textAnchor="middle" fontSize="10.5" fontWeight="600" fill={palette.text}>
+        <text x="492" y="271" textAnchor="middle" fontSize="9.5" fontWeight="600" fill={palette.text}>
           {retryText}
         </text>
 
         {/* Next Level / Cycle Loop from Advance back to Entry */}
         <path
-          d="M 774 184 L 774 302 L 95 302 L 95 188"
+          d="M 863 192 L 863 316 L 106 316 L 106 196"
           fill="none"
           stroke={palette.border}
           strokeWidth="2"
@@ -373,16 +372,16 @@ export function GameplayLoopFlowchart({ projectId, theme }: GameplayLoopFlowchar
           markerEnd={`url(#arrow-${projectId})`}
         />
         <rect
-          x="349"
-          y="289"
-          width="198"
+          x="390"
+          y="303"
+          width="204"
           height="24"
           rx="12"
           fill={palette.pill}
           stroke={palette.border}
           strokeWidth="1.2"
         />
-        <text x="448" y="305" textAnchor="middle" fontSize="10" fontWeight="700" fill={palette.text}>
+        <text x="492" y="319" textAnchor="middle" fontSize="9.5" fontWeight="700" fill={palette.text}>
           NEXT STAGE / CONTINUOUS LOOP
         </text>
       </svg>
