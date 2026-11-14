@@ -40,6 +40,7 @@ import { ProjectModal } from './components/ProjectModal';
 import { Reveal } from './components/Reveal';
 import { ScrollParallax, ScrollProgressBar } from './components/ScrollMotion';
 import { DualSenseScrollPointer } from './components/DualSenseScrollPointer';
+import { DualSensePlayground } from './components/DualSensePlayground';
 import { HeroNavMeshCanvas } from './components/HeroNavMeshCanvas';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
@@ -557,6 +558,9 @@ export default function App() {
             </div>
           </Reveal>
         </section>
+
+        {/* Interactive DualSense Haptics & Audio Lab */}
+        <DualSensePlayground />
 
         {/* Character Design Section */}
         <section id="characters" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
