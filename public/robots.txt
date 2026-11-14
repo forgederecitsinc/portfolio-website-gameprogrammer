@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://forgederecitsinc.github.io/portfolio-website-gameprogrammer/sitemap.xml
+Sitemap: https://forgederecitsinc.github.io/roshanchristygamedesignerportfolio/sitemap.xml
