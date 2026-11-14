@@ -226,6 +226,20 @@ export default function App() {
     : -1;
 
   const { crtMode, setCrtMode } = useKonamiCode();
+
+  // Dynamic SEO document title for routes and opened project modals
+  useEffect(() => {
+    if (selectedProject) {
+      document.title = `${selectedProject.title} — Roshan Christy | Game Programmer & Designer Toronto`;
+    } else if (route === 'professional') {
+      document.title = 'Professional Work — Roshan Christy | Game Programmer & Designer Toronto';
+    } else if (route === 'school') {
+      document.title = 'GBC Game Programming & Design Projects — Roshan Christy | Toronto';
+    } else {
+      document.title =
+        'Roshan Christy — Game Programmer & Game Designer in Toronto | UE5 C++ & Unity';
+    }
+  }, [selectedProject, route]);
   const stopTour = useCallback(() => setRecruiterTour(false), []);
   const { secondsLeft, stopIndex, currentStop, progressPct } = useRecruiterTour(
     recruiterTour,

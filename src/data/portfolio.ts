@@ -60,7 +60,7 @@ export interface ExperienceItem {
 
 export const PROFILE = {
   name: 'Roshan Christy',
-  title: 'Game Designer | Game Writer | Puzzle Designer | Screenwriter',
+  title: 'Game Programmer | Game Designer | Puzzle Designer | Game Writer',
   location: 'Toronto, Ontario, Canada',
   tagline:
     'Navigating the Evolution of Story Ideas: From Better Past Concepts to Stronger Present Narratives',
