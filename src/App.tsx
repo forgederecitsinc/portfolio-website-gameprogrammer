@@ -145,11 +145,9 @@ export default function App() {
             }}
             className="flex items-center gap-3"
           >
-            <img
-              src="./images/ludonode-logo.jpg"
-              alt="Ludonode Studios — Roshan's Forge de Récits Inc."
-              className="h-9 w-9 rounded-xl border border-slate-200/80 object-cover shadow-2xs dark:border-slate-700"
-            />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-violet-200/80 bg-violet-100/80 text-violet-700 shadow-2xs dark:border-violet-700/60 dark:bg-violet-950/60 dark:text-violet-300">
+              <Gamepad2 className="h-4.5 w-4.5" />
+            </div>
             <div>
               <span className="block font-serif text-base font-semibold tracking-tight text-slate-900 dark:text-slate-100 dark:text-slate-100">
                 {PROFILE.name}
@@ -332,31 +330,19 @@ export default function App() {
                 <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-4 shadow-sm transition duration-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/90">
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="rounded-2xl border border-amber-200/70 bg-amber-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-amber-700/60 dark:bg-amber-950/45">
-                    <img
-                      src="./images/hfg-badge.png"
-                      alt="HFG Entertainments"
-                      className="mx-auto h-8 w-auto object-contain"
-                    />
+                    <Gamepad2 className="mx-auto h-7 w-7 text-amber-600 dark:text-amber-300" />
                     <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-amber-100">
                       Shipped Mobile Titles
                     </p>
                   </div>
                   <div className="rounded-2xl border border-sky-200/70 bg-sky-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-sky-700/60 dark:bg-sky-950/45">
-                    <img
-                      src="./images/gbc-badge.png"
-                      alt="George Brown College"
-                      className="mx-auto h-8 w-auto object-contain"
-                    />
+                    <GraduationCap className="mx-auto h-7 w-7 text-sky-600 dark:text-sky-300" />
                     <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-sky-100">
                       GBC Game Design
                     </p>
                   </div>
                   <div className="rounded-2xl border border-violet-200/70 bg-violet-50/70 p-3 text-center transition hover:-translate-y-0.5 dark:border-violet-700/60 dark:bg-violet-950/45">
-                    <img
-                      src="./images/ludonode-logo.jpg"
-                      alt="Ludonode Studios — Roshan's Forge de Récits Inc."
-                      className="mx-auto h-8 w-8 rounded-lg object-cover"
-                    />
+                    <Sparkles className="mx-auto h-7 w-7 text-violet-600 dark:text-violet-300" />
                     <p className="mt-1.5 text-[11px] font-medium text-slate-700 dark:text-violet-100">
                       Ludonode Studios
                     </p>
@@ -436,13 +422,6 @@ export default function App() {
                         <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
                         {project.category}
                       </span>
-                      {project.badgeImage && (
-                        <img
-                          src={project.badgeImage}
-                          alt={project.context}
-                          className="h-6 w-auto object-contain opacity-85"
-                        />
-                      )}
                     </div>
 
                     <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-950">
@@ -654,11 +633,9 @@ export default function App() {
             <div className="lg:col-span-5">
               <div className="rounded-3xl border border-violet-200/80 bg-violet-50/60 p-7 dark:border-violet-800/60 dark:bg-violet-950/35">
                 <div className="flex items-center gap-4">
-                  <img
-                    src={STUDIO.emblem}
-                    alt={`${STUDIO.brand} — ${STUDIO.name}`}
-                    className="h-14 w-14 rounded-2xl border border-violet-200 object-cover dark:border-violet-700"
-                  />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
                   <div>
                     <span className="text-[11px] font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
                       {STUDIO.brand}
@@ -698,11 +675,9 @@ export default function App() {
               {/* Education */}
               <div className="mt-6 rounded-3xl border border-sky-200/80 bg-sky-50/60 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
                 <div className="flex items-center gap-3">
-                  <img
-                    src="./images/gbc-badge.png"
-                    alt="George Brown Polytechnic"
-                    className="h-10 w-auto object-contain"
-                  />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600 dark:border-sky-700 dark:bg-slate-900 dark:text-sky-300">
+                    <GraduationCap className="h-5 w-5" />
+                  </div>
                   <div>
                     <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
                       Education

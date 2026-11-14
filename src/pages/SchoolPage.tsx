@@ -58,12 +58,6 @@ export function SchoolPage({ onNavigate, onSelectProject }: SchoolPageProps) {
               Brown College.
             </p>
           </div>
-
-          <img
-            src="./images/gbc-badge.png"
-            alt="George Brown College"
-            className="h-16 w-auto rounded-2xl border border-sky-200/80 bg-white p-3 object-contain shadow-2xs"
-          />
         </div>
       </section>
 

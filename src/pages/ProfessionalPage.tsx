@@ -60,19 +60,6 @@ export function ProfessionalPage({ onNavigate, onSelectProject }: ProfessionalPa
               <span className="font-semibold text-slate-900 dark:text-slate-100 dark:text-slate-100">{STUDIO.brand}</span>.
             </p>
           </div>
-
-          <div className="flex items-center gap-4">
-            <img
-              src="./images/hfg-badge.png"
-              alt="HFG Entertainments"
-              className="h-14 w-auto rounded-2xl border border-amber-200/80 bg-white p-2.5 object-contain shadow-2xs"
-            />
-            <img
-              src="./images/ludonode-logo.jpg"
-              alt={STUDIO.brand}
-              className="h-14 w-14 rounded-2xl border border-amber-200/80 object-cover shadow-2xs"
-            />
-          </div>
         </div>
       </section>
 

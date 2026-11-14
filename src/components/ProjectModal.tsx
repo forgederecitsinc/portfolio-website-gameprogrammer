@@ -156,13 +156,6 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
                 <ChevronRight className="h-3.5 w-3.5" />
               </button>
             )}
-            {project.badgeImage && (
-              <img
-                src={project.badgeImage}
-                alt={project.context}
-                className="ml-2 h-8 w-auto object-contain opacity-90"
-              />
-            )}
           </div>
 
           {project.link && (
