@@ -1,9 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
+  ArrowUp,
   ArrowUpRight,
   BookOpen,
   Briefcase,
+  Check,
   Compass,
+  Copy,
   Feather,
   Gamepad2,
   GraduationCap,
@@ -65,14 +68,28 @@ const NAV_LINKS = [
 export default function App() {
   const [route, setRoute] = useState<PageRoute>(() => getRouteFromHash());
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
+  const [showAllProjects, setShowAllProjects] = useState(false);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => setRoute(getRouteFromHash());
+    const handleScroll = () => setShowBackToTop(window.scrollY > 420);
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+  const copyEmail = (address: string) => {
+    navigator.clipboard?.writeText(address);
+    setCopiedEmail(address);
+    setTimeout(() => setCopiedEmail(null), 2000);
+  };
 
   const navigateTo = (nextRoute: PageRoute) => {
     const hashMap: Record<PageRoute, string> = {
@@ -90,6 +107,15 @@ export default function App() {
     if (activeFilter === 'All') return PROJECTS;
     return PROJECTS.filter((p) => p.category === activeFilter);
   }, [activeFilter]);
+
+  const visibleProjects = useMemo(() => {
+    if (activeFilter !== 'All' || showAllProjects) return filteredProjects;
+    return filteredProjects.slice(0, 6);
+  }, [activeFilter, showAllProjects, filteredProjects]);
+
+  const selectedIndex = selectedProject
+    ? filteredProjects.findIndex((p) => p.id === selectedProject.id)
+    : -1;
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-slate-800 dark:bg-slate-950 dark:text-slate-100">
@@ -348,6 +374,10 @@ export default function App() {
             <div className="flex flex-wrap gap-2">
               {PROJECT_FILTERS.map((filter) => {
                 const isActive = activeFilter === filter;
+                const count =
+                  filter === 'All'
+                    ? PROJECTS.length
+                    : PROJECTS.filter((p) => p.category === filter).length;
                 return (
                   <button
                     key={filter}
@@ -355,11 +385,11 @@ export default function App() {
                     onClick={() => setActiveFilter(filter)}
                     className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
                       isActive
-                        ? 'bg-slate-900 text-white shadow-2xs'
-                        : 'border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-300 hover:text-slate-900'
+                        ? 'bg-slate-900 text-white shadow-2xs dark:bg-slate-100 dark:text-slate-900'
+                        : 'border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-300 hover:text-slate-900 dark:hover:text-white'
                     }`}
                   >
-                    {filter}
+                    {filter} <span className="ml-1 opacity-70">({count})</span>
                   </button>
                 );
               })}
@@ -367,7 +397,7 @@ export default function App() {
           </div>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredProjects.map((project) => {
+            {visibleProjects.map((project) => {
               const theme = PASTEL_THEME[project.theme];
               return (
                 <article
@@ -431,6 +461,20 @@ export default function App() {
               );
             })}
           </div>
+
+          {activeFilter === 'All' && filteredProjects.length > 6 && (
+            <div className="mt-7 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowAllProjects((prev) => !prev)}
+                className="rounded-full border border-slate-300 bg-white px-6 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+              >
+                {showAllProjects
+                  ? 'Show featured (6)'
+                  : `Show all ${filteredProjects.length} projects`}
+              </button>
+            </div>
+          )}
 
           {/* Additional GBC Works Strip */}
           <div className="mt-8 rounded-3xl border border-sky-200/70 bg-sky-50/50 p-6">
@@ -757,16 +801,16 @@ export default function App() {
 
         {/* Contact Section */}
         <section id="contact" className="scroll-mt-20 border-t border-slate-200/80 dark:border-slate-800/80 py-14 sm:py-16">
-          <div className="rounded-3xl border border-rose-200/70 bg-gradient-to-br from-rose-50/80 via-amber-50/50 to-violet-50/70 p-8 sm:p-10">
+          <div className="rounded-3xl border border-rose-200/70 bg-gradient-to-br from-rose-50/80 via-amber-50/50 to-violet-50/70 p-8 sm:p-10 dark:border-rose-900/50 dark:from-rose-950/30 dark:via-amber-950/20 dark:to-violet-950/30">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div>
-                <span className="text-xs font-semibold tracking-wider text-rose-700 uppercase">
+                <span className="text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-rose-300">
                   Contact
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900">
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100">
                   Let&apos;s build a world together
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                   Available for Narrative Design, Game &amp; Puzzle Design, Screenwriting, and
                   French/English Localization collaborations.
                 </p>
@@ -774,33 +818,52 @@ export default function App() {
 
               <div className="space-y-3">
                 {PROFILE.emails.map((email) => (
-                  <a
+                  <div
                     key={email.address}
-                    href={`mailto:${email.address}`}
-                    className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 dark:border-slate-800 dark:bg-slate-900/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300"
+                    className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
                   >
-                    <span className="flex items-center gap-2.5">
-                      <Mail className="h-4 w-4 text-rose-600" />
-                      <span>
+                    <a
+                      href={`mailto:${email.address}`}
+                      className="flex min-w-0 items-center gap-2.5 truncate transition hover:text-rose-700 dark:hover:text-rose-300"
+                    >
+                      <Mail className="h-4 w-4 shrink-0 text-rose-600 dark:text-rose-400" />
+                      <span className="truncate">
                         <span className="mr-2 text-xs font-semibold text-slate-400 uppercase">
                           {email.label}
                         </span>
                         {email.address}
                       </span>
-                    </span>
-                    <ArrowUpRight className="h-4 w-4 text-slate-400" />
-                  </a>
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => copyEmail(email.address)}
+                      aria-label={`Copy ${email.address}`}
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                    >
+                      {copiedEmail === email.address ? (
+                        <>
+                          <Check className="h-3 w-3 text-emerald-600" />
+                          Copied
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="h-3 w-3" />
+                          Copy
+                        </>
+                      )}
+                    </button>
+                  </div>
                 ))}
 
                 <a
                   href={`tel:${PROFILE.phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 dark:border-slate-800 dark:bg-slate-900/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
                 >
                   <span className="flex items-center gap-2.5">
-                    <Phone className="h-4 w-4 text-emerald-600" />
+                    <Phone className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                     {PROFILE.phone}
                   </span>
-                  <span className="text-xs text-slate-500">Toronto, ON</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Toronto, ON</span>
                 </a>
               </div>
             </div>
@@ -810,8 +873,8 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-200/80 dark:border-slate-800/80 bg-white/50 py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 dark:text-slate-400 sm:flex-row sm:px-6">
+      <footer className="border-t border-slate-200/80 bg-white/50 py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 sm:flex-row sm:px-6 dark:text-slate-400">
           <p>
             © {new Date().getFullYear()} {PROFILE.name} · {STUDIO.name}
           </p>
@@ -822,7 +885,7 @@ export default function App() {
                 href={social.url}
                 target="_blank"
                 rel="noreferrer"
-                className="transition hover:text-slate-900"
+                className="transition hover:text-slate-900 dark:hover:text-white"
               >
                 {social.name}
               </a>
@@ -831,7 +894,31 @@ export default function App() {
         </div>
       </footer>
 
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      {showBackToTop && (
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Back to top"
+          className="fixed right-5 bottom-5 z-30 rounded-full border border-slate-200 bg-white/95 p-3 text-slate-700 shadow-md backdrop-blur-xs transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-200 dark:hover:bg-slate-100 dark:hover:text-slate-900"
+        >
+          <ArrowUp className="h-4 w-4" />
+        </button>
+      )}
+
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+        onPrev={
+          selectedIndex > 0
+            ? () => setSelectedProject(filteredProjects[selectedIndex - 1])
+            : undefined
+        }
+        onNext={
+          selectedIndex >= 0 && selectedIndex < filteredProjects.length - 1
+            ? () => setSelectedProject(filteredProjects[selectedIndex + 1])
+            : undefined
+        }
+      />
     </div>
   );
 }
