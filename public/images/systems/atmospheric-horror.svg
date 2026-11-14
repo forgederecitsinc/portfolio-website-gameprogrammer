@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <rect width="800" height="400" rx="24" fill="#F5F3FF"/>
+  <rect x="16" y="16" width="768" height="368" rx="18" fill="none" stroke="#DDD6FE" stroke-width="1.5"/>
+  <rect x="36" y="38" width="260" height="26" rx="13" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="1"/>
+  <text x="166" y="55" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.8" fill="#5B21B6">SPATIAL AUDIO &amp; LIGHTING (UNITY 6)</text>
+  <text x="36" y="102" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#0F172A">Atmospheric Indoor Horror Showcase</text>
+  <text x="36" y="126" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#475569">Cinemachine · SimpleDelayedAudio.cs · RealisticFlicker.cs</text>
+  
+        <g>
+          <rect x="36" y="172" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="2"/>
+          <circle cx="58" cy="194" r="10" fill="#EDE9FE"/>
+          <text x="58" y="198" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5B21B6">1</text>
+          <text x="100.0" y="224" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E293B">3D Soundscape</text>
+        </g>
+        <line x1="166" y1="210.0" x2="182" y2="210.0" stroke="#7C3AED" stroke-width="2" stroke-dasharray="3 2"/>
+        <polygon points="182,206.0 188,210.0 182,214.0" fill="#7C3AED"/>
+        <g>
+          <rect x="186" y="172" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="2"/>
+          <circle cx="208" cy="194" r="10" fill="#EDE9FE"/>
+          <text x="208" y="198" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5B21B6">2</text>
+          <text x="250.0" y="224" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E293B">Delayed Fade</text>
+        </g>
+        <line x1="316" y1="210.0" x2="332" y2="210.0" stroke="#7C3AED" stroke-width="2" stroke-dasharray="3 2"/>
+        <polygon points="332,206.0 338,210.0 332,214.0" fill="#7C3AED"/>
+        <g>
+          <rect x="336" y="172" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="2"/>
+          <circle cx="358" cy="194" r="10" fill="#EDE9FE"/>
+          <text x="358" y="198" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5B21B6">3</text>
+          <text x="400.0" y="224" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E293B">Sine Flicker</text>
+        </g>
+        <line x1="466" y1="210.0" x2="482" y2="210.0" stroke="#7C3AED" stroke-width="2" stroke-dasharray="3 2"/>
+        <polygon points="482,206.0 488,210.0 482,214.0" fill="#7C3AED"/>
+        <g>
+          <rect x="486" y="172" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="2"/>
+          <circle cx="508" cy="194" r="10" fill="#EDE9FE"/>
+          <text x="508" y="198" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5B21B6">4</text>
+          <text x="550.0" y="224" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E293B">URP Probes</text>
+        </g>
+        <line x1="616" y1="210.0" x2="632" y2="210.0" stroke="#7C3AED" stroke-width="2" stroke-dasharray="3 2"/>
+        <polygon points="632,206.0 638,210.0 632,214.0" fill="#7C3AED"/>
+        <g>
+          <rect x="636" y="172" width="128" height="76" rx="16" fill="#FFFFFF" stroke="#DDD6FE" stroke-width="2"/>
+          <circle cx="658" cy="194" r="10" fill="#EDE9FE"/>
+          <text x="658" y="198" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="11" font-weight="700" fill="#5B21B6">5</text>
+          <text x="700.0" y="224" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#1E293B">Tension Loop</text>
+        </g>
+  
+      <path d="M 700 248 C 700 315, 100 315, 100 254" fill="none" stroke="#DDD6FE" stroke-width="2" stroke-dasharray="5 4"/>
+      <polygon points="96,258 100,250 104,258" fill="#7C3AED"/>
+      <rect x="315" y="286" width="170" height="24" rx="12" fill="#EDE9FE" stroke="#DDD6FE" stroke-width="1"/>
+      <text x="400" y="302" text-anchor="middle" font-family="Plus Jakarta Sans, -apple-system, sans-serif" font-size="10.5" font-weight="600" fill="#5B21B6">System &amp; Playtest Loop</text>
+    
+</svg>

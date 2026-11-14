@@ -98,16 +98,36 @@ export const PROFILE = {
 
 export const PROJECTS: ProjectItem[] = [
   {
+    id: 'carpe-dino',
+    title: 'Carpe Dino: Seize the Date',
+    category: 'Professional',
+    roles: ['Game Writer', 'Narrative Designer'],
+    context: 'Black Squirrels Studio · Jan 2026 – Present',
+    overview:
+      'Writing dialogue and branching narratives in Yarn Spinner–style scripting, keeping each character’s voice consistent across paths.',
+    contributions: [
+      'Authored branching dialogue and Yarn Spinner–style narrative scripts.',
+      'Maintained distinct, consistent character voices across player choices and story routes.',
+    ],
+    images: [
+      {
+        src: './images/systems/carpe-dino.svg',
+        alt: 'Carpe Dino: Seize the Date branching narrative system diagram',
+      },
+    ],
+    theme: 'violet',
+  },
+  {
     id: 'grim-of-legacy',
-    title: 'Escape Room: Grim of Legacy',
+    title: 'Escape Room: Grim of Legacy 2',
     category: 'Professional',
     roles: ['Game Designer', 'Level Designer'],
-    context: 'HFG Entertainments (Uncredited)',
+    context: 'HFG Entertainments · Mar 2023 – May 2023',
     platforms: ['iOS', 'Android'],
     overview:
-      '2D point-and-click puzzle escape game set in an archaeological expedition and ancient mystery environment.',
+      'Point-and-click puzzle adventure with 250+ challenging levels and over 600 unique puzzles spanning riddles, ciphers, and logic challenges across 26 languages.',
     contributions: [
-      'Designed interactive door and inventory-combination puzzles.',
+      'Designed interactive door and inventory-combination puzzles across 250+ levels.',
       'Balanced item discovery sequences and escape progression curves.',
       'Authored spatial flow diagrams and player puzzle walkthroughs.',
     ],
@@ -129,13 +149,13 @@ export const PROJECTS: ProjectItem[] = [
     title: "Escape Room: Ally's Adventure",
     category: 'Professional',
     roles: ['Narrative Writer', 'Level Designer'],
-    context: 'HFG Entertainments (Uncredited)',
+    context: 'HFG Entertainments · Jan 2023 – Mar 2023 · 170K+ Downloads (4.35/5)',
     platforms: ['iOS', 'Android'],
     overview:
-      'Whimsical fairy-tale mystery escape room adventure following young protagonist Ally through enchanted ruins, magical rooms, and cryptic lock mechanisms.',
+      'Point-and-click puzzle game featuring 50 uniquely crafted levels and 150+ puzzles following Ally and her alien companion Bozzy, localized in 26 languages with 170,000+ downloads worldwide.',
     contributions: [
-      'Story narrative, dialogue scripting, and environmental story clues.',
-      'Multi-room puzzle sequencing and clue progression design.',
+      'Authored story narrative, dialogue scripting, and environmental story clues.',
+      'Designed multi-room puzzle sequencing and clue progression across 50 levels.',
     ],
     link: {
       label: 'Google Play Store',
@@ -151,23 +171,169 @@ export const PROJECTS: ProjectItem[] = [
     theme: 'rose',
   },
   {
-    id: 'red-tide',
-    title: 'Red Tide',
+    id: 'live-wire',
+    title: 'Live Wire',
     category: 'GBC School',
-    roles: ['Game Designer', 'Level Designer', 'Writer', 'Project Manager'],
-    context: 'Capstone / Flagship Academic Team Project · George Brown College',
+    roles: ['Game Programmer', 'Systems & Level Designer'],
+    context: 'George Brown College · Sep 2026 – Present · Unreal Engine 5.8 (C++ & Blueprints)',
+    platforms: ['PC', 'DualSense'],
     overview:
-      'Sci-fi deep-sea survival psychological horror thriller where players navigate a compromised underwater research outpost amidst mutated crimson bioluminescent organisms.',
+      'Top-down 2.5D isometric action-puzzle game set inside a decommissioned multi-tier power substation where power is both the objective and the hazard.',
     contributions: [
-      'Authored the complete Game Design Document (GDD) and level layouts.',
-      'Designed encounter pacing, narrative audio logs, and environmental storytelling.',
-      'Led sprint planning and Agile project management across the team.',
+      'Engineered ID-matched Battery Capsules, Laser Guns, Laser Targets, and neon-igniting Transformer Bushings in C++.',
+      'Built NavMesh Enemy Drones with spotlight cones, Battery Thief wave AI, and security laser hazards.',
+      'Implemented dynamic circular occlusion cutout shader (MPC_PlayerOcclusion), Slate HUD, and DualSense haptics.',
+    ],
+    link: {
+      label: 'GitHub Repository',
+      url: 'https://github.com/forgederecitsinc/GAME3023_F2026_101473963',
+    },
+    badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/live-wire.svg',
+        alt: 'Live Wire Unreal Engine 5.8 C++ puzzle and AI system diagram',
+      },
+    ],
+    theme: 'teal',
+  },
+  {
+    id: 'trap-rooms',
+    title: 'Trap Rooms',
+    category: 'GBC School',
+    roles: ['Game Programmer', 'UI & Systems Designer'],
+    context: 'George Brown College · Sep 2026 – Present · Unreal Engine 5.8 (C++ & Blueprints)',
+    platforms: ['PC', 'Gamepad'],
+    overview:
+      '3D third-person risk-reward arcade game built in Unreal Engine 5.8 focusing on console-ready UI, Enhanced Input gamepad navigation, and modular gameplay subsystems.',
+    contributions: [
+      'Implemented timed trap rooms with poison gas countdowns and banked vs. unbanked coin scoring.',
+      'Built persistent C++ GameInstanceSubsystems for cross-level music fading (BGMAudioSubsystem) and screen fades (GlobalFadeSubsystem).',
+      'Engineered full UMG/Slate gamepad focus management, controller mapping, and disconnect handling.',
     ],
     badgeImage: './images/gbc-badge.png',
     images: [
       {
+        src: './images/systems/trap-rooms.svg',
+        alt: 'Trap Rooms risk-reward arcade and C++ subsystem diagram',
+      },
+    ],
+    theme: 'rose',
+  },
+  {
+    id: 'multiplayer-tic-tac-toe',
+    title: 'Multiplayer Tic-Tac-Toe (Client-Server)',
+    category: 'GBC School',
+    roles: ['Network Programmer', 'Game Designer'],
+    context: 'George Brown College · Oct 2026 – Present · Unity 6 & Unity Transport',
+    platforms: ['PC', 'Multiplayer'],
+    overview:
+      'Real-time, server-authoritative multiplayer Tic-Tac-Toe built in Unity 6 and C# using a dedicated client-server architecture powered by Unity.Networking.Transport.',
+    contributions: [
+      'Implemented reliable, sequenced, and fragmented NetworkDriver pipelines with a custom pipe-delimited protocol.',
+      'Built account authentication, room-based matchmaking lobbies, spectator state sync, and a PvP quick-chat wheel.',
+      'Centralized server-authoritative turn validation, move processing, and win/draw detection.',
+    ],
+    badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/multiplayer-tic-tac-toe.svg',
+        alt: 'Multiplayer Tic-Tac-Toe client-server networking diagram',
+      },
+    ],
+    theme: 'sky',
+  },
+  {
+    id: 'asteroid-survival',
+    title: '2D Asteroid Survival Arcade Game',
+    category: 'GBC School',
+    roles: ['Game Programmer', 'Game Designer'],
+    context: 'George Brown College · Sep 2026 – Present · Unity 6 (URP 2D / WebGL)',
+    platforms: ['WebGL', 'PC'],
+    overview:
+      '2D top-down space survival arcade game built in Unity 6 (6000.6.0f1) using C#, URP 2D, and the Unity Input System, deployed as a playable WebGL build.',
+    contributions: [
+      'Built smooth mouse-aim rotation, click-to-thrust Rigidbody2D movement, and velocity clamping.',
+      'Created proximity radar audio that scales pitch/frequency with asteroid distance and WebGL autoplay-unlock handling.',
+      'Implemented speed-reactive thruster smoke, collision sparks, PlayerPrefs high scores, and 300-point win celebration.',
+    ],
+    badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/asteroid-survival.svg',
+        alt: '2D Asteroid Survival Arcade Unity 6 WebGL system diagram',
+      },
+    ],
+    theme: 'amber',
+  },
+  {
+    id: 'sphere-runner',
+    title: 'Sphere Runner — 3D Arcade Survival',
+    category: 'GBC School',
+    roles: ['Game Programmer', 'Game Designer'],
+    context: 'George Brown College · Sep 2026 – Present · Unity 6 (URP / WebGL)',
+    platforms: ['WebGL', 'PC'],
+    overview:
+      'Fast-paced 3D arcade survival game in Unity 6 using C#, URP, NavMeshAgent pursuit AI, and programmatic TextMeshPro/uGUI menus exported for WebGL.',
+    contributions: [
+      'Engineered camera-relative Rigidbody sphere controls with a smooth-lerping follow camera.',
+      'Implemented NavMeshAgent enemy chaser with URP MaterialPropertyBlock emission pulsing based on proximity.',
+      'Added electric boundary hazards with 3-second linger-to-lose audio, procedural particle trails, and live settings sliders.',
+    ],
+    badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/sphere-runner.svg',
+        alt: 'Sphere Runner 3D arcade survival system diagram',
+      },
+    ],
+    theme: 'emerald',
+  },
+  {
+    id: 'atmospheric-horror',
+    title: 'Atmospheric Indoor Horror & Spatial Audio',
+    category: 'GBC School',
+    roles: ['Audio & Lighting Programmer', 'Designer'],
+    context: 'George Brown College · Sep 2026 – Present · Unity 6 (URP / Cinemachine)',
+    platforms: ['WebGL', 'Desktop'],
+    overview:
+      'Interactive 3D indoor horror and spatial audio environment built in Unity 6 using URP, Cinemachine, and custom C# audio and light-flicker systems.',
+    contributions: [
+      'Layered 3D ambient audio, thunderstorm rain, distant marching, flickering light SFX, and horror ambience.',
+      'Wrote SimpleDelayedAudio.cs (coroutine fade-out) and RealisticFlicker.cs / LightFlicker.cs for dynamic tension.',
+      'Configured URP area/directional lighting, reflection probes, and post-processing volumes.',
+    ],
+    badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/atmospheric-horror.svg',
+        alt: 'Atmospheric Indoor Horror spatial audio and lighting diagram',
+      },
+    ],
+    theme: 'violet',
+  },
+  {
+    id: 'red-tide',
+    title: 'Red Tide',
+    category: 'GBC School',
+    roles: ['Game Designer', 'Level Designer', 'Writer', 'Project Manager'],
+    context: 'George Brown College · May 2025 – Present',
+    overview:
+      'Narrative-driven ecological adventure game following Ricky, a young ichthyologist stranded on a mysterious island with a robotic pigeon guide, uncovering the perilous Red Tide crisis.',
+    contributions: [
+      'Authored the Game Design Document (GDD), ecological narrative arc, and level layouts.',
+      'Designed encounter pacing, environmental storytelling, and mission progression.',
+      'Led sprint planning and Agile project management across the team.',
+    ],
+    link: {
+      label: 'Project Showcase',
+      url: 'https://www.roshanchristy-gamedesignerleveldesignerwriter.com/school-game-design-projects/redtide',
+    },
+    badgeImage: './images/gbc-badge.png',
+    images: [
+      {
         src: './images/systems/red-tide.svg',
-        alt: 'Red Tide survival horror pacing loop diagram',
+        alt: 'Red Tide ecological narrative adventure system diagram',
       },
     ],
     theme: 'rose',
@@ -195,21 +361,21 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'syrup-safari',
-    title: 'Syrup Safari',
+    title: 'Syrup Safari - AR Cube Puzzle Game',
     category: 'GBC School',
     roles: ['Level Designer', 'Puzzle Designer'],
-    context: 'Game Jam 3 · George Brown College',
+    context: 'George Brown College · Nov 2023 – Dec 2023 · Unity 3D',
     overview:
-      'Canadian wilderness and maple-syrup-themed arcade-puzzle platformer focused on fluid navigation, resource collection, obstacle pathing, and environmental hazard timing.',
+      'Vibrant cube-based puzzle game featuring fruit- and candy-themed levels built in Unity 3D, where players navigate mazes using color-coded pressure-sensitive switches and timed challenges.',
     contributions: [
-      'Architected platforming puzzle layouts and hazard timing loops.',
-      'Tuned resource placement and player traversal flow.',
+      'Designed color-coded switch mechanics, pressure plates, and timed puzzle challenges.',
+      'Architected maze layouts and strategic movement paths in Unity 3D.',
     ],
     badgeImage: './images/gbc-badge.png',
     images: [
       {
         src: './images/systems/syrup-safari.svg',
-        alt: 'Syrup Safari platforming and hazard timing system diagram',
+        alt: 'Syrup Safari AR cube puzzle system diagram',
       },
     ],
     theme: 'amber',
@@ -236,16 +402,20 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'slide-n-ball',
-    title: "Slide 'n Ball Game",
+    title: "Slide 'n Ball",
     category: 'Game Design',
     roles: ['Game Designer', 'Level Designer'],
-    context: 'Original Arcade Puzzle Concept',
+    context: 'Ludonode Studios · Nov 2025 – Present',
     overview:
-      'Kinetic physics-based puzzle arcade title designed for tactile feedback, momentum manipulation, gravity wells, and spatial prediction challenges.',
+      'Kinetic physics puzzle game where players click and drag linked, colored platforms to create pathways for a launched ball, anticipating bounces to hit the red button target.',
     contributions: [
-      'Designed momentum-driven mechanics and gravity-well interactions.',
-      'Structured escalating spatial prediction challenges.',
+      'Authored the complete Game Design Document (GDD) and core platform-manipulation mechanics.',
+      'Structured escalating spatial prediction and bounce-anticipation challenges.',
     ],
+    link: {
+      label: 'Game Design Document (GDD)',
+      url: 'https://docs.google.com/document/d/1RGUxhvyyN-6owVgEYlwoJ3qacFtKlf0JX24Tj2LlvNc/edit?usp=sharing&usp=embed_facebook',
+    },
     images: [
       {
         src: './images/systems/slide-n-ball.svg',
@@ -279,12 +449,12 @@ export const PROJECTS: ProjectItem[] = [
     title: 'Solaureus',
     category: 'Narrative & Worldbuilding',
     roles: ['Worldbuilder', 'Lore Architect'],
-    context: 'Original Sci-Fantasy Universe',
+    context: 'George Brown College · Sep 2024 – Dec 2024',
     overview:
-      'Solar-punk / mythic sci-fantasy universe driven by celestial energy, solar dynastic guilds, crystalline architecture, and astronomical alchemy.',
+      'Worldbuilding group project featuring Welkin Legend, Welkin Security System, and Lamaria Legend—driven by celestial energy, solar dynastic guilds, and astronomical alchemy.',
     contributions: [
       'Developed comprehensive lore on geography, theological sects, and socio-economic caste systems.',
-      'Designed technological artifacts powered by crystallized sunlight.',
+      'Co-authored Welkin Legend, Welkin Security System, and Lamaria Legend.',
     ],
     images: [
       {
@@ -428,6 +598,33 @@ export const STUDIO = {
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
+    role: 'Peer Tutor',
+    organization: 'George Brown Polytechnic',
+    location: 'Toronto, Ontario',
+    period: 'Oct 2026 – Present',
+    highlights:
+      'Supporting fellow Game Programming & Design students across Unity 6, Unreal Engine 5.8, and C++ / C# coursework.',
+    theme: 'sky',
+  },
+  {
+    role: 'Game Writer',
+    organization: 'Black Squirrels Studio',
+    location: 'Toronto / Remote',
+    period: 'Jan 2026 – Present',
+    highlights:
+      'Writing Yarn Spinner–style branching dialogue and show-don’t-tell narrative design for Carpe Dino: Seize the Date.',
+    theme: 'rose',
+  },
+  {
+    role: 'Founder | Game Designer',
+    organization: "Ludonode Studios (Roshan's Forge de Récits Inc.)",
+    location: 'Toronto, Ontario',
+    period: 'Jan 2025 – Present',
+    highlights:
+      'Defining creative direction, game concept design, documentation, and prototyping (Slide ’n Ball).',
+    theme: 'violet',
+  },
+  {
     role: 'Narrative Translator',
     organization: '4S Interpretation and Translation Services Inc.',
     location: 'Toronto / Remote',
@@ -436,21 +633,12 @@ export const EXPERIENCE: ExperienceItem[] = [
     theme: 'teal',
   },
   {
-    role: 'Founder | Writer',
-    organization: "Roshan's Forge de Récits Inc.",
-    location: 'Toronto, Ontario',
-    period: '2024 – Present',
-    highlights:
-      'Independent studio delivering narrative design, puzzle architecture, screenwriting, and localization.',
-    theme: 'violet',
-  },
-  {
     role: 'Game Designer',
-    organization: 'HFG Entertainments',
+    organization: 'HFG Entertainments Private Limited',
     location: 'Chennai, India',
     period: 'Jan – May 2023',
     highlights:
-      'Designed levels, puzzles, and narrative scripts for commercial mobile escape-room titles (Grim of Legacy, Ally’s Adventure).',
+      'Designed levels, puzzles, and quest flow for Escape Room: Grim of Legacy 2 (250+ levels) and Escape Room: Ally’s Adventure (170K+ downloads).',
     theme: 'amber',
   },
   {
@@ -467,7 +655,7 @@ export const EXPERIENCE: ExperienceItem[] = [
     location: 'Online',
     period: 'Sep – Dec 2021',
     highlights: 'Authored structured web copy, narrative articles, and creative briefs.',
-    theme: 'sky',
+    theme: 'emerald',
   },
 ];
 
