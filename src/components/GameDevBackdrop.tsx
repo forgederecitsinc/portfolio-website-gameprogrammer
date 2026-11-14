@@ -121,7 +121,6 @@ const TOKENS: FloatingToken[] = [
  */
 export function GameDevBackdrop() {
   const layerRef = useRef<HTMLDivElement>(null);
-  const spotlightRef = useRef<HTMLDivElement>(null);
   const gridCanvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -132,15 +131,11 @@ export function GameDevBackdrop() {
     let targetY = 0;
     let currentX = 0;
     let currentY = 0;
-    let pointerPxX = window.innerWidth * 0.5;
-    let pointerPxY = window.innerHeight * 0.3;
     let rafId = 0;
 
     const onPointerMove = (e: PointerEvent) => {
       targetX = (e.clientX / window.innerWidth - 0.5) * 2;
       targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-      pointerPxX = e.clientX;
-      pointerPxY = e.clientY;
     };
 
     const tick = () => {
@@ -158,10 +153,6 @@ export function GameDevBackdrop() {
           const scrollRot = rot + scrollRatio * (depth > 25 ? 8 : -6);
           el.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0) rotate(${scrollRot.toFixed(2)}deg)`;
         });
-      }
-
-      if (spotlightRef.current) {
-        spotlightRef.current.style.background = `radial-gradient(520px circle at ${pointerPxX}px ${pointerPxY}px, rgba(139, 92, 246, 0.10), transparent 70%)`;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -273,21 +264,13 @@ export function GameDevBackdrop() {
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
       {/* Subtle level-design dot grid */}
       <div
-        className="absolute inset-0 opacity-45 dark:opacity-25"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
             'radial-gradient(circle, rgba(148, 163, 184, 0.45) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       />
-
-      {/* Cursor-following soft spotlight */}
-      <div ref={spotlightRef} className="absolute inset-0 transition-opacity duration-300" />
-
-      {/* Ambient floating pastel aurora orbs */}
-      <div className="animate-float-slow absolute -top-24 -left-24 h-80 w-80 rounded-full bg-violet-200/45 blur-3xl dark:bg-violet-600/20" />
-      <div className="animate-float-reverse absolute top-10 right-[-4rem] h-80 w-80 rounded-full bg-rose-200/40 blur-3xl dark:bg-rose-600/15" />
-      <div className="animate-float-slow absolute top-48 left-1/3 h-64 w-64 rounded-full bg-sky-200/35 blur-3xl dark:bg-sky-500/15" />
 
       {/* Cursor-reactive game-design & game-dev icon layer */}
       <div ref={layerRef} className="absolute inset-0">
