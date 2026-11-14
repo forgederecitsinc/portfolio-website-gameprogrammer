@@ -325,6 +325,21 @@ export default function App() {
                 Main Page
               </button>
             )}
+            <button
+              type="button"
+              onClick={() => {
+                if (route !== 'home') navigateTo('home');
+                setRecruiterTour((prev) => !prev);
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                recruiterTour
+                  ? 'bg-[#0070D1] text-white'
+                  : 'border border-[#0070D1]/40 bg-[#F0F7FF] text-[#005BB5] hover:bg-[#E0EFFF]'
+              }`}
+            >
+              {recruiterTour ? 'Exit Tour' : '30s Tour'}
+            </button>
             <a
               href={`mailto:${PROFILE.emails[0].address}`}
               className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-slate-800 active:scale-[0.97]"
