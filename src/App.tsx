@@ -414,7 +414,7 @@ export default function App() {
             </div>
             <div className="flex gap-2">
               <a
-                href="https://medium.com/@roshanchristy"
+                href="https://medium.com/@ludonodestudios"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"

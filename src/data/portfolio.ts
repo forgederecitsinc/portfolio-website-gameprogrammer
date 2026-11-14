@@ -71,8 +71,8 @@ export const PROFILE = {
     },
     {
       name: 'Medium',
-      handle: '@roshanchristy',
-      url: 'https://medium.com/@roshanchristy',
+      handle: '@ludonodestudios',
+      url: 'https://medium.com/@ludonodestudios',
     },
     {
       name: 'Wattpad',
@@ -307,7 +307,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'Deep-dive game design analysis examining player psychology during maze solving, cognitive load, time pressure, and building fair player-designer trust.',
     platform: 'Medium',
-    url: 'https://medium.com/@roshanchristy',
+    url: 'https://medium.com/@ludonodestudios',
     theme: 'teal',
   },
   {
@@ -317,7 +317,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'Fundamental breakdown of puzzle design principles: mechanics discovery, clue conveyance, the "Eureka!" curve, and avoiding frustration loops.',
     platform: 'Medium',
-    url: 'https://medium.com/@roshanchristy',
+    url: 'https://medium.com/@ludonodestudios',
     theme: 'sky',
   },
   {
@@ -327,7 +327,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'Philosophical exploration of human intuition, cognitive biases, empathy, and subversion of character expectations in storytelling.',
     platform: 'Medium',
-    url: 'https://medium.com/@roshanchristy',
+    url: 'https://medium.com/@ludonodestudios',
     theme: 'amber',
   },
   {
@@ -337,7 +337,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'Reflective personal essay dissecting emotional vulnerability, creative synergy, and romantic resonance.',
     platform: 'Medium',
-    url: 'https://medium.com/@roshanchristy',
+    url: 'https://medium.com/@ludonodestudios',
     theme: 'rose',
   },
   {
@@ -347,7 +347,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'Nuanced exploration of family harmony, cultural heritage, spiritual dialectics, and navigating secular vs. traditional religious dynamics with respect.',
     platform: 'Medium',
-    url: 'https://medium.com/@roshanchristy',
+    url: 'https://medium.com/@ludonodestudios',
     theme: 'emerald',
   },
 ];
