@@ -340,7 +340,7 @@ export function SlideNBallDemo() {
   return (
     <div className="space-y-2.5">
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-        <span className="text-slate-600">
+        <span className="text-slate-300">
           {won
             ? 'Target Hit! Nice trajectory!'
             : 'Drag the colored platforms, then Launch Ball to hit the red target.'}

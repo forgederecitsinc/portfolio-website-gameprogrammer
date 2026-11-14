@@ -1015,7 +1015,7 @@ export function LiveWireDemo({ onPlayingChange }: DemoProps) {
         <span className="rounded bg-slate-900 px-2 py-0.5 font-mono text-sky-300">
           BUSHINGS LIT: {litCount} / 2
         </span>
-        <span className="truncate text-slate-600">{hint}</span>
+        <span className="truncate text-slate-300">{hint}</span>
         <button
           type="button"
           onClick={() => resetGame(true)}

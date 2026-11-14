@@ -384,7 +384,7 @@ export default function App() {
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-label="Toggle menu"
-              className="rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 p-2 text-slate-700 dark:text-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+              className="rounded-xl border border-slate-200 bg-[#16161B] dark:border-slate-700 dark:bg-slate-900 p-2 text-slate-200 dark:text-slate-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -397,21 +397,21 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('home')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Main Page
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('professional')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 Professional
               </button>
               <button
                 type="button"
                 onClick={() => navigateTo('school')}
-                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 School Projects
               </button>
@@ -421,7 +421,7 @@ export default function App() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-200 hover:bg-white/10 dark:text-slate-200 dark:hover:bg-slate-800"
                   >
                     {item.label}
                   </a>
@@ -697,11 +697,11 @@ export default function App() {
                       </span>
                     </div>
 
-                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100 group-hover:text-slate-950">
+                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-100 dark:text-slate-100 group-hover:text-[#F6CF3B]">
                       {project.title}
                     </h3>
-                    <p className="mt-1 text-xs font-medium text-slate-500 dark:text-slate-400">{project.context}</p>
-                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300 dark:text-slate-300">
+                    <p className="mt-1 text-xs font-medium text-slate-400 dark:text-slate-400">{project.context}</p>
+                    <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-200 dark:text-slate-300 dark:text-slate-300">
                       {project.overview}
                     </p>
                   </div>
@@ -711,7 +711,7 @@ export default function App() {
                       {project.roles.map((role) => (
                         <span
                           key={role}
-                          className="rounded-md bg-white/85 dark:bg-slate-900/85 px-2 py-0.5 text-[11px] font-medium text-slate-700 dark:text-slate-300 ring-1 ring-slate-200/70 dark:ring-slate-700"
+                          className="rounded-md bg-[#16161B] dark:bg-slate-900/85 px-2 py-0.5 text-[11px] font-medium text-slate-200 dark:text-slate-300 ring-1 ring-slate-200/70 dark:ring-slate-700"
                         >
                           {role}
                         </span>
@@ -737,7 +737,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setShowAllProjects((prev) => !prev)}
-                className="rounded-full border border-slate-300 bg-white px-6 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                className="rounded-full border border-slate-300 bg-[#16161B] px-6 py-2.5 text-xs font-semibold text-slate-200 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
               >
                 {showAllProjects
                   ? 'Show featured (6)'
@@ -748,15 +748,15 @@ export default function App() {
 
           {/* Additional GBC Works Strip */}
           <Reveal className="mt-8">
-            <div className="rounded-2xl border border-sky-200/70 bg-sky-50/50 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+            <div className="rounded-2xl border border-sky-200/70 bg-[#121216] p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
-                  <GraduationCap className="h-5 w-5 text-sky-700 dark:text-sky-300" />
-                  <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  <GraduationCap className="h-5 w-5 text-sky-300 dark:text-sky-300" />
+                  <h3 className="font-serif text-lg font-semibold text-slate-100 dark:text-slate-100">
                     Additional George Brown College Projects
                   </h3>
                 </div>
-                <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                <span className="text-xs font-medium text-slate-400 dark:text-slate-400">
                   Screenwriting, Cartography &amp; Programming
                 </span>
               </div>
@@ -764,12 +764,12 @@ export default function App() {
                 {GBC_ADDITIONAL_WORKS.map((item) => (
                   <div
                     key={item.title}
-                    className="flex h-full flex-col justify-between rounded-xl border border-sky-200/60 bg-white/80 p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
+                    className="flex h-full flex-col justify-between rounded-xl border border-sky-200/60 bg-[#16161B] p-3.5 transition hover:-translate-y-0.5 dark:border-sky-800/50 dark:bg-slate-900/80"
                   >
-                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                    <p className="text-sm font-semibold text-slate-100 dark:text-slate-100">
                       {item.title}
                     </p>
-                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{item.detail}</p>
+                    <p className="mt-1 text-xs text-slate-300 dark:text-slate-300">{item.detail}</p>
                   </div>
                 ))}
               </div>
@@ -788,14 +788,14 @@ export default function App() {
         <section id="characters" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
           <Reveal>
             <div className="flex flex-col gap-2">
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-300 uppercase dark:text-violet-300">
                 <Users className="h-3.5 w-3.5" />
                 Character Design
               </span>
-              <h2 className="font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-100">
+              <h2 className="font-serif text-3xl font-semibold text-slate-100 sm:text-4xl dark:text-slate-100">
                 Original Character Profiles
               </h2>
-              <p className="max-w-2xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
+              <p className="max-w-2xl text-sm text-slate-300 sm:text-base dark:text-slate-300">
                 Five complete character concepts built with personality profiles, narrative
                 archetypes, and dramatic motivations.
               </p>
@@ -818,10 +818,10 @@ export default function App() {
                       <Sparkles className="h-3 w-3" />
                       {char.archetype}
                     </span>
-                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100">
+                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-100 dark:text-slate-100">
                       {char.name}
                     </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    <p className="mt-2.5 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
                       {char.summary}
                     </p>
                   </div>
@@ -837,11 +837,11 @@ export default function App() {
           <Reveal>
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-700 uppercase dark:text-teal-300">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-teal-300 uppercase dark:text-teal-300">
                   <Feather className="h-3.5 w-3.5" />
                   Short Stories &amp; Essays
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-slate-100">
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-100 sm:text-4xl dark:text-slate-100">
                   Fiction &amp; Game Design Writing
                 </h2>
               </div>
@@ -850,7 +850,7 @@ export default function App() {
                   href="https://medium.com/@ludonodestudios"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-[#16161B] px-4 py-2 text-xs font-semibold text-slate-200 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Medium
                   <ArrowUpRight className="h-3.5 w-3.5" />
@@ -859,7 +859,7 @@ export default function App() {
                   href="http://www.wattpad.com/user/roshan_christy"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-[#16161B] px-4 py-2 text-xs font-semibold text-slate-200 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   Wattpad
                   <ArrowUpRight className="h-3.5 w-3.5" />
@@ -922,14 +922,14 @@ export default function App() {
                           <BookOpen className="h-3 w-3" />
                           {item.kind}
                         </span>
-                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                        <span className="text-[11px] font-medium text-slate-400 dark:text-slate-400">
                           {item.platform}
                         </span>
                       </div>
-                      <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-900 dark:text-slate-100">
+                      <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-100 dark:text-slate-100">
                         {item.title}
                       </h3>
-                      <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      <p className="mt-2.5 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
                         {item.summary}
                       </p>
                     </div>
@@ -954,37 +954,37 @@ export default function App() {
               <ScrollParallax offsetY={26} offsetX={-12} scaleFrom={0.94} tiltDeg={4} yawDeg={-3}>
               <div className="rounded-2xl border border-[#FF8A3D]/35 bg-[#121216] p-7">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-[#16161B] text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
                     <Sparkles className="h-6 w-6" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
+                    <span className="text-[11px] font-semibold tracking-wider text-violet-300 uppercase dark:text-violet-300">
                       {STUDIO.brand}
                     </span>
-                    <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-slate-100">
+                    <h2 className="font-serif text-2xl font-semibold text-slate-100 dark:text-slate-100">
                       {STUDIO.name}
                     </h2>
                   </div>
                 </div>
 
-                <p className="mt-3 text-xs font-medium text-slate-500 dark:text-slate-400">
+                <p className="mt-3 text-xs font-medium text-slate-400 dark:text-slate-400">
                   {STUDIO.established}
                 </p>
-                <p className="mt-3 text-sm font-medium italic text-violet-900 dark:text-violet-200">
+                <p className="mt-3 text-sm font-medium italic text-violet-300 dark:text-violet-200">
                   “{STUDIO.motto}”
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
                   {STUDIO.mission}
                 </p>
 
                 <div className="mt-5 space-y-2">
-                  <h3 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
+                  <h3 className="text-xs font-semibold tracking-wider text-slate-400 uppercase dark:text-slate-400">
                     Studio Services
                   </h3>
                   {STUDIO.services.map((service) => (
                     <div
                       key={service}
-                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-white/85 px-3.5 py-2 text-xs font-medium text-slate-700 dark:border-violet-800/50 dark:bg-slate-900/85 dark:text-slate-200"
+                      className="flex items-center gap-2.5 rounded-xl border border-violet-200/60 bg-[#16161B] px-3.5 py-2 text-xs font-medium text-slate-200 dark:border-violet-800/50 dark:bg-slate-900/85 dark:text-slate-200"
                     >
                       <Compass className="h-3.5 w-3.5 shrink-0 text-violet-600 dark:text-violet-300" />
                       {service}
@@ -994,16 +994,16 @@ export default function App() {
               </div>
 
               {/* Education */}
-              <div className="mt-6 rounded-2xl border border-sky-200/80 bg-sky-50/60 p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
+              <div className="mt-6 rounded-2xl border border-sky-200/80 bg-[#121216] p-6 dark:border-sky-800/60 dark:bg-sky-950/35">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 bg-white text-sky-600 dark:border-sky-700 dark:bg-slate-900 dark:text-sky-300">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-sky-200 bg-[#16161B] text-sky-600 dark:border-sky-700 dark:bg-slate-900 dark:text-sky-300">
                     <GraduationCap className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    <h3 className="font-serif text-lg font-semibold text-slate-100 dark:text-slate-100">
                       Education
                     </h3>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300">
+                    <p className="text-xs font-medium text-slate-300 dark:text-slate-300">
                       Academic Credentials &amp; Training
                     </p>
                   </div>
@@ -1012,20 +1012,20 @@ export default function App() {
                   {EDUCATION.map((edu) => (
                     <div
                       key={`${edu.school}-${edu.degree}`}
-                      className="rounded-2xl border border-sky-200/60 bg-white/85 p-3.5 dark:border-sky-800/50 dark:bg-slate-900/85"
+                      className="rounded-2xl border border-sky-200/60 bg-[#16161B] p-3.5 dark:border-sky-800/50 dark:bg-slate-900/85"
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-1">
-                        <p className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                        <p className="text-xs font-semibold text-slate-100 dark:text-slate-100">
                           {edu.degree}
                         </p>
-                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                        <span className="text-[11px] font-medium text-slate-400 dark:text-slate-400">
                           {edu.period}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-[11px] font-medium text-sky-900 dark:text-sky-300">
+                      <p className="mt-0.5 text-[11px] font-medium text-sky-300 dark:text-sky-300">
                         {edu.school}
                       </p>
-                      <p className="mt-1 text-[11px] text-slate-600 dark:text-slate-300">
+                      <p className="mt-1 text-[11px] text-slate-300 dark:text-slate-300">
                         {edu.detail}
                       </p>
                     </div>
@@ -1043,9 +1043,9 @@ export default function App() {
                   {LANGUAGES.map((lang) => (
                     <span
                       key={lang.name}
-                      className="rounded-full border border-emerald-200/80 bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 dark:border-emerald-800/60 dark:bg-slate-900/90 dark:text-slate-200"
+                      className="rounded-full border border-emerald-200/80 bg-[#16161B] px-3 py-1 text-xs font-medium text-slate-200 dark:border-emerald-800/60 dark:bg-slate-900/90 dark:text-slate-200"
                     >
-                      <span className="font-semibold text-slate-900 dark:text-white">
+                      <span className="font-semibold text-slate-100 dark:text-white">
                         {lang.name}
                       </span>{' '}
                       · {lang.proficiency}
@@ -1060,12 +1060,12 @@ export default function App() {
                   {CERTIFICATIONS.map((cert) => (
                     <li
                       key={cert.title}
-                      className="flex items-baseline justify-between gap-2 text-xs text-slate-700 dark:text-slate-300"
+                      className="flex items-baseline justify-between gap-2 text-xs text-slate-200 dark:text-slate-300"
                     >
-                      <span className="font-medium text-slate-800 dark:text-slate-100">
+                      <span className="font-medium text-slate-100 dark:text-slate-100">
                         {cert.title}
                       </span>
-                      <span className="shrink-0 text-[11px] text-slate-500 dark:text-slate-400">
+                      <span className="shrink-0 text-[11px] text-slate-400 dark:text-slate-400">
                         {cert.issuer}
                         {cert.date ? ` · ${cert.date}` : ''}
                       </span>
@@ -1078,12 +1078,12 @@ export default function App() {
             {/* Experience & Skills */}
             <div className="lg:col-span-7">
               <div className="flex items-center gap-2">
-                <Briefcase className="h-4 w-4 text-emerald-700 dark:text-emerald-300" />
-                <span className="text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-300">
+                <Briefcase className="h-4 w-4 text-emerald-300 dark:text-emerald-300" />
+                <span className="text-xs font-semibold tracking-wider text-emerald-300 uppercase dark:text-emerald-300">
                   Experience &amp; Skills
                 </span>
               </div>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-100 dark:text-slate-100">
                 Career Timeline
               </h2>
 
@@ -1096,17 +1096,17 @@ export default function App() {
                       className={`rounded-2xl border ${theme.border} ${theme.surface} p-5`}
                     >
                       <div className="flex flex-wrap items-baseline justify-between gap-2">
-                        <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-slate-100">
+                        <h3 className="font-serif text-lg font-semibold text-slate-100 dark:text-slate-100">
                           {exp.role}
                         </h3>
-                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                        <span className="text-xs font-semibold text-slate-400 dark:text-slate-400">
                           {exp.period}
                         </span>
                       </div>
-                      <p className="mt-0.5 text-xs font-semibold text-slate-600 dark:text-slate-400 dark:text-slate-400">
+                      <p className="mt-0.5 text-xs font-semibold text-slate-300 dark:text-slate-400 dark:text-slate-400">
                         {exp.organization} · {exp.location}
                       </p>
-                      <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 dark:text-slate-300">{exp.highlights}</p>
+                      <p className="mt-2 text-sm text-slate-200 dark:text-slate-300 dark:text-slate-300">{exp.highlights}</p>
                     </div>
                   );
                 })}
@@ -1119,9 +1119,9 @@ export default function App() {
                   return (
                     <div
                       key={group.group}
-                      className={`rounded-2xl border ${theme.border} bg-white/80 dark:bg-slate-900/80 p-4`}
+                      className={`rounded-2xl border ${theme.border} bg-[#16161B] dark:bg-slate-900/80 p-4`}
                     >
-                      <h3 className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                      <h3 className="text-xs font-semibold tracking-wider text-slate-400 dark:text-slate-400 uppercase">
                         {group.group}
                       </h3>
                       <div className="mt-3 flex flex-wrap gap-1.5">
@@ -1147,13 +1147,13 @@ export default function App() {
           <div className="rounded-3xl border border-rose-200/70 bg-gradient-to-br from-rose-50/80 via-amber-50/50 to-violet-50/70 p-8 sm:p-10 dark:border-rose-900/50 dark:from-rose-950/30 dark:via-amber-950/20 dark:to-violet-950/30">
             <div className="grid gap-8 md:grid-cols-2 md:items-center">
               <div>
-                <span className="text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-rose-300">
+                <span className="text-xs font-semibold tracking-wider text-rose-300 uppercase dark:text-rose-300">
                   Contact
                 </span>
-                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100">
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-100 dark:text-slate-100">
                   Let&apos;s build a world together
                 </h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                <p className="mt-3 text-sm leading-relaxed text-slate-200 dark:text-slate-300">
                   Available for Narrative Design, Game &amp; Puzzle Design, Screenwriting, and
                   French/English Localization collaborations.
                 </p>
@@ -1163,11 +1163,11 @@ export default function App() {
                 {PROFILE.emails.map((email) => (
                   <div
                     key={email.address}
-                    className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
+                    className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200/80 bg-[#16161B] px-4 py-3 text-sm font-medium text-slate-100 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
                   >
                     <a
                       href={`mailto:${email.address}`}
-                      className="flex min-w-0 items-center gap-2.5 truncate transition hover:text-rose-700 dark:hover:text-rose-300"
+                      className="flex min-w-0 items-center gap-2.5 truncate transition hover:text-rose-300 dark:hover:text-rose-300"
                     >
                       <Mail className="h-4 w-4 shrink-0 text-rose-600 dark:text-rose-400" />
                       <span className="truncate">
@@ -1181,7 +1181,7 @@ export default function App() {
                       type="button"
                       onClick={() => copyEmail(email.address)}
                       aria-label={`Copy ${email.address}`}
-                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-600 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+                      className="inline-flex shrink-0 items-center gap-1 rounded-full border border-slate-200 bg-[#16161B] px-2.5 py-1 text-[11px] font-semibold text-slate-300 transition hover:bg-white/10 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                     >
                       {copiedEmail === email.address ? (
                         <>
@@ -1200,13 +1200,13 @@ export default function App() {
 
                 <a
                   href={`tel:${PROFILE.phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm font-medium text-slate-800 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
+                  className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-[#16161B] px-4 py-3 text-sm font-medium text-slate-100 transition hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-200"
                 >
                   <span className="flex items-center gap-2.5">
                     <Phone className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                     {PROFILE.phone}
                   </span>
-                  <span className="text-xs text-slate-500 dark:text-slate-400">Toronto, ON</span>
+                  <span className="text-xs text-slate-400 dark:text-slate-400">Toronto, ON</span>
                 </a>
               </div>
             </div>
@@ -1216,8 +1216,8 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-200/80 bg-white/50 py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 sm:flex-row sm:px-6 dark:text-slate-400">
+      <footer className="border-t border-slate-200/80 bg-[#0B0B0E] py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-400 sm:flex-row sm:px-6 dark:text-slate-400">
           <p>
             © {new Date().getFullYear()} {PROFILE.name} · {STUDIO.name}
           </p>
@@ -1228,7 +1228,7 @@ export default function App() {
                 href={social.url}
                 target="_blank"
                 rel="noreferrer"
-                className="transition hover:text-slate-900 dark:hover:text-white"
+                className="transition hover:text-white dark:hover:text-white"
               >
                 {social.name}
               </a>
@@ -1242,7 +1242,7 @@ export default function App() {
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="fixed right-5 bottom-5 z-30 rounded-full border border-slate-200 bg-white/95 p-3 text-slate-700 shadow-md backdrop-blur-xs transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-200 dark:hover:bg-slate-100 dark:hover:text-slate-900"
+          className="fixed right-5 bottom-5 z-30 rounded-full border border-slate-200 bg-[#16161B] p-3 text-slate-200 shadow-md backdrop-blur-xs transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white dark:border-slate-700 dark:bg-slate-900/95 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:text-white"
         >
           <ArrowUp className="h-4 w-4" />
         </button>

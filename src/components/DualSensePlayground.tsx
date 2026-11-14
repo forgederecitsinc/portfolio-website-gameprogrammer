@@ -317,24 +317,24 @@ export function DualSensePlayground() {
               <Zap className="h-3.5 w-3.5 text-[#0070D1]" />
               PS5 DualSense &amp; Game-Feel Lab
             </span>
-            <h2 className="mt-3 font-serif text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+            <h2 className="mt-3 font-serif text-2xl font-semibold tracking-tight text-slate-100 sm:text-3xl">
               Click the DualSense
             </h2>
-            <p className="mt-2.5 text-sm leading-relaxed text-slate-700">
+            <p className="mt-2.5 text-sm leading-relaxed text-slate-200">
               Tap the triggers, touchpad, D-pad, or face buttons on the controller to synthesize
               Web Audio haptic sound effects and trigger trauma-based camera shake.
             </p>
 
             {/* Telemetry readout */}
-            <div className="mt-5 rounded-2xl border border-slate-200/80 bg-white/90 p-4 shadow-2xs">
+            <div className="mt-5 rounded-2xl border border-slate-200/80 bg-[#16161B] p-4 shadow-2xs">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">
+                <span className="text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
                   Haptic Telemetry
                 </span>
                 <button
                   type="button"
                   onClick={() => setMuted((prev) => !prev)}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold text-slate-700 transition hover:bg-slate-100 active:scale-[0.97]"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-[#16161B] px-3 py-1 text-[11px] font-semibold text-slate-200 transition hover:bg-white/10 active:scale-[0.97]"
                 >
                   {muted ? (
                     <>
@@ -353,15 +353,15 @@ export function DualSensePlayground() {
               {currentSpec ? (
                 <div className="mt-3 space-y-1.5">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-slate-900">{currentSpec.label}</span>
-                    <span className="font-mono text-[11px] text-violet-700">
+                    <span className="font-semibold text-slate-100">{currentSpec.label}</span>
+                    <span className="font-mono text-[11px] text-violet-300">
                       {Math.round(currentSpec.freq)} Hz · Trauma {(currentSpec.trauma * 100).toFixed(0)}%
                     </span>
                   </div>
-                  <p className="text-xs text-slate-600">{currentSpec.detail}</p>
+                  <p className="text-xs text-slate-300">{currentSpec.detail}</p>
                 </div>
               ) : (
-                <p className="mt-3 text-xs text-slate-500">
+                <p className="mt-3 text-xs text-slate-400">
                   Waiting for input — click any button or trigger on the DualSense.
                 </p>
               )}
@@ -372,7 +372,7 @@ export function DualSensePlayground() {
           <div className="flex flex-col items-center justify-center lg:col-span-7">
             <div
               key={pulseCount}
-              className="relative flex w-full max-w-md items-center justify-center rounded-3xl border border-slate-200/70 bg-white/85 p-6 shadow-sm"
+              className="relative flex w-full max-w-md items-center justify-center rounded-3xl border border-slate-200/70 bg-[#16161B] p-6 shadow-sm"
             >
               {/* Subtle radial glow behind controller */}
               <div
@@ -576,8 +576,8 @@ export function DualSensePlayground() {
                   onClick={() => handleGameSelect(game)}
                   className={`rounded-lg border p-3.5 text-left transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 active:scale-[0.98] ${
                     isSelected
-                      ? 'border-[#0070D1] bg-white shadow-xs'
-                      : 'border-[#D4D4D2] bg-white/75 hover:border-[#0070D1]/60 hover:bg-white'
+                      ? 'border-[#0070D1] bg-[#16161B] shadow-xs'
+                      : 'border-white/10 bg-[#121216] hover:border-[#F6CF3B]/60 hover:bg-[#18181D]'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2">

@@ -75,7 +75,7 @@ export function GameDemo({ projectId, theme, onPlayingChange }: GameDemoProps) {
         <button
           type="button"
           onClick={toggleFullscreen}
-          className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 transition hover:bg-slate-50"
+          className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-[#16161B] px-2.5 py-1 text-[11px] font-semibold text-slate-200 transition hover:bg-white/10"
         >
           {isFullscreen ? <Minimize2 className="h-3 w-3" /> : <Maximize2 className="h-3 w-3" />}
           {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
@@ -84,7 +84,7 @@ export function GameDemo({ projectId, theme, onPlayingChange }: GameDemoProps) {
 
       <div
         ref={containerRef}
-        className={`mt-3 rounded-2xl border ${palette.border} bg-white/85 p-4`}
+        className={`mt-3 rounded-2xl border ${palette.border} bg-[#16161B] p-4`}
       >
         {projectId === 'asteroid-survival' && (
           <AsteroidSurvivalDemo onPlayingChange={onPlayingChange} />
