@@ -451,14 +451,32 @@ export const PROJECTS: ProjectItem[] = [
     title: 'Atmospheric Indoor Horror & Spatial Audio',
     category: 'GBC School',
     roles: ['Audio & Lighting Programmer', 'Designer'],
-    context: 'George Brown College · Sep 2026 – Present · Unity 6 (URP / Cinemachine)',
+    context: 'George Brown College · GAME3121 Lab Test 4 · Unity 6 (URP / Cinemachine)',
     platforms: ['WebGL', 'Desktop'],
     overview:
-      'Interactive 3D indoor horror and spatial audio environment built in Unity 6 using URP, Cinemachine, and custom C# audio and light-flicker systems.',
+      'Atmospheric 3D indoor horror exploration and spatial audio showcase in Unity 6 (Audio_Indoor_Scene.unity) combining 8 layered AudioSources, timed coroutine fade-outs, dual-sine URP area-light flickering, and open-ended character/camera navigation.',
     contributions: [
-      'Layered 3D ambient audio, thunderstorm rain, distant marching, flickering light SFX, and horror ambience.',
-      'Wrote SimpleDelayedAudio.cs (coroutine fade-out) and RealisticFlicker.cs / LightFlicker.cs for dynamic tension.',
-      'Configured URP area/directional lighting, reflection probes, and post-processing volumes.',
+      'Layered 8 AudioSources with looping background ambience (horror-ambience, thunderstorm-rain), one-shot army-marching cues, and SimpleDelayedAudio.cs coroutine fade-outs (startTime 0s/10s, 20s linear volume fade).',
+      'Implemented dual-sine RealisticFlicker.cs (flickerSpeed + flickerSpeed * 0.7f around baseIntensity) on Area Light (1), plus a randomized LightFlicker.cs variant (0.1s–0.5s intervals).',
+      'Integrated ThirdPersonController.cs + StarterAssetsInputs.cs (walk/sprint 2.0–5.335, crouch halving CharacterController height, jump/gravity -15.0) alongside SimpleCameraController.cs and Cinemachine pitch clamping.',
+    ],
+    mechanics: [
+      {
+        heading: 'Open-Ended Exploration Loop',
+        points: [
+          'Establish Atmosphere: Scene startup triggers looping horror-ambience and thunderstorm-rain, plays army-marching cues, and starts RealisticFlicker.cs on Area Light (1).',
+          'Timed Audio Events (SimpleDelayedAudio.cs): horror-ambience-sound plays at startTime 0 and fades out over 20s; screaming sound waits 10s, plays screaming people, and linearly fades volume to 0 over 20s.',
+          'Continuous Cycle: With no win/lose states or enemies, players freely move, observe flickering lighting, and react to spatial and timed audio cues.',
+        ],
+      },
+      {
+        heading: 'Movement, Camera & Lighting Systems',
+        points: [
+          'ThirdPersonController & Inputs: Supports smooth walk/sprint (2.0 / 5.335), grounded sphere-checked jump (JumpHeight 1.2, gravity -15.0), crouch height-halving, and Attack/Interact animator triggers.',
+          'Camera Control: MainCamera uses SimpleCameraController.cs (WASD/Arrows, mouse look, scroll speed boost) with CinemachineCameraTarget pitch clamping (TopClamp 70, BottomClamp -30).',
+          'Dynamic Lighting & Package Utilities: RealisticFlicker.cs drives organic dual-sine light instability on Area Light (1); project also includes LightFlicker.cs, FootstepManager.cs, BasicRigidBodyPush.cs, and CCManager.cs.',
+        ],
+      },
     ],
     badgeImage: './images/gbc-badge.png',
     images: [

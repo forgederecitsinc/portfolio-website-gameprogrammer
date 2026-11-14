@@ -83,12 +83,12 @@ export const GAMEPLAY_LOOPS: Record<string, GameplayLoopSpec> = {
   },
   'atmospheric-horror': {
     title: '3D Spatial Audio & Tension Loop',
-    entry: 'Enter Dark Indoor Scene',
-    action: 'Explore via Cinemachine',
-    system: '3D Audio & Sine Flicker',
-    decision: 'Cue Triggered?',
-    retryLabel: 'Ambient Fade & Tension',
-    reward: 'Environmental Story Reveal',
+    entry: 'Scene Start: Ambience & Rain',
+    action: 'Walk / Sprint / Crouch Explore',
+    system: 'Dual-Sine Flicker & 8 AudioSources',
+    decision: 'Timed Cue (0s / 10s) Fired?',
+    retryLabel: 'Observe & Keep Exploring',
+    reward: '20s Coroutine Audio Fade Tension',
   },
   'red-tide': {
     title: 'Ecological Narrative Adventure Loop',
