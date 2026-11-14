@@ -9,51 +9,51 @@ export interface ThemeClasses {
 }
 
 /**
- * PS5 flagship game-themed light-mode palette:
- * Astro Bot Blue, Spider-Man 2 Crimson, Returnal Teal,
- * Ghost of Tsushima Amber, Demon's Souls Indigo, Horizon Emerald.
+ * Ludonode Studios Obsidian & Neon-Accent palette:
+ * Gold (#F6CF3B), Magenta (#EC1D7B), Mint (#2EF2A8),
+ * Orange (#FF8A3D), Sky (#38BDF8), Violet (#A78BFA) on #121216 obsidian cards.
  */
 export const PASTEL_THEME: Record<PastelTheme, ThemeClasses> = {
   sky: {
-    surface: 'bg-[#F4F7FB] hover:bg-white',
-    badge: 'bg-[#E1ECFA] text-[#004A8F] border-[#B8D2F2]',
-    border: 'border-[#C2D4EA] hover:border-[#0070D1]',
-    accentText: 'text-[#005BB5]',
-    dot: 'bg-[#0070D1]',
+    surface: 'bg-[#121216]/95 hover:bg-[#17171D]',
+    badge: 'bg-[#38BDF8]/15 text-[#7DD3FC] border-[#38BDF8]/35',
+    border: 'border-white/10 hover:border-[#38BDF8]/70',
+    accentText: 'text-[#38BDF8]',
+    dot: 'bg-[#38BDF8]',
   },
   rose: {
-    surface: 'bg-[#FBF4F4] hover:bg-white',
-    badge: 'bg-[#FBE2E2] text-[#991B1B] border-[#F3BDBD]',
-    border: 'border-[#E6C7C7] hover:border-[#DC2626]',
-    accentText: 'text-[#B91C1C]',
-    dot: 'bg-[#DC2626]',
+    surface: 'bg-[#121216]/95 hover:bg-[#17171D]',
+    badge: 'bg-[#EC1D7B]/15 text-[#F472B6] border-[#EC1D7B]/40',
+    border: 'border-white/10 hover:border-[#EC1D7B]/75',
+    accentText: 'text-[#EC1D7B]',
+    dot: 'bg-[#EC1D7B]',
   },
   teal: {
-    surface: 'bg-[#F2F9F8] hover:bg-white',
-    badge: 'bg-[#DCF2EF] text-[#115E59] border-[#B0E0D9]',
-    border: 'border-[#BBDAD5] hover:border-[#0D9488]',
-    accentText: 'text-[#0F766E]',
-    dot: 'bg-[#0D9488]',
+    surface: 'bg-[#121216]/95 hover:bg-[#17171D]',
+    badge: 'bg-[#2EF2A8]/15 text-[#6EE7B7] border-[#2EF2A8]/35',
+    border: 'border-white/10 hover:border-[#2EF2A8]/70',
+    accentText: 'text-[#2EF2A8]',
+    dot: 'bg-[#2EF2A8]',
   },
   amber: {
-    surface: 'bg-[#FAF7F0] hover:bg-white',
-    badge: 'bg-[#F7E8CC] text-[#92400E] border-[#EBD09E]',
-    border: 'border-[#E3D3B6] hover:border-[#D97706]',
-    accentText: 'text-[#B45309]',
-    dot: 'bg-[#D97706]',
+    surface: 'bg-[#121216]/95 hover:bg-[#17171D]',
+    badge: 'bg-[#F6CF3B]/15 text-[#FDE047] border-[#F6CF3B]/40',
+    border: 'border-white/10 hover:border-[#F6CF3B]/75',
+    accentText: 'text-[#F6CF3B]',
+    dot: 'bg-[#F6CF3B]',
   },
   violet: {
-    surface: 'bg-[#F5F5FB] hover:bg-white',
-    badge: 'bg-[#E6E6FA] text-[#3730A3] border-[#C7C8F5]',
-    border: 'border-[#C9CAE6] hover:border-[#4F46E5]',
-    accentText: 'text-[#4338CA]',
-    dot: 'bg-[#4F46E5]',
+    surface: 'bg-[#121216]/95 hover:bg-[#17171D]',
+    badge: 'bg-[#FF8A3D]/15 text-[#FDBA74] border-[#FF8A3D]/40',
+    border: 'border-white/10 hover:border-[#FF8A3D]/75',
+    accentText: 'text-[#FF8A3D]',
+    dot: 'bg-[#FF8A3D]',
   },
   emerald: {
-    surface: 'bg-[#F2F9F5] hover:bg-white',
-    badge: 'bg-[#DCF2E5] text-[#065F46] border-[#B0DFC4]',
-    border: 'border-[#BDD8C9] hover:border-[#059669]',
-    accentText: 'text-[#047857]',
-    dot: 'bg-[#059669]',
+    surface: 'bg-[#121216]/95 hover:bg-[#17171D]',
+    badge: 'bg-[#2EF2A8]/15 text-[#6EE7B7] border-[#2EF2A8]/35',
+    border: 'border-white/10 hover:border-[#2EF2A8]/70',
+    accentText: 'text-[#2EF2A8]',
+    dot: 'bg-[#2EF2A8]',
   },
 };

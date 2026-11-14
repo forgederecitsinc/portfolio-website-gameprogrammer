@@ -282,7 +282,7 @@ export default function App() {
   }, [focusedIndex, visibleProjects]);
 
   return (
-    <div className={`relative min-h-screen overflow-x-clip text-[#0F0F0F] ${crtMode ? 'brightness-95 contrast-110 saturate-125' : ''}`}>
+    <div className={`relative min-h-screen overflow-x-clip text-slate-100 ${crtMode ? 'brightness-95 contrast-110 saturate-125' : ''}`}>
       <div className="film-grain pointer-events-none fixed inset-0 z-50 opacity-[0.025]" aria-hidden="true" />
       {crtMode && <div className="crt-scanlines pointer-events-none fixed inset-0 z-50" aria-hidden="true" />}
       <ScrollProgressBar />
@@ -290,7 +290,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-[#B4B4AE] bg-[#CFCFC9]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#080808]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -300,15 +300,15 @@ export default function App() {
             }}
             className="flex items-center gap-3"
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#D4D4D2] bg-[#F7F7F5] text-[#0F0F0F]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-md border border-[#F6CF3B]/40 bg-[#121216] text-[#F6CF3B]">
               <Gamepad2 className="h-4.5 w-4.5" />
             </div>
             <div>
-              <span className="block font-serif text-lg font-semibold tracking-tight text-[#0F0F0F]">
+              <span className="block font-serif text-lg font-bold tracking-wide text-[#F6CF3B]">
                 {PROFILE.name}
               </span>
-              <span className="block font-mono text-[10px] font-medium tracking-wider text-[#525252] uppercase">
-                Narrative &amp; Game Designer
+              <span className="block font-mono text-[10px] font-medium tracking-wider text-[#FF8A3D] uppercase">
+                Ludonode Studios · Toronto
               </span>
             </div>
           </a>
@@ -320,8 +320,8 @@ export default function App() {
                 onClick={() => navigateTo('professional')}
                 className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
                   route === 'professional'
-                    ? 'bg-[#0F0F0F] text-[#F7F7F5]'
-                    : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
+                    ? 'bg-[#F6CF3B] text-slate-950'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 Professional
@@ -331,8 +331,8 @@ export default function App() {
                 onClick={() => navigateTo('school')}
                 className={`rounded-md px-3 py-1.5 text-xs font-semibold transition ${
                   route === 'school'
-                    ? 'bg-[#0F0F0F] text-[#F7F7F5]'
-                    : 'text-[#525252] hover:bg-[#F7F7F5] hover:text-[#0F0F0F]'
+                    ? 'bg-[#F6CF3B] text-slate-950'
+                    : 'text-slate-300 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 School Projects
@@ -342,7 +342,7 @@ export default function App() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                    className="text-sm font-medium text-slate-300 transition hover:text-[#F6CF3B]"
                   >
                     {item.label}
                   </a>
@@ -351,7 +351,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={() => navigateTo('home')}
-                  className="text-sm font-medium text-slate-600 dark:text-slate-400 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+                  className="text-sm font-medium text-slate-300 transition hover:text-[#F6CF3B]"
                 >
                   Main Page
                 </button>
@@ -362,15 +362,15 @@ export default function App() {
               onClick={toggleTour}
               className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
                 recruiterTour
-                  ? 'bg-[#0070D1] text-white shadow-sm'
-                  : 'border border-[#0070D1]/40 bg-[#F0F7FF] text-[#005BB5] hover:bg-[#E0EFFF]'
+                  ? 'bg-[#EC1D7B] text-white shadow-sm'
+                  : 'border border-[#EC1D7B]/50 bg-[#EC1D7B]/15 text-[#F472B6] hover:bg-[#EC1D7B]/25'
               }`}
             >
               {recruiterTour ? `Stop Tour (${secondsLeft}s)` : '30s Tour'}
             </button>
             <a
               href={`mailto:${PROFILE.emails[0].address}`}
-              className={`inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-slate-800 active:scale-[0.97] ${
+              className={`inline-flex items-center gap-1.5 rounded-full bg-[#F37336] px-4 py-2 text-xs font-semibold text-slate-950 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#FF8A3D] active:scale-[0.97] ${
                 recruiterTour ? 'pointer-events-none opacity-45' : ''
               }`}
             >
@@ -392,7 +392,7 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-[#B4B4AE] bg-[#CFCFC9] px-4 py-4 md:hidden">
+          <div className="border-t border-white/10 bg-[#0F0F12] px-4 py-4 md:hidden">
             <div className="flex flex-col gap-2">
               <button
                 type="button"
@@ -445,37 +445,65 @@ export default function App() {
           <HeroNavMeshCanvas />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="animate-fade-up lg:col-span-7">
-              <div className="inline-flex items-center gap-2 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5] px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-[#525252] uppercase">
-                <MapPin className="h-3.5 w-3.5 text-[#0F0F0F]" />
-                {PROFILE.location}
+              <div className="inline-flex items-center gap-2 rounded-sm border border-[#F6CF3B]/30 bg-[#121216] px-3 py-1 font-mono text-[11px] font-medium tracking-wider text-slate-300 uppercase">
+                <MapPin className="h-3.5 w-3.5 text-[#F6CF3B]" />
+                “founder of LUDONODE STUDIOS” · {PROFILE.location}
               </div>
 
-              <h1 className="mt-5 font-serif text-5xl leading-[1.03] font-semibold tracking-tight text-[#0F0F0F] sm:text-6xl lg:text-[4.25rem]">
+              <h1 className="mt-5 font-serif text-5xl leading-[1.02] font-bold tracking-tight text-[#F6CF3B] uppercase sm:text-6xl lg:text-[4.5rem]">
                 {PROFILE.name}
               </h1>
-              <p className="mt-3 text-base font-semibold text-[#262626] sm:text-lg">
+              <p className="mt-2.5 text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
                 {PROFILE.title}
               </p>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#525252]">
+              {/* Signature Discipline Banner Strip */}
+              <div className="mt-5 space-y-2 border-y border-white/15 py-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-[#FF8A3D] uppercase">
+                    WRITER
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-300 uppercase">
+                    NARRATIVE DESIGNER | WORLDBUILDING | DIALOGUES
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-[#EC1D7B] uppercase">
+                    GAME DESIGNER
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-300 uppercase">
+                    MECHANICS | ECONOMY | SYSTEMS DESIGN
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="font-mono text-sm font-bold tracking-[0.25em] text-[#2EF2A8] uppercase">
+                    PUZZLE DESIGNER
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-300 uppercase">
+                    BOARD PUZZLES | RUBE GOLDBERG | STRUCTURAL ENGINEERING
+                  </span>
+                </div>
+              </div>
+
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
                 {PROFILE.subheadline}
               </p>
 
-              <blockquote className="mt-6 rounded-lg border border-[#D4D4D2] bg-[#F7F7F5] px-5 py-4 font-serif text-base italic text-[#262626]">
+              <blockquote className="mt-6 rounded-lg border border-white/10 bg-[#121216] px-5 py-4 font-serif text-base italic text-slate-200">
                 “{PROFILE.tagline}”
               </blockquote>
 
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-md bg-[#0070D1] px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#005BB5] active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md bg-[#F37336] px-6 py-3 text-sm font-semibold text-slate-950 transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-[#FF8A3D] active:scale-[0.97]"
                 >
                   Explore Projects
                   <Gamepad2 className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-md border border-[#D4D4D2] bg-[#F7F7F5] px-6 py-3 text-sm font-semibold text-[#0F0F0F] transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#0F0F0F] hover:bg-white active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-[#121216] px-6 py-3 text-sm font-semibold text-white transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:border-[#F6CF3B] hover:text-[#F6CF3B] active:scale-[0.97]"
                 >
                   Contact &amp; Socials
                 </a>
@@ -488,7 +516,7 @@ export default function App() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-sm border border-[#D4D4D2] bg-[#F7F7F5] px-3 py-1.5 font-mono text-[11px] font-medium text-[#404040] transition hover:-translate-y-0.5 hover:border-[#0F0F0F] hover:text-[#0F0F0F]"
+                    className="inline-flex items-center gap-1.5 rounded-sm border border-white/15 bg-[#121216] px-3 py-1.5 font-mono text-[11px] font-medium text-slate-300 transition hover:-translate-y-0.5 hover:border-[#F6CF3B] hover:text-[#F6CF3B]"
                   >
                     {social.name}
                     <ArrowUpRight className="h-3 w-3" />
@@ -499,24 +527,24 @@ export default function App() {
 
             <div className="animate-fade-up lg:col-span-5" style={{ animationDelay: '120ms' }}>
               <ScrollParallax offsetY={-24} scaleFrom={0.97} tiltDeg={3}>
-                <div className="space-y-3 overflow-hidden rounded-xl border border-[#D4D4D2] bg-[#F7F7F5] p-4 transition duration-300">
+                <div className="space-y-3 overflow-hidden rounded-xl border border-white/10 bg-[#121216] p-4 transition duration-300">
                 <Resn3DShowcase />
                 <div className="grid grid-cols-3 gap-2.5">
-                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
-                    <Gamepad2 className="mx-auto h-6 w-6 text-[#0F0F0F]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#18181D] p-3 text-center transition hover:-translate-y-0.5 hover:border-[#EC1D7B]/50">
+                    <Gamepad2 className="mx-auto h-6 w-6 text-[#EC1D7B]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-200">
                       Shipped Mobile Titles
                     </p>
                   </div>
-                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
-                    <GraduationCap className="mx-auto h-6 w-6 text-[#0F0F0F]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#18181D] p-3 text-center transition hover:-translate-y-0.5 hover:border-[#2EF2A8]/50">
+                    <GraduationCap className="mx-auto h-6 w-6 text-[#2EF2A8]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-200">
                       GBC Game Design
                     </p>
                   </div>
-                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-[#D4D4D2] bg-white p-3 text-center transition hover:-translate-y-0.5">
-                    <Sparkles className="mx-auto h-6 w-6 text-[#0F0F0F]" />
-                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-[#262626]">
+                  <div className="flex min-h-[76px] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#18181D] p-3 text-center transition hover:-translate-y-0.5 hover:border-[#FF8A3D]/50">
+                    <Sparkles className="mx-auto h-6 w-6 text-[#FF8A3D]" />
+                    <p className="mt-1.5 font-mono text-[10px] font-medium tracking-tight text-slate-200">
                       Ludonode Studios
                     </p>
                   </div>
@@ -528,17 +556,17 @@ export default function App() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
+        <section id="projects" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-rose-300">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-[#EC1D7B] uppercase">
                 <Layers className="h-3.5 w-3.5" />
                 Selected Works
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 dark:text-slate-100 sm:text-4xl">
+              <h2 className="mt-2 font-serif text-3xl font-semibold text-[#F6CF3B] sm:text-4xl">
                 Games, Levels &amp; Narrative Worlds
               </h2>
-              <p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-400 sm:text-base">
+              <p className="mt-2 max-w-2xl text-sm text-slate-300 sm:text-base">
                 Commercial mobile escape rooms, George Brown College game jams and capstones,
                 original puzzle prototypes, and lore bibles. Click any card for full details.
               </p>
@@ -547,18 +575,15 @@ export default function App() {
             <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
-                onClick={() => {
-                  captureCardPositions();
-                  setRecruiterTour((prev) => !prev);
-                }}
+                onClick={toggleTour}
                 className={`inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition ${
                   recruiterTour
-                    ? 'bg-[#0070D1] text-white shadow-sm'
-                    : 'border border-[#0070D1]/40 bg-[#F0F7FF] text-[#005BB5] hover:bg-[#E0EFFF]'
+                    ? 'bg-[#EC1D7B] text-white shadow-sm'
+                    : 'border border-[#EC1D7B]/50 bg-[#EC1D7B]/15 text-[#F472B6] hover:bg-[#EC1D7B]/25'
                 }`}
               >
                 <Sparkles className="h-3.5 w-3.5" />
-                {recruiterTour ? 'Exit Recruiter Tour' : '30s Recruiter Tour'}
+                {recruiterTour ? `Stop Tour (${secondsLeft}s)` : '30s Recruiter Tour'}
               </button>
               {PROJECT_FILTERS.map((filter) => {
                 const isActive = !recruiterTour && activeFilter === filter;
@@ -577,8 +602,8 @@ export default function App() {
                     }}
                     className={`rounded-md px-4 py-2 font-mono text-[11px] font-semibold tracking-tight transition duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.96] ${
                       isActive
-                        ? 'bg-[#0F0F0F] text-[#F7F7F5]'
-                        : 'border border-[#D4D4D2] bg-[#F7F7F5] text-[#525252] hover:border-[#0F0F0F] hover:text-[#0F0F0F]'
+                        ? 'bg-[#F6CF3B] text-slate-950'
+                        : 'border border-white/15 bg-[#121216] text-slate-300 hover:border-[#F6CF3B]/60 hover:text-white'
                     }`}
                   >
                     {filter} <span className="ml-1 opacity-70">({count})</span>
@@ -591,7 +616,7 @@ export default function App() {
           {/* Tech Stack & System Dependency Matrix */}
           {!recruiterTour && (
             <div className="mt-4 flex flex-wrap items-center gap-1.5">
-              <span className="mr-1 font-mono text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
+              <span className="mr-1 font-mono text-[10px] font-semibold tracking-wider text-slate-400 uppercase">
                 Tech Matrix:
               </span>
               {TECH_TAGS.map((tag) => {
@@ -606,8 +631,8 @@ export default function App() {
                     }}
                     className={`rounded-full px-3 py-1 font-mono text-[10px] font-medium transition ${
                       active
-                        ? 'bg-slate-900 text-white'
-                        : 'border border-slate-300/80 bg-white/75 text-slate-600 hover:border-slate-500 hover:text-slate-900'
+                        ? 'bg-[#2EF2A8] text-slate-950 font-semibold'
+                        : 'border border-white/15 bg-[#121216] text-slate-300 hover:border-[#2EF2A8]/60 hover:text-white'
                     }`}
                   >
                     {tag}
@@ -618,18 +643,18 @@ export default function App() {
           )}
 
           {recruiterTour && (
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#0070D1]/30 bg-[#F0F7FF] p-4 text-xs text-slate-800">
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[#EC1D7B]/40 bg-[#16161B] p-4 text-xs text-slate-200">
               <div>
-                <p className="font-mono text-[11px] font-bold tracking-wider text-[#005BB5] uppercase">
+                <p className="font-mono text-[11px] font-bold tracking-wider text-[#EC1D7B] uppercase">
                   30-Second Recruiter Highlights · Flagship 3
                 </p>
-                <p className="mt-1 text-slate-700">
-                  Core Stack: <strong>UE 5.8 (C++ / StateTree)</strong> · <strong>Unity 6 (C# / URP / Netcode)</strong> · <strong>170K+ Shipped Mobile Downloads</strong>. Click any card for live demos, flowcharts &amp; code.
+                <p className="mt-1 text-slate-300">
+                  Core Stack: <strong>UE 5.8 (C++ / StateTree)</strong> · <strong>Unity 6 (C# / URP / Netcode)</strong> · <strong>170K+ Shipped Mobile Downloads</strong>.
                 </p>
               </div>
               <a
                 href="#resume"
-                className="rounded-full bg-[#0070D1] px-4 py-1.5 font-semibold text-white hover:bg-[#005BB5]"
+                className="rounded-full bg-[#F37336] px-4 py-1.5 font-semibold text-slate-950 hover:bg-[#FF8A3D]"
               >
                 Jump to Experience &amp; Resume
               </a>
@@ -760,7 +785,7 @@ export default function App() {
         </div>
 
         {/* Character Design Section */}
-        <section id="characters" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
+        <section id="characters" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
           <Reveal>
             <div className="flex flex-col gap-2">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
@@ -808,7 +833,7 @@ export default function App() {
         </section>
 
         {/* Writing & Blog Section */}
-        <section id="writing" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
+        <section id="writing" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
           <Reveal>
             <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
               <div>
@@ -844,9 +869,9 @@ export default function App() {
           </Reveal>
 
           {/* On-Page Interactive Yarn Spinner Dialogue Showcase */}
-          <div className="mt-8 rounded-2xl border border-[#D4D4D2] bg-[#F7F7F5] p-5">
+          <div className="mt-8 rounded-2xl border border-white/10 bg-[#121216] p-5">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="font-mono text-[11px] font-semibold tracking-wider text-slate-600 uppercase">
+              <span className="font-mono text-[11px] font-semibold tracking-wider text-[#FF8A3D] uppercase">
                 Interactive Branching Dialogue Showcase
               </span>
               <div className="flex gap-1.5">
@@ -855,8 +880,8 @@ export default function App() {
                   onClick={() => setDialogueSampleId('carpe-dino')}
                   className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                     dialogueSampleId === 'carpe-dino'
-                      ? 'bg-slate-900 text-white'
-                      : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                      ? 'bg-[#F6CF3B] text-slate-950'
+                      : 'border border-white/15 bg-white/5 text-slate-300 hover:bg-white/10'
                   }`}
                 >
                   Carpe Dino
@@ -866,8 +891,8 @@ export default function App() {
                   onClick={() => setDialogueSampleId('red-tide')}
                   className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
                     dialogueSampleId === 'red-tide'
-                      ? 'bg-slate-900 text-white'
-                      : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                      ? 'bg-[#F6CF3B] text-slate-950'
+                      : 'border border-white/15 bg-white/5 text-slate-300 hover:bg-white/10'
                   }`}
                 >
                   Red Tide
@@ -922,12 +947,12 @@ export default function App() {
         </section>
 
         {/* Business & Resume Section */}
-        <section id="resume" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
+        <section id="resume" className="scroll-mt-20 border-t border-white/10 py-14 sm:py-16">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Studio Card */}
             <div className="lg:col-span-5">
               <ScrollParallax offsetY={26} offsetX={-12} scaleFrom={0.94} tiltDeg={4} yawDeg={-3}>
-              <div className="rounded-2xl border border-[#DCD0C7] bg-[#F7F3EF] p-7">
+              <div className="rounded-2xl border border-[#FF8A3D]/35 bg-[#121216] p-7">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
                     <Sparkles className="h-6 w-6" />

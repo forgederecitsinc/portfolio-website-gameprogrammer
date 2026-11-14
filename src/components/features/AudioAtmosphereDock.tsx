@@ -103,8 +103,8 @@ export function AudioAtmosphereDock() {
           aria-label="Open ambient audio dock"
           className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold shadow-lg backdrop-blur-md transition ${
             preset !== 'off'
-              ? 'border-sky-400 bg-slate-900 text-sky-300'
-              : 'border-[#D4D4D2] bg-[#F7F7F5]/95 text-[#0F0F0F] hover:bg-white'
+              ? 'border-[#2EF2A8] bg-[#121216] text-[#2EF2A8]'
+              : 'border-white/15 bg-[#121216]/95 text-slate-200 hover:border-[#F6CF3B] hover:text-[#F6CF3B]'
           }`}
         >
           {preset !== 'off' ? <Volume2 className="h-3.5 w-3.5 animate-pulse" /> : <VolumeX className="h-3.5 w-3.5" />}
