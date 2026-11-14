@@ -46,7 +46,7 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
       aria-labelledby="project-modal-title"
     >
       <div
-        className={`animate-modal-in relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border ${theme.border} bg-[#FAF8F5] p-6 shadow-2xl sm:p-8 dark:bg-slate-900`}
+        className={`animate-modal-in relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border ${theme.border} bg-[#EDEAE4] p-6 shadow-2xl sm:p-8`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
