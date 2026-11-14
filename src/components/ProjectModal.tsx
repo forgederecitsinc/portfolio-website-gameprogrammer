@@ -90,6 +90,24 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <p className="mt-2 leading-relaxed text-slate-700">{project.overview}</p>
         </div>
 
+        {project.images && project.images.length > 0 && (
+          <div className="mt-6">
+            <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+              System Architecture
+            </h4>
+            <div className="mt-3 space-y-3">
+              {project.images.map((img) => (
+                <img
+                  key={img.src}
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full rounded-2xl border border-slate-200/80 bg-white object-contain"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-6">
           <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
             Key Contributions

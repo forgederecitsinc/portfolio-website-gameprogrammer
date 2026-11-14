@@ -116,6 +116,12 @@ export const PROJECTS: ProjectItem[] = [
       url: 'https://play.google.com/store/apps/details?id=air.com.hfg.grimoflegacy&hl=en&gl=US',
     },
     badgeImage: './images/hfg-badge.png',
+    images: [
+      {
+        src: './images/systems/grim-of-legacy.svg',
+        alt: 'Escape Room: Grim of Legacy puzzle and spatial flow system diagram',
+      },
+    ],
     theme: 'amber',
   },
   {
@@ -136,6 +142,12 @@ export const PROJECTS: ProjectItem[] = [
       url: 'https://play.google.com/store/apps/details?id=air.com.hfg.allysadventures&hl=en&gl=US',
     },
     badgeImage: './images/hfg-badge.png',
+    images: [
+      {
+        src: './images/systems/allys-adventure.svg',
+        alt: "Escape Room: Ally's Adventure narrative and lock progression system diagram",
+      },
+    ],
     theme: 'rose',
   },
   {
@@ -152,6 +164,12 @@ export const PROJECTS: ProjectItem[] = [
       'Led sprint planning and Agile project management across the team.',
     ],
     badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/red-tide.svg',
+        alt: 'Red Tide survival horror pacing loop diagram',
+      },
+    ],
     theme: 'rose',
   },
   {
@@ -167,6 +185,12 @@ export const PROJECTS: ProjectItem[] = [
       'Rapidly prototyped and playtested level flow within a 48-hour jam window.',
     ],
     badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/fair-fortunes.svg',
+        alt: 'Fair Fortunes tarot and contraption puzzle system diagram',
+      },
+    ],
     theme: 'violet',
   },
   {
@@ -182,6 +206,12 @@ export const PROJECTS: ProjectItem[] = [
       'Tuned resource placement and player traversal flow.',
     ],
     badgeImage: './images/gbc-badge.png',
+    images: [
+      {
+        src: './images/systems/syrup-safari.svg',
+        alt: 'Syrup Safari platforming and hazard timing system diagram',
+      },
+    ],
     theme: 'amber',
   },
   {
@@ -195,6 +225,12 @@ export const PROJECTS: ProjectItem[] = [
     contributions: [
       'Designed multi-state temporal toggling rules and causality constraints.',
       'Mapped paradoxical physics puzzle scenarios across three eras.',
+    ],
+    images: [
+      {
+        src: './images/systems/temporal-nexus.svg',
+        alt: 'Temporal Nexus 3-era causality toggle system diagram',
+      },
     ],
     theme: 'sky',
   },
@@ -210,6 +246,12 @@ export const PROJECTS: ProjectItem[] = [
       'Designed momentum-driven mechanics and gravity-well interactions.',
       'Structured escalating spatial prediction challenges.',
     ],
+    images: [
+      {
+        src: './images/systems/slide-n-ball.svg',
+        alt: "Slide 'n Ball Game momentum and gravity-well loop diagram",
+      },
+    ],
     theme: 'emerald',
   },
   {
@@ -224,6 +266,12 @@ export const PROJECTS: ProjectItem[] = [
       'Built faction politics, moral ambiguity frameworks, and cultural worldbuilding.',
       'Authored dialogue trees, cinematic narrative beats, and character motivation matrices.',
     ],
+    images: [
+      {
+        src: './images/systems/mirage-of-maravi.svg',
+        alt: 'Mirage of Maravi faction and dialogue matrix diagram',
+      },
+    ],
     theme: 'amber',
   },
   {
@@ -237,6 +285,12 @@ export const PROJECTS: ProjectItem[] = [
     contributions: [
       'Developed comprehensive lore on geography, theological sects, and socio-economic caste systems.',
       'Designed technological artifacts powered by crystallized sunlight.',
+    ],
+    images: [
+      {
+        src: './images/systems/solaureus.svg',
+        alt: 'Solaureus solar alchemy and guild system diagram',
+      },
     ],
     theme: 'teal',
   },
