@@ -44,7 +44,6 @@ import { DualSensePlayground } from './components/DualSensePlayground';
 import { HeroNavMeshCanvas } from './components/HeroNavMeshCanvas';
 import { Resn3DShowcase } from './components/Resn3DShowcase';
 import { Card3DTilt } from './components/Card3DTilt';
-import { NoomoXRStage } from './components/NoomoXRStage';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
 
@@ -321,15 +320,9 @@ export default function App() {
       ) : route === 'school' ? (
         <SchoolPage onNavigate={navigateTo} onSelectProject={setSelectedProject} />
       ) : (
-        <main id="top">
-          <NoomoXRStage
-            chapters={[
-              {
-                id: 'intro',
-                num: '01',
-                label: 'Intro',
-                content: (
-        <section className="relative overflow-hidden py-10 sm:py-14">
+        <main id="top" className="mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden py-14 sm:py-20">
           <HeroNavMeshCanvas />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="animate-fade-up lg:col-span-7">
@@ -414,14 +407,9 @@ export default function App() {
             </div>
           </div>
         </section>
-                ),
-              },
-              {
-                id: 'projects',
-                num: '02',
-                label: 'Works',
-                content: (
-        <section id="projects" className="scroll-mt-20 py-8 sm:py-10">
+
+        {/* Projects Section */}
+        <section id="projects" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-rose-300">
@@ -575,21 +563,14 @@ export default function App() {
             </div>
           </Reveal>
         </section>
-                ),
-              },
-              {
-                id: 'haptics-lab',
-                num: '03',
-                label: 'DualSense',
-                content: <DualSensePlayground />,
-              },
-              {
-                id: 'characters',
-                num: '04',
-                label: 'Characters & Lore',
-                content: (
-                  <>
-        <section id="characters" className="scroll-mt-20 py-8 sm:py-10">
+
+        {/* Interactive DualSense Haptics & Audio Lab */}
+        <ScrollParallax offsetY={32} scaleFrom={0.93} tiltDeg={5}>
+          <DualSensePlayground />
+        </ScrollParallax>
+
+        {/* Character Design Section */}
+        <section id="characters" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
           <Reveal>
             <div className="flex flex-col gap-2">
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-violet-700 uppercase dark:text-violet-300">
@@ -713,16 +694,9 @@ export default function App() {
             })}
           </div>
         </section>
-                  </>
-                ),
-              },
-              {
-                id: 'resume',
-                num: '05',
-                label: 'Studio & Contact',
-                content: (
-                  <>
-        <section id="resume" className="scroll-mt-20 py-8 sm:py-10">
+
+        {/* Business & Resume Section */}
+        <section id="resume" className="scroll-mt-20 border-t border-[#B4B4AE] py-14 sm:py-16">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Studio Card */}
             <div className="lg:col-span-5">
@@ -987,11 +961,6 @@ export default function App() {
             </div>
           </div>
         </section>
-                  </>
-                ),
-              },
-            ]}
-          />
       </main>
       )}
 

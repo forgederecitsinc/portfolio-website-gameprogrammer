@@ -7,7 +7,7 @@ interface RevealProps {
 }
 
 /**
- * Scroll-triggered fade-and-lift reveal wrapper using IntersectionObserver.
+ * Scroll-triggered 3D perspective rise, scale, and unblur reveal wrapper.
  */
 export function Reveal({ children, delayMs = 0, className = '' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +24,7 @@ export function Reveal({ children, delayMs = 0, className = '' }: RevealProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
     );
 
     observer.observe(el);
@@ -34,9 +34,14 @@ export function Reveal({ children, delayMs = 0, className = '' }: RevealProps) {
   return (
     <div
       ref={ref}
-      style={{ transitionDelay: `${delayMs}ms` }}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
-        visible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100'
+      style={{
+        transitionDelay: `${delayMs}ms`,
+        transform: visible
+          ? 'perspective(1000px) translate3d(0, 0, 0) scale(1) rotateX(0deg)'
+          : 'perspective(1000px) translate3d(0, 34px, 0) scale(0.95) rotateX(6deg)',
+      }}
+      className={`transition-[transform,opacity,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transform-none motion-reduce:transition-none ${
+        visible ? 'opacity-100 blur-none' : 'opacity-0 blur-[3px] motion-reduce:opacity-100 motion-reduce:blur-none'
       } ${className}`}
     >
       {children}
