@@ -37,12 +37,12 @@ export const GAMEPLAY_LOOPS: Record<string, GameplayLoopSpec> = {
     reward: 'Advance 50-Level Story',
   },
   'live-wire': {
-    title: 'UE 5.8 Isometric Action-Puzzle Loop',
-    entry: 'Enter Substation Tier',
-    action: 'Carry Battery & Aim Laser',
-    system: 'Drone / Thief AI & Grid',
-    decision: 'Node Powered?',
-    retryLabel: 'Evade / Reposition',
+    title: 'UE 5.8 Substation Action-Puzzle Loop',
+    entry: 'Scan & Grab Battery (E / □)',
+    action: '5s Hold Dock & Aim Turret',
+    system: 'Thief (10s) & Drone Patrols',
+    decision: 'Bushing Lit & Grid Clear?',
+    retryLabel: 'Recover Battery / Dodge Lasers',
     reward: 'Ignite Transformer & Advance',
   },
   'trap-rooms': {

@@ -175,14 +175,15 @@ export const PROJECTS: ProjectItem[] = [
     title: 'Live Wire',
     category: 'GBC School',
     roles: ['Game Programmer', 'Systems & Level Designer'],
-    context: 'George Brown College · Sep 2026 – Present · Unreal Engine 5.8 (C++ & Blueprints)',
-    platforms: ['PC', 'DualSense'],
+    context: 'George Brown College · GAME3023 (Fall 2026) · Unreal Engine 5.8 (C++ & Blueprints)',
+    platforms: ['PC', 'PS5 DualSense', 'macOS Apple Silicon'],
     overview:
-      'Top-down 2.5D isometric action-puzzle game set inside a decommissioned multi-tier power substation where power is both the objective and the hazard.',
+      'Top-down 2.5D isometric action-puzzle game set inside a decommissioned multi-tier power substation. Built with a C++ core (Engine, AIModule, NavigationSystem, StateTree, UMG/Slate) and World Partition level architecture where electricity is both the objective and the hazard.',
     contributions: [
-      'Engineered ID-matched Battery Capsules, Laser Guns, Laser Targets, and neon-igniting Transformer Bushings in C++.',
-      'Built NavMesh Enemy Drones with spotlight cones, Battery Thief wave AI, and security laser hazards.',
-      'Implemented dynamic circular occlusion cutout shader (MPC_PlayerOcclusion), Slate HUD, and DualSense haptics.',
+      'Player, Isometric Camera & Health (C++): Fixed -60° isometric SpringArm camera (1600 cm arm, 85° FOV), 260 cm interaction scanner, 100 HP damage/knockback/respawn system, and looped 2D substation audio.',
+      'ID-Matched Power & Puzzle Loop: Engineered ABatteryCapsule (1001+ color-mapped IDs), ARedPowerCylinder (2500 cm trace laser turrets), ALaserTarget receivers, and neon-igniting ATransformerBushing (25× emissive + 8000-lumen flicker).',
+      'Security Grid & Enemy AI Waves: Built instanced AGridLaser + AGridLaserButton toggles, AEnemyBatteryThief wave spawner (Patrol → Approach → 10 s Battery Removal → DropSpot), and hovering AEnemyDrone spotlight patrols dropping 1400 cm/s laser bolts.',
+      'Slate HUD, Occlusion Shader & DualSense: Authored Slate radial hold-badge (5 s hold), lagging health bar, overhead thief countdown, MPC_PlayerOcclusion cutout (260 radius / 5% center opacity), and Enhanced Input + DualSense rumble.',
     ],
     link: {
       label: 'GitHub Repository',
