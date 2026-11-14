@@ -75,6 +75,15 @@ export default function App() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
+    const titles: Record<PageRoute, string> = {
+      home: 'Roshan Christy — Game Designer, Game Writer & Puzzle Designer | Ludonode Studios',
+      professional: 'Professional Work — Roshan Christy | Ludonode Studios',
+      school: 'School & Game Jam Projects — Roshan Christy | George Brown Polytechnic',
+    };
+    document.title = titles[route];
+  }, [route]);
+
+  useEffect(() => {
     const handleHashChange = () => setRoute(getRouteFromHash());
     const handleScroll = () => setShowBackToTop(window.scrollY > 420);
     window.addEventListener('hashchange', handleHashChange);
