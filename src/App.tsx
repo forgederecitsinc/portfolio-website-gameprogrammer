@@ -452,7 +452,7 @@ export default function App() {
             </div>
           </div>
 
-          <ScrollParallax offsetY={20} scaleFrom={0.97} tiltDeg={2.5}>
+          <ScrollParallax offsetY={30} scaleFrom={0.94} tiltDeg={4.5}>
             <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {visibleProjects.map((project) => {
               const theme = PASTEL_THEME[project.theme];
@@ -564,7 +564,9 @@ export default function App() {
         </section>
 
         {/* Interactive DualSense Haptics & Audio Lab */}
-        <DualSensePlayground />
+        <ScrollParallax offsetY={32} scaleFrom={0.93} tiltDeg={5}>
+          <DualSensePlayground />
+        </ScrollParallax>
 
         {/* Character Design Section */}
         <section id="characters" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
@@ -584,7 +586,8 @@ export default function App() {
             </div>
           </Reveal>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ScrollParallax offsetY={30} scaleFrom={0.94} tiltDeg={4.5}>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CHARACTERS.map((char, idx) => {
               const theme = PASTEL_THEME[char.theme];
               return (
@@ -609,6 +612,7 @@ export default function App() {
               );
             })}
           </div>
+          </ScrollParallax>
         </section>
 
         {/* Writing & Blog Section */}
@@ -691,11 +695,12 @@ export default function App() {
         </section>
 
         {/* Business & Resume Section */}
-        <section id="resume" className="scroll-mt-20 border-t border-slate-200/80 py-14 sm:py-16 dark:border-slate-800/80">
+        <section id="resume" className="scroll-mt-20 border-t border-[#DCD0C7] py-14 sm:py-16">
           <div className="grid gap-8 lg:grid-cols-12">
             {/* Studio Card */}
             <div className="lg:col-span-5">
-              <div className="rounded-3xl border border-violet-200/80 bg-violet-50/60 p-7 dark:border-violet-800/60 dark:bg-violet-950/35">
+              <ScrollParallax offsetY={26} offsetX={-12} scaleFrom={0.94} tiltDeg={4} yawDeg={-3}>
+              <div className="rounded-3xl border border-[#DCD0C7] bg-[#F7F3EF] p-7">
                 <div className="flex items-center gap-4">
                   <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-white text-violet-600 dark:border-violet-700 dark:bg-slate-900 dark:text-violet-300">
                     <Sparkles className="h-6 w-6" />
@@ -775,6 +780,7 @@ export default function App() {
                   ))}
                 </div>
               </div>
+              </ScrollParallax>
 
               {/* Languages & Certifications */}
               <div className="mt-6 rounded-3xl border border-emerald-200/80 bg-emerald-50/50 p-6 dark:border-emerald-800/60 dark:bg-emerald-950/30">
