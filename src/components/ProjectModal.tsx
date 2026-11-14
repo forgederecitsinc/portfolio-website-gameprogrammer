@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   CheckCircle2,
   ChevronLeft,
@@ -10,6 +10,7 @@ import {
 import type { ProjectItem } from '../data/portfolio';
 import { PASTEL_THEME } from '../utils/theme';
 import { GameplayLoopFlowchart } from './GameplayLoopFlowchart';
+import { GameDemo } from './demos/GameDemo';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -22,16 +23,24 @@ interface ProjectModalProps {
  * Accessible detail modal displaying full project metadata, contributions, and links.
  */
 export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalProps) {
+  const [isDemoPlaying, setIsDemoPlaying] = useState(false);
+
+  useEffect(() => {
+    setIsDemoPlaying(false);
+  }, [project?.id]);
+
   useEffect(() => {
     if (!project) return;
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowLeft' && onPrev) onPrev();
-      if (e.key === 'ArrowRight' && onNext) onNext();
+      if (!isDemoPlaying) {
+        if (e.key === 'ArrowLeft' && onPrev) onPrev();
+        if (e.key === 'ArrowRight' && onNext) onNext();
+      }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [project, onClose, onPrev, onNext]);
+  }, [project, onClose, onPrev, onNext, isDemoPlaying]);
 
   if (!project) return null;
 
@@ -114,6 +123,13 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
             <GameplayLoopFlowchart projectId={project.id} theme={project.theme} />
           </div>
         </div>
+
+        <GameDemo
+          key={project.id}
+          projectId={project.id}
+          theme={project.theme}
+          onPlayingChange={setIsDemoPlaying}
+        />
 
         <div className="mt-6">
           <h4 className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
