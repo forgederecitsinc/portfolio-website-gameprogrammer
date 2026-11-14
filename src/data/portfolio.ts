@@ -20,6 +20,10 @@ export interface ProjectItem {
     url: string;
   };
   badgeImage?: string;
+  images?: Array<{
+    src: string;
+    alt: string;
+  }>;
   theme: PastelTheme;
 }
 

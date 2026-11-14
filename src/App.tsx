@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   ArrowUpRight,
   BookOpen,
@@ -30,6 +30,17 @@ import {
 } from './data/portfolio';
 import { PASTEL_THEME } from './utils/theme';
 import { ProjectModal } from './components/ProjectModal';
+import { ProfessionalPage } from './pages/ProfessionalPage';
+import { SchoolPage } from './pages/SchoolPage';
+
+type PageRoute = 'home' | 'professional' | 'school';
+
+function getRouteFromHash(): PageRoute {
+  const hash = window.location.hash;
+  if (hash === '#/professional') return 'professional';
+  if (hash === '#/school') return 'school';
+  return 'home';
+}
 
 const PROJECT_FILTERS: Array<'All' | ProjectCategory> = [
   'All',
@@ -48,9 +59,28 @@ const NAV_LINKS = [
 ];
 
 export default function App() {
+  const [route, setRoute] = useState<PageRoute>(() => getRouteFromHash());
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleHashChange = () => setRoute(getRouteFromHash());
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (nextRoute: PageRoute) => {
+    const hashMap: Record<PageRoute, string> = {
+      home: '#/',
+      professional: '#/professional',
+      school: '#/school',
+    };
+    window.location.hash = hashMap[nextRoute];
+    setRoute(nextRoute);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return PROJECTS;
@@ -65,7 +95,14 @@ export default function App() {
       {/* Top Navigation */}
       <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-[#FAF8F5]/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
-          <a href="#top" className="flex items-center gap-3">
+          <a
+            href="#/"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateTo('home');
+            }}
+            className="flex items-center gap-3"
+          >
             <img
               src="./images/ludonode-logo.jpg"
               alt="Ludonode Studios — Roshan's Forge de Récits Inc."
@@ -81,16 +118,48 @@ export default function App() {
             </div>
           </a>
 
-          <nav className="hidden items-center gap-7 md:flex">
-            {NAV_LINKS.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
+          <nav className="hidden items-center gap-5 md:flex">
+            <button
+              type="button"
+              onClick={() => navigateTo('professional')}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                route === 'professional'
+                  ? 'bg-amber-100 text-amber-900'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
+              }`}
+            >
+              Professional
+            </button>
+            <button
+              type="button"
+              onClick={() => navigateTo('school')}
+              className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                route === 'school'
+                  ? 'bg-sky-100 text-sky-900'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'
+              }`}
+            >
+              School Projects
+            </button>
+            {route === 'home' ? (
+              NAV_LINKS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-medium text-slate-600 transition hover:text-slate-950"
+                >
+                  {item.label}
+                </a>
+              ))
+            ) : (
+              <button
+                type="button"
+                onClick={() => navigateTo('home')}
                 className="text-sm font-medium text-slate-600 transition hover:text-slate-950"
               >
-                {item.label}
-              </a>
-            ))}
+                Main Page
+              </button>
+            )}
             <a
               href={`mailto:${PROFILE.emails[0].address}`}
               className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-800"
@@ -112,23 +181,50 @@ export default function App() {
 
         {mobileMenuOpen && (
           <div className="border-t border-slate-200/70 bg-[#FAF8F5] px-4 py-4 md:hidden">
-            <div className="flex flex-col gap-3">
-              {NAV_LINKS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100"
-                >
-                  {item.label}
-                </a>
-              ))}
+            <div className="flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={() => navigateTo('home')}
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100"
+              >
+                Main Page
+              </button>
+              <button
+                type="button"
+                onClick={() => navigateTo('professional')}
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100"
+              >
+                Professional
+              </button>
+              <button
+                type="button"
+                onClick={() => navigateTo('school')}
+                className="rounded-lg px-2 py-1.5 text-left text-sm font-medium text-slate-700 hover:bg-slate-100"
+              >
+                School Projects
+              </button>
+              {route === 'home' &&
+                NAV_LINKS.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="rounded-lg px-2 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100"
+                  >
+                    {item.label}
+                  </a>
+                ))}
             </div>
           </div>
         )}
       </header>
 
-      <main id="top" className="mx-auto max-w-6xl px-4 sm:px-6">
+      {route === 'professional' ? (
+        <ProfessionalPage onNavigate={navigateTo} onSelectProject={setSelectedProject} />
+      ) : route === 'school' ? (
+        <SchoolPage onNavigate={navigateTo} onSelectProject={setSelectedProject} />
+      ) : (
+        <main id="top" className="mx-auto max-w-6xl px-4 sm:px-6">
         {/* Hero Section */}
         <section className="py-14 sm:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-12">
@@ -655,6 +751,7 @@ export default function App() {
           </div>
         </section>
       </main>
+      )}
 
       {/* Footer */}
       <footer className="border-t border-slate-200/80 bg-white/50 py-8">
