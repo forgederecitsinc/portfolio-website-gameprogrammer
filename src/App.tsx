@@ -189,7 +189,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-[#D4D4D2] bg-[#ECEBE9]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#B4B4AE] bg-[#CFCFC9]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -276,7 +276,7 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-slate-300/70 bg-[#EDEAE4] px-4 py-4 md:hidden">
+          <div className="border-t border-[#B4B4AE] bg-[#CFCFC9] px-4 py-4 md:hidden">
             <div className="flex flex-col gap-2">
               <button
                 type="button"
