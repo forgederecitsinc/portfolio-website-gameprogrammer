@@ -35,6 +35,7 @@ import {
   type ProjectItem,
 } from './data/portfolio';
 import { PASTEL_THEME } from './utils/theme';
+import { GameDevBackdrop } from './components/GameDevBackdrop';
 import { ProjectModal } from './components/ProjectModal';
 import { Reveal } from './components/Reveal';
 import { ThemeToggle } from './components/ThemeToggle';
@@ -128,13 +129,8 @@ export default function App() {
     : -1;
 
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-[#FAF8F5] text-slate-800 dark:bg-[#090d16] dark:text-slate-100">
-      {/* Ambient floating pastel aurora orbs */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[600px] overflow-hidden">
-        <div className="animate-float-slow absolute -top-24 -left-24 h-80 w-80 rounded-full bg-violet-200/50 blur-3xl dark:bg-violet-600/20" />
-        <div className="animate-float-reverse absolute top-10 right-[-4rem] h-80 w-80 rounded-full bg-rose-200/45 blur-3xl dark:bg-rose-600/15" />
-        <div className="animate-float-slow absolute top-48 left-1/3 h-64 w-64 rounded-full bg-sky-200/40 blur-3xl dark:bg-sky-500/15" />
-      </div>
+    <div className="relative min-h-screen overflow-x-clip text-slate-800 dark:text-slate-100">
+      <GameDevBackdrop />
 
       {/* Top Navigation */}
       <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-[#FAF8F5]/85 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/85">
