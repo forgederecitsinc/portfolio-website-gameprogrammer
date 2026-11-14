@@ -186,6 +186,13 @@ export function AudioAtmosphereDock() {
               </button>
             )}
           </div>
+
+          {preset !== 'off' && (
+            <div className="mt-2.5 flex items-center gap-1.5 font-mono text-[10px] text-slate-600">
+              <span className="h-2 w-2 animate-ping rounded-full bg-amber-500" />
+              <span>Signal Active · {Math.round(volume * 100)}% Gain</span>
+            </div>
+          )}
         </div>
       )}
     </div>

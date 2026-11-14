@@ -47,6 +47,7 @@ import { Card3DTilt } from './components/Card3DTilt';
 import { ProfessionalPage } from './pages/ProfessionalPage';
 import { SchoolPage } from './pages/SchoolPage';
 import { AudioAtmosphereDock } from './components/features/AudioAtmosphereDock';
+import { DialoguePlayer } from './components/features/DialoguePlayer';
 import { useGamepadNav } from './hooks/useGamepadNav';
 import { useKonamiCode } from './hooks/useKonamiCode';
 
@@ -106,6 +107,7 @@ export default function App() {
   const [activeTech, setActiveTech] = useState<TechTag>('All Tech');
   const [recruiterTour, setRecruiterTour] = useState(false);
   const [showAllProjects, setShowAllProjects] = useState(false);
+  const [dialogueSampleId, setDialogueSampleId] = useState<'carpe-dino' | 'red-tide'>('carpe-dino');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
@@ -790,6 +792,40 @@ export default function App() {
               </div>
             </div>
           </Reveal>
+
+          {/* On-Page Interactive Yarn Spinner Dialogue Showcase */}
+          <div className="mt-8 rounded-2xl border border-[#D4D4D2] bg-[#F7F7F5] p-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="font-mono text-[11px] font-semibold tracking-wider text-slate-600 uppercase">
+                Interactive Branching Dialogue Showcase
+              </span>
+              <div className="flex gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => setDialogueSampleId('carpe-dino')}
+                  className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                    dialogueSampleId === 'carpe-dino'
+                      ? 'bg-slate-900 text-white'
+                      : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  Carpe Dino
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDialogueSampleId('red-tide')}
+                  className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                    dialogueSampleId === 'red-tide'
+                      ? 'bg-slate-900 text-white'
+                      : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  Red Tide
+                </button>
+              </div>
+            </div>
+            <DialoguePlayer key={`inline-${dialogueSampleId}`} projectId={dialogueSampleId} />
+          </div>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {WRITINGS.map((item, idx) => {
