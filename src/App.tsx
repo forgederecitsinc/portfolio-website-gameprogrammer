@@ -36,11 +36,13 @@ import {
   WRITINGS,
   YOUTUBE_CHANNEL_URL,
   YOUTUBE_VIDEOS,
+  type CharacterProfile,
   type ProjectCategory,
   type ProjectItem,
 } from './data/portfolio';
 import { PASTEL_THEME } from './utils/theme';
 import { GameDevBackdrop } from './components/GameDevBackdrop';
+import { CharacterModal } from './components/CharacterModal';
 import { ProjectModal } from './components/ProjectModal';
 import { Reveal } from './components/Reveal';
 import { ScrollParallax, ScrollProgressBar, ScrollScrub3D } from './components/ScrollMotion';
@@ -118,6 +120,7 @@ export default function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [dialogueSampleId, setDialogueSampleId] = useState<'carpe-dino' | 'red-tide'>('carpe-dino');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<CharacterProfile | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -987,22 +990,39 @@ export default function App() {
               const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
                 <ScrollScrub3D key={char.id} origin={origin} className="h-full">
-                  <div
-                    className={`flex h-full flex-col rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                  <article
+                    onClick={() => setSelectedCharacter(char)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setSelectedCharacter(char);
+                      }
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    className={`group flex h-full cursor-pointer flex-col justify-between rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-amber-500`}
                   >
+                    <div>
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
+                      >
+                        <Sparkles className="h-3 w-3" />
+                        {char.archetype}
+                      </span>
+                      <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 group-hover:text-amber-700 dark:text-slate-100 dark:group-hover:text-[#F6CF3B]">
+                        {char.name}
+                      </h3>
+                      <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        {char.summary}
+                      </p>
+                    </div>
                     <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
+                      className={`mt-4 inline-flex items-center gap-1 text-xs font-semibold ${theme.accentText}`}
                     >
-                      <Sparkles className="h-3 w-3" />
-                      {char.archetype}
+                      View character profile
+                      <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
-                    <h3 className="mt-4 font-serif text-xl font-semibold text-slate-900 dark:text-slate-100">
-                      {char.name}
-                    </h3>
-                    <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
-                      {char.summary}
-                    </p>
-                  </div>
+                  </article>
                 </ScrollScrub3D>
               );
             })}
@@ -1489,6 +1509,28 @@ export default function App() {
         onNext={
           selectedIndex >= 0 && selectedIndex < filteredProjects.length - 1
             ? () => setSelectedProject(filteredProjects[selectedIndex + 1])
+            : undefined
+        }
+      />
+
+      <CharacterModal
+        character={selectedCharacter}
+        onClose={() => setSelectedCharacter(null)}
+        onPrev={
+          selectedCharacter && CHARACTERS.findIndex((c) => c.id === selectedCharacter.id) > 0
+            ? () =>
+                setSelectedCharacter(
+                  CHARACTERS[CHARACTERS.findIndex((c) => c.id === selectedCharacter.id) - 1]
+                )
+            : undefined
+        }
+        onNext={
+          selectedCharacter &&
+          CHARACTERS.findIndex((c) => c.id === selectedCharacter.id) < CHARACTERS.length - 1
+            ? () =>
+                setSelectedCharacter(
+                  CHARACTERS[CHARACTERS.findIndex((c) => c.id === selectedCharacter.id) + 1]
+                )
             : undefined
         }
       />

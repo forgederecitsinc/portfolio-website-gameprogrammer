@@ -36,6 +36,12 @@ export interface CharacterProfile {
   name: string;
   archetype: string;
   summary: string;
+  origin: string;
+  personality: string[];
+  motivation: string;
+  flaw: string;
+  abilities: string[];
+  quote: string;
   theme: PastelTheme;
 }
 
@@ -710,6 +716,17 @@ export const CHARACTERS: CharacterProfile[] = [
     archetype: 'Elemental Battlemage',
     summary:
       'Fierce elemental battlemage wrestling with inherited tempest magic and moral responsibility over shattered city-states.',
+    origin: 'Aetheris Spire · Shattered City-States',
+    personality: ['Resolute', 'Protective', 'Haunted by Duty', 'Tactical'],
+    motivation:
+      'To stabilize the storm-ravaged borderlands and prevent her bloodline’s tempest magic from being weaponized by rival warlords.',
+    flaw: 'Carries every civilian loss as a personal failure, often overextending her arcane reserves in battle.',
+    abilities: [
+      'Tempest Conduit (chain lightning & gale-force crowd control)',
+      'Storm-Ward Barrier (reactive elemental shield)',
+      'Atmospheric Surge (aerial dash & shockwave slam)',
+    ],
+    quote: 'The storm does not ask permission to break—only where you stand when it does.',
     theme: 'sky',
   },
   {
@@ -718,6 +735,17 @@ export const CHARACTERS: CharacterProfile[] = [
     archetype: 'Relic Archaeologist & Blade Master',
     summary:
       'Scholar blade master seeking to preserve ancient martial traditions and recovered artifacts against imperial pillagers.',
+    origin: 'Kaveri Vaults · Southern Sangam Reach',
+    personality: ['Disciplined', 'Observant', 'Principled', 'Dry-Witted'],
+    motivation:
+      'To catalog and safeguard stolen temple relics before imperial syndicates strip their historical and arcane inscriptions.',
+    flaw: 'Refuses to abandon an artifact even when tactical retreat is the only logical option.',
+    abilities: [
+      'Twin-Arc Sabre Form (precision parry & counter-riposte)',
+      'Glyphic Appraisal (instant structural & trap weak-point analysis)',
+      'Relic Resonance (unlocks dormant mechanisms in ancient ruins)',
+    ],
+    quote: 'History is not what survives in vaults—it is what we refuse to let them erase.',
     theme: 'amber',
   },
   {
@@ -726,6 +754,17 @@ export const CHARACTERS: CharacterProfile[] = [
     archetype: 'Aerial Scout & Navigator',
     summary:
       'Free-spirited aerial scout and skyship navigator with unmatched instinct for weather anomalies and stealth recon.',
+    origin: 'Driftwind Archipelago · High-Altitude Fleet',
+    personality: ['Improvisational', 'Fearless', 'Restless', 'Loyal'],
+    motivation:
+      'To chart the uncharted upper-thermals beyond the Cloudwall and keep her crew one step ahead of blockade patrols.',
+    flaw: 'Distrusts rigid command structures and frequently improvises risky maneuvers without clearance.',
+    abilities: [
+      'Thermal Glider Mastery (silent high-altitude infiltration)',
+      'Barometric Sixth Sense (predicts squalls & ambushes early)',
+      'Grapple-Line Rigging (rapid vertical traversal & boarding)',
+    ],
+    quote: 'Maps only tell you where someone else stopped looking.',
     theme: 'teal',
   },
   {
@@ -734,6 +773,17 @@ export const CHARACTERS: CharacterProfile[] = [
     archetype: 'Covert Intelligence Operative',
     summary:
       'Shrewd undercover intelligence operative navigating double crosses, bureaucratic corruption, and counter-insurgency operations.',
+    origin: 'Directorate Sector 9 · Capital Undercity',
+    personality: ['Calculated', 'Guarded', 'Perceptive', 'Pragmatic'],
+    motivation:
+      'To expose the shadow council manipulating both sides of the insurgency while keeping her deepest cover intact.',
+    flaw: 'Compartmentalizes so thoroughly that she struggles to trust even genuine allies.',
+    abilities: [
+      'Social Camouflage (multi-faction dialect & dossier spoofing)',
+      'Sub-Acoustic Wiretap & Signal Hijack',
+      'Close-Quarters Disarm & Silent Extraction',
+    ],
+    quote: 'Everyone in this room is lying. I just know which lie pays better.',
     theme: 'rose',
   },
   {
@@ -742,6 +792,17 @@ export const CHARACTERS: CharacterProfile[] = [
     archetype: 'Solitary Technomancer Prodigy',
     summary:
       'Driven by grief, wielding arcane-cybernetic conduits to commune with decommissioned sentiences.',
+    origin: 'Foundry District · Lower Conduit Grid',
+    personality: ['Introspective', 'Brilliant', 'Melancholic', 'Relentless'],
+    motivation:
+      'To reconstruct the fragmented memory core of a lost companion by interfacing with abandoned machine sentiences.',
+    flaw: 'Isolates himself in derelict server vaults, neglecting his own physical toll during deep neural dives.',
+    abilities: [
+      'Arcane-Cybernetic Tether (communing with & overriding dormant AI)',
+      'Pulse-Lattice Overclock (empowers or disrupts nearby hardware)',
+      'Memory Echo Reconstruction (replays residual machine telemetry)',
+    ],
+    quote: 'They called them decommissioned. I still hear them asking why.',
     theme: 'violet',
   },
 ];
