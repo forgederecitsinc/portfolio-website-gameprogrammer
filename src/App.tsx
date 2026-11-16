@@ -298,7 +298,7 @@ export default function App() {
       <GameDevBackdrop />
 
       {/* Top Navigation */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-[#FAF9F5]/95 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/95">
+      <header className="sticky top-0 z-40 border-b border-slate-300/80 bg-[#EAE6DC]/95 backdrop-blur-md dark:border-white/10 dark:bg-[#080808]/95">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
           <a
             href="#/"
@@ -418,7 +418,7 @@ export default function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="border-t border-slate-200 bg-[#FAF9F5] px-4 py-4 dark:border-white/10 dark:bg-[#0F0F12] md:hidden">
+          <div className="border-t border-slate-300/80 bg-[#EAE6DC] px-4 py-4 dark:border-white/10 dark:bg-[#0F0F12] md:hidden">
             <div className="flex flex-col gap-2">
               <button
                 type="button"
@@ -1319,7 +1319,7 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-200/80 bg-[#F3F1EA] py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
+      <footer className="border-t border-slate-300/80 bg-[#E2DDD1] py-8 dark:border-slate-800/80 dark:bg-slate-950/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-600 sm:flex-row sm:px-6 dark:text-slate-400">
           <p>
             © {new Date().getFullYear()} {PROFILE.name} · {STUDIO.name}
