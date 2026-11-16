@@ -748,6 +748,66 @@ export const CHARACTERS: CharacterProfile[] = [
 
 export const WRITINGS: WritingItem[] = [
   {
+    id: 'beyond-photorealism',
+    title: 'Beyond Photorealism: How Cohesive Art Direction and Custom Shaders Elevate Game Design',
+    kind: 'Game Design Essay',
+    summary:
+      'Exploring how stylized shaders, cohesive color palettes, and intentional art direction create stronger visual identity and readability than raw photorealism.',
+    platform: 'Medium',
+    url: 'https://ludonodestudios.medium.com/beyond-photorealism-how-cohesive-art-direction-and-custom-shaders-elevate-game-design-38bb05e63f38',
+    theme: 'teal',
+  },
+  {
+    id: 'emergent-gameplay',
+    title: 'Designing Emergent Gameplay: How to Build Systems That Yield Unscripted Stories',
+    kind: 'Game Design Essay',
+    summary:
+      'How to architect interlocking gameplay systems that generate memorable, unscripted player stories without breaking core game balance.',
+    platform: 'Medium',
+    url: 'https://ludonodestudios.medium.com/designing-emergent-gameplay-how-to-build-systems-that-yield-unscripted-stories-without-breaking-01f0c043dc8c',
+    theme: 'sky',
+  },
+  {
+    id: 'directx12-scene-architecture',
+    title: 'From Code to Castle: Mastering Scene Architecture in DirectX 12',
+    kind: 'Game Design Essay',
+    summary:
+      'Technical breakdown of scene graph architecture, command lists, and rendering pipeline organization in DirectX 12.',
+    platform: 'Medium',
+    url: 'https://ludonodestudios.medium.com/from-code-to-castle-mastering-scene-architecture-in-directx-12-4ac019303616',
+    theme: 'emerald',
+  },
+  {
+    id: 'invisible-tutorials',
+    title: 'Invisible Tutorials: Designing the First Level of The Gardens Between',
+    kind: 'Game Design Essay',
+    summary:
+      'Level design analysis of how The Gardens Between teaches time-manipulation mechanics purely through environmental affordances and pacing.',
+    platform: 'Medium',
+    url: 'https://ludonodestudios.medium.com/invisible-tutorials-designing-the-first-level-of-the-gardens-between-06a21fe8d373',
+    theme: 'amber',
+  },
+  {
+    id: 'beyond-ragdolls',
+    title: 'Beyond Ragdolls: Mastering “Weighted” Character Logic and Euphoria Physics',
+    kind: 'Game Design Essay',
+    summary:
+      'Deep dive into procedural animation, active ragdoll balance, and how physics-driven character weight sells impact.',
+    platform: 'Medium',
+    url: 'https://ludonodestudios.medium.com/beyond-ragdolls-mastering-weighted-character-logic-and-euphoria-physics-23290536dc4a',
+    theme: 'rose',
+  },
+  {
+    id: 'gtav-cloud-camera',
+    title: 'The Illusion of Speed: How GTA V’s “Cloud Camera” Solves the Streaming Nightmare',
+    kind: 'Game Design Essay',
+    summary:
+      'How Rockstar Games uses the sky-high character-switch transition to mask asynchronous world streaming and asset loading.',
+    platform: 'Medium',
+    url: 'https://ludonodestudios.medium.com/the-illusion-of-speed-how-gta-vs-cloud-camera-solves-the-streaming-nightmare-478976e4655e',
+    theme: 'violet',
+  },
+  {
     id: 'cinco',
     title: 'Cinco: A Time Travel Short Story',
     kind: 'Short Story',
@@ -766,56 +826,6 @@ export const WRITINGS: WritingItem[] = [
     platform: 'Wattpad',
     url: 'http://www.wattpad.com/user/roshan_christy',
     theme: 'rose',
-  },
-  {
-    id: 'switch-maze',
-    title: 'Designing Tension, Timing, and Trust: Behind the Puzzle of Switch Maze',
-    kind: 'Game Design Essay',
-    summary:
-      'Deep-dive game design analysis examining player psychology during maze solving, cognitive load, time pressure, and building fair player-designer trust.',
-    platform: 'Medium',
-    url: 'https://medium.com/@ludonodestudios',
-    theme: 'teal',
-  },
-  {
-    id: 'how-to-design-puzzles',
-    title: 'How to Design Games series - Puzzles',
-    kind: 'Game Design Essay',
-    summary:
-      'Fundamental breakdown of puzzle design principles: mechanics discovery, clue conveyance, the "Eureka!" curve, and avoiding frustration loops.',
-    platform: 'Medium',
-    url: 'https://medium.com/@ludonodestudios',
-    theme: 'sky',
-  },
-  {
-    id: 'people-surprise-us',
-    title: 'How do you Know when People Surprise Us?',
-    kind: 'Personal Essay',
-    summary:
-      'Philosophical exploration of human intuition, cognitive biases, empathy, and subversion of character expectations in storytelling.',
-    platform: 'Medium',
-    url: 'https://medium.com/@ludonodestudios',
-    theme: 'amber',
-  },
-  {
-    id: 'in-love-when',
-    title: "You Know You're in Love When…",
-    kind: 'Personal Essay',
-    summary:
-      'Reflective personal essay dissecting emotional vulnerability, creative synergy, and romantic resonance.',
-    platform: 'Medium',
-    url: 'https://medium.com/@ludonodestudios',
-    theme: 'rose',
-  },
-  {
-    id: 'atheist-christian-family',
-    title: '4 Reasons not to be An Atheist in a Christian Family',
-    kind: 'Personal Essay',
-    summary:
-      'Nuanced exploration of family harmony, cultural heritage, spiritual dialectics, and navigating secular vs. traditional religious dynamics with respect.',
-    platform: 'Medium',
-    url: 'https://medium.com/@ludonodestudios',
-    theme: 'emerald',
   },
 ];
 
