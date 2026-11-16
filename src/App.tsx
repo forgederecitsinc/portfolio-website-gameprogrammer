@@ -16,6 +16,7 @@ import {
   Menu,
   Moon,
   Phone,
+  PlayCircle,
   Sparkles,
   Sun,
   Users,
@@ -33,6 +34,8 @@ import {
   SKILLS,
   STUDIO,
   WRITINGS,
+  YOUTUBE_CHANNEL_URL,
+  YOUTUBE_VIDEOS,
   type ProjectCategory,
   type ProjectItem,
 } from './data/portfolio';
@@ -99,6 +102,7 @@ const PROJECT_FILTERS: Array<'All' | ProjectCategory> = [
 
 const NAV_LINKS = [
   { label: 'Projects', href: '#projects' },
+  { label: 'Videos', href: '#videos' },
   { label: 'Characters', href: '#characters' },
   { label: 'Writing', href: '#writing' },
   { label: 'Studio & Resume', href: '#resume' },
@@ -805,6 +809,83 @@ export default function App() {
             <DualSensePlayground />
           </ScrollScrub3D>
         </div>
+
+        {/* YouTube Devlogs & Gameplay Videos Section */}
+        <section id="videos" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
+          <Reveal>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-rose-700 uppercase dark:text-[#EC1D7B]">
+                  <PlayCircle className="h-3.5 w-3.5" />
+                  Ludonode Studios · YouTube
+                </span>
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-[#F6CF3B]">
+                  Devlogs &amp; Gameplay Videos
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
+                  Unreal Engine 5.8 C++ gameplay demos, AI StateTree &amp; pathfinding breakdowns,
+                  and Unity 2D/6 devlogs from my YouTube channel.
+                </p>
+              </div>
+              <a
+                href={YOUTUBE_CHANNEL_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full bg-rose-600 px-5 py-2.5 text-xs font-semibold text-white transition hover:bg-rose-700 dark:bg-[#EC1D7B] dark:hover:bg-[#f43f91]"
+              >
+                <PlayCircle className="h-4 w-4" />
+                Visit YouTube Channel
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </Reveal>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {YOUTUBE_VIDEOS.map((video) => {
+              const theme = PASTEL_THEME[video.theme];
+              return (
+                <article
+                  key={video.id}
+                  className={`flex flex-col justify-between overflow-hidden rounded-xl border ${theme.border} ${theme.surface} transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                >
+                  <div className="aspect-video w-full bg-slate-950">
+                    <iframe
+                      className="h-full w-full"
+                      src={`https://www.youtube-nocookie.com/embed/${video.id}?rel=0`}
+                      title={video.title}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-between p-4">
+                    <div>
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${theme.badge}`}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${theme.dot}`} />
+                        {video.tag}
+                      </span>
+                      <h3 className="mt-2.5 line-clamp-2 font-serif text-base font-semibold leading-snug text-slate-900 dark:text-slate-100">
+                        {video.title}
+                      </h3>
+                    </div>
+                    <a
+                      href={`https://www.youtube.com/watch?v=${video.id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`mt-3 inline-flex items-center gap-1 text-xs font-semibold ${theme.accentText}`}
+                    >
+                      Watch on YouTube
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Character Design Section */}
         <section id="characters" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">

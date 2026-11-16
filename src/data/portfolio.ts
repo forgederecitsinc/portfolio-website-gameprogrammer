@@ -58,6 +58,13 @@ export interface ExperienceItem {
   theme: PastelTheme;
 }
 
+export interface YouTubeVideoItem {
+  id: string;
+  title: string;
+  tag: string;
+  theme: PastelTheme;
+}
+
 export const PROFILE = {
   name: 'Roshan Christy',
   title: 'Game Programmer | Game Designer | Puzzle Designer | Game Writer',
@@ -93,12 +100,59 @@ export const PROFILE = {
       url: 'https://www.artstation.com/roshanchristyr',
     },
     {
+      name: 'YouTube',
+      handle: 'Ludonode Studios',
+      url: 'https://www.youtube.com/channel/UCoTcZqq_AYRAOkK9UmRkAWQ',
+    },
+    {
       name: 'Discord',
       handle: '@roshan_christy',
       url: 'https://discord.com/channels/@me',
     },
   ],
 };
+
+export const YOUTUBE_CHANNEL_URL =
+  'https://www.youtube.com/channel/UCoTcZqq_AYRAOkK9UmRkAWQ';
+
+export const YOUTUBE_VIDEOS: YouTubeVideoItem[] = [
+  {
+    id: 'JaMXJV_VneM',
+    title: 'Live Wire — Unreal Engine 5 Gameplay Demo | Sci-Fi Puzzle & Combat (UE5 C++)',
+    tag: 'UE5 C++ · Gameplay Demo',
+    theme: 'emerald',
+  },
+  {
+    id: 'Oe7FVja7tjc',
+    title: 'Enemy Drone AI in Unreal Engine 5 C++ (Patrol, Detection, Chase) | Live Wire Dev Log 1',
+    tag: 'UE5 C++ · AI Devlog',
+    theme: 'sky',
+  },
+  {
+    id: 'a4i7tog7elU',
+    title: 'How I Architected High-Stakes Timed Rooms in UE5 | Devlog | Trap Rooms',
+    tag: 'UE5 C++ · Systems Devlog',
+    theme: 'rose',
+  },
+  {
+    id: 'BoDVQT_aRtY',
+    title: 'Building a Fast-Paced Mobile Arcade Game in Unity 2D',
+    tag: 'Unity 2D · Mobile Devlog',
+    theme: 'amber',
+  },
+  {
+    id: '0stGfZPYl9c',
+    title: 'Unity 6.6 AI Pathfinding Showcase | GAME3121 Lab Test 2',
+    tag: 'Unity 6 · AI Pathfinding',
+    theme: 'teal',
+  },
+  {
+    id: '8QmfpyOQjSk',
+    title: 'GAME3121 Lab Test 2 Final Build: AI Pathfinding',
+    tag: 'Unity 6 · Final Build',
+    theme: 'violet',
+  },
+];
 
 export const PROJECTS: ProjectItem[] = [
   {
