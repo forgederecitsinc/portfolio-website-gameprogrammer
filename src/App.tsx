@@ -103,6 +103,7 @@ const PROJECT_FILTERS: Array<'All' | ProjectCategory> = [
 const NAV_LINKS = [
   { label: 'Projects', href: '#projects' },
   { label: 'Videos', href: '#videos' },
+  { label: 'Articles', href: '#articles' },
   { label: 'Characters', href: '#characters' },
   { label: 'Writing', href: '#writing' },
   { label: 'Studio & Resume', href: '#resume' },
@@ -887,6 +888,80 @@ export default function App() {
           </div>
         </section>
 
+        {/* Game Dev Medium Articles Section */}
+        <section id="articles" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
+          <Reveal>
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-[#2EF2A8]">
+                  <BookOpen className="h-3.5 w-3.5" />
+                  Ludonode Studios · Medium
+                </span>
+                <h2 className="mt-2 font-serif text-3xl font-semibold text-slate-900 sm:text-4xl dark:text-[#F6CF3B]">
+                  Game Dev Articles &amp; Technical Breakdowns
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base dark:text-slate-300">
+                  Deep-dive essays on DirectX 12 scene architecture, emergent gameplay systems,
+                  physics-driven character weight, and level design published on Medium.
+                </p>
+              </div>
+              <a
+                href="https://medium.com/@ludonodestudios"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-xs font-semibold text-slate-800 transition hover:bg-slate-100 dark:border-white/15 dark:bg-[#121216] dark:text-slate-200 dark:hover:bg-white/10"
+              >
+                <BookOpen className="h-4 w-4" />
+                Follow on Medium
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </Reveal>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {WRITINGS.filter((w) => w.platform === 'Medium').map((article, idx) => {
+              const theme = PASTEL_THEME[article.theme];
+              const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
+              return (
+                <ScrollScrub3D key={article.id} origin={origin} className="h-full">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`group flex h-full flex-col justify-between rounded-xl border ${theme.border} ${theme.surface} p-6 transition duration-300 hover:-translate-y-1 hover:shadow-lg`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span
+                          className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[11px] font-semibold ${theme.badge}`}
+                        >
+                          <BookOpen className="h-3 w-3" />
+                          {article.kind}
+                        </span>
+                        <span className="font-mono text-[10px] font-medium text-slate-500 uppercase dark:text-slate-400">
+                          Medium
+                        </span>
+                      </div>
+                      <h3 className="mt-4 font-serif text-lg font-semibold leading-snug text-slate-900 group-hover:text-amber-700 dark:text-slate-100 dark:group-hover:text-[#F6CF3B]">
+                        {article.title}
+                      </h3>
+                      <p className="mt-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                        {article.summary}
+                      </p>
+                    </div>
+                    <span
+                      className={`mt-4 inline-flex items-center gap-1 text-xs font-semibold ${theme.accentText}`}
+                    >
+                      Read Full Article
+                      <ArrowUpRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
+                  </a>
+                </ScrollScrub3D>
+              );
+            })}
+          </div>
+        </section>
+
         {/* Character Design Section */}
         <section id="characters" className="scroll-mt-20 border-t border-slate-200 py-14 dark:border-white/10 sm:py-16">
           <Reveal>
@@ -1006,7 +1081,7 @@ export default function App() {
           </div>
 
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {WRITINGS.map((item, idx) => {
+            {WRITINGS.filter((item) => item.platform !== 'Medium').map((item, idx) => {
               const theme = PASTEL_THEME[item.theme];
               const origin = idx % 3 === 0 ? 'left' : idx % 3 === 2 ? 'right' : 'center';
               return (
