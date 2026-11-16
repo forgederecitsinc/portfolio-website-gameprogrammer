@@ -91,8 +91,8 @@ export const PROFILE = {
     },
     {
       name: 'Wattpad',
-      handle: 'roshan_christy',
-      url: 'http://www.wattpad.com/user/roshan_christy',
+      handle: 'forge_de_recits',
+      url: 'https://www.wattpad.com/user/forge_de_recits',
     },
     {
       name: 'ArtStation',
@@ -814,7 +814,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'A gripping temporal fiction exploring the paradox of 5-minute pre-cognition and time slips, the emotional consequences of trying to undo irreversible tragedies, and the psychological unraveling of destiny.',
     platform: 'Wattpad',
-    url: 'http://www.wattpad.com/user/roshan_christy',
+    url: 'https://www.wattpad.com/user/forge_de_recits',
     theme: 'violet',
   },
   {
@@ -824,7 +824,7 @@ export const WRITINGS: WritingItem[] = [
     summary:
       'Published on Wattpad (Dec 2021) — a story about a girl stuck in a time loop who uncovers deep truths about herself along the journey.',
     platform: 'Wattpad',
-    url: 'http://www.wattpad.com/user/roshan_christy',
+    url: 'https://www.wattpad.com/user/forge_de_recits',
     theme: 'rose',
   },
 ];
