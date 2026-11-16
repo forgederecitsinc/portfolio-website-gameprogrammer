@@ -8,7 +8,6 @@ import {
   Copy,
   ExternalLink,
   GitBranch,
-  Sliders,
   Smartphone,
   X,
 } from 'lucide-react';
@@ -18,7 +17,6 @@ import { PASTEL_THEME } from '../utils/theme';
 import { GameplayLoopFlowchart } from './GameplayLoopFlowchart';
 import { GameDemo } from './demos/GameDemo';
 import { DialoguePlayer } from './features/DialoguePlayer';
-import { SystemsInspector } from './features/SystemsInspector';
 
 interface ProjectModalProps {
   project: ProjectItem | null;
@@ -32,7 +30,7 @@ interface ProjectModalProps {
  */
 export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalProps) {
   const [isDemoPlaying, setIsDemoPlaying] = useState(false);
-  const [activeTab, setActiveTab] = useState<'flowchart' | 'code' | 'systems'>('flowchart');
+  const [activeTab, setActiveTab] = useState<'flowchart' | 'code'>('flowchart');
   const [copiedFile, setCopiedFile] = useState<string | null>(null);
 
   useEffect(() => {
@@ -159,18 +157,6 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
                   Code Highlights
                 </button>
               )}
-              <button
-                type="button"
-                onClick={() => setActiveTab('systems')}
-                className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold transition ${
-                  activeTab === 'systems'
-                    ? 'bg-slate-900 text-white dark:bg-[#F6CF3B] dark:text-slate-950'
-                    : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
-                }`}
-              >
-                <Sliders className="h-3 w-3" />
-                GDD / Systems Dial
-              </button>
             </div>
           </div>
 
@@ -218,7 +204,6 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
                 ))}
               </div>
             )}
-            {activeTab === 'systems' && <SystemsInspector compact />}
           </div>
         </div>
 
