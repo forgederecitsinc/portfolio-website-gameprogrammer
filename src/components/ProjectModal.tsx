@@ -58,14 +58,14 @@ export function ProjectModal({ project, onClose, onPrev, onNext }: ProjectModalP
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-2.5 backdrop-blur-xs sm:p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-modal-title"
     >
       <div
-        className={`animate-modal-in relative max-h-[90vh] w-full max-w-3xl overscroll-contain overflow-y-auto rounded-2xl border ${theme.border} bg-white p-6 text-slate-900 shadow-2xl dark:bg-[#111115] dark:text-slate-100 sm:p-8`}
+        className={`animate-modal-in relative max-h-[92vh] w-full max-w-3xl overscroll-contain overflow-y-auto rounded-xl border ${theme.border} bg-white p-4 text-slate-900 shadow-2xl dark:bg-[#111115] dark:text-slate-100 sm:rounded-2xl sm:p-8`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
